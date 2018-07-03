@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.scau.mybatis.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="ltd.scau.mybatis.po.User">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="birth" jdbcType="TIMESTAMP" property="birth" />
+    <result column="salary" jdbcType="BIGINT" property="salary" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="zodiac" jdbcType="INTEGER" property="zodiac" />
+    <result column="sign_up_time" jdbcType="TIMESTAMP" property="signUpTime" />
+    <result column="profile_url" jdbcType="VARCHAR" property="profileUrl" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="is_real" jdbcType="TINYINT" property="isReal" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="ltd.scau.mybatis.po.User">
+    insert into user (id, account, password, 
+      nickname, realname, birth, 
+      salary, gender, email, 
+      education, address, zodiac, 
+      sign_up_time, profile_url, description, 
+      is_real)
+    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{birth,jdbcType=TIMESTAMP}, 
+      #{salary,jdbcType=BIGINT}, #{gender,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
+      #{education,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{zodiac,jdbcType=INTEGER}, 
+      #{signUpTime,jdbcType=TIMESTAMP}, #{profileUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{isReal,jdbcType=TINYINT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="ltd.scau.mybatis.po.User">
+    update user
+    set account = #{account,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      birth = #{birth,jdbcType=TIMESTAMP},
+      salary = #{salary,jdbcType=BIGINT},
+      gender = #{gender,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      zodiac = #{zodiac,jdbcType=INTEGER},
+      sign_up_time = #{signUpTime,jdbcType=TIMESTAMP},
+      profile_url = #{profileUrl,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      is_real = #{isReal,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, account, password, nickname, realname, birth, salary, gender, email, education, 
+    address, zodiac, sign_up_time, profile_url, description, is_real
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, account, password, nickname, realname, birth, salary, gender, email, education, 
+    address, zodiac, sign_up_time, profile_url, description, is_real
+    from user
+  </select>
+</mapper>

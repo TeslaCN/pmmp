@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.scau.mybatis.mapper.EmailMapper">
+  <resultMap id="BaseResultMap" type="ltd.scau.mybatis.po.Email">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="from_address" jdbcType="VARCHAR" property="fromAddress" />
+    <result column="to_address" jdbcType="VARCHAR" property="toAddress" />
+    <result column="subject" jdbcType="VARCHAR" property="subject" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="is_read" jdbcType="TINYINT" property="isRead" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from email
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="ltd.scau.mybatis.po.Email">
+    insert into email (id, from_address, to_address, 
+      subject, send_time, is_read, 
+      content)
+    values (#{id,jdbcType=BIGINT}, #{fromAddress,jdbcType=VARCHAR}, #{toAddress,jdbcType=VARCHAR}, 
+      #{subject,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{isRead,jdbcType=TINYINT}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="ltd.scau.mybatis.po.Email">
+    update email
+    set from_address = #{fromAddress,jdbcType=VARCHAR},
+      to_address = #{toAddress,jdbcType=VARCHAR},
+      subject = #{subject,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      is_read = #{isRead,jdbcType=TINYINT},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, from_address, to_address, subject, send_time, is_read, content
+    from email
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, from_address, to_address, subject, send_time, is_read, content
+    from email
+  </select>
+</mapper>
