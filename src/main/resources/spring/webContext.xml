@@ -5,7 +5,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <mvc:resources mapping="/**.html" location="/WEB-INF/static/"/>
-    <mvc:resources mapping="/resource/**.js" location="/WEB-INF/static/resource/"/>
-    <mvc:resources mapping="/resource/**.css" location="/WEB-INF/static/resource/"/>
+    <mvc:resources mapping="/resource/**" location="/WEB-INF/static/resource/"/>
 
 </beans>
