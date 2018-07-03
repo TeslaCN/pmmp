@@ -1,15 +1,18 @@
-[
-  {
-    "comment": "由于应用部署，每个URL前可能会带有应用名，例如本应用叫pmmp，首页URL则为http://localhost/pmmp/index.html，因此接口要注意应用名，读取作为全局变量"
+{
+  "README": {
+    "comment": [
+      "这份文件用json格式写，方面复制数据格式，例如使用 $.post(url, data, callback, type) 的时候可以直接把 json 放到 data 参数",
+      "如果带有应用名，例如本应用叫pmmp，首页URL则为http://localhost/pmmp/index.html，因此接口要注意应用名，读取/resource/js/constant.js 内的变量 APP_PREFIX 拼接在url前面",
+      "如果 响应json 内的 redirect不为空，则页面需要执行 redirect"
+    ]
   },
-  {
-    "function": "登录",
+  "登录": {
     "url": "/signin",
-    "POST": {
-      "username": "maven",
+    "method": "POST",
+    "data": {
+      "account": "maven",
       "password": "sudo reboot",
       "verify": "1234"
-      // 验证码
     },
     "return": {
       "success": {
@@ -19,43 +22,41 @@
       },
       "fail": {
         "code": 1,
-        "message": "密码错误"
-        //        "message": "用户不存在"
+        "message": "密码错误 or 用户不存在"
       }
     }
   },
-  {
-    "function": "注册",
+  "注册": {
     "url": "/signup",
-    "POST": {
+    "method": "POST",
+    "data": {
       "realname": "",
+      "account": "",
       "password": "",
       "nickname": "TESLA_CN",
-      "gender": 0,
-      // male:0, female:1
-      "birth": 1530586969051,
-      // Unix时间戳
-      "zodiac": 0,
-      // 0~11
+      "gender //(male:0, female:1)": 0,
+      "birth //(yyyy-MM-dd)": "1997-01-08",
+      "zodiac //(0~11)": 0,
       "email": "wuweijie@scau.edu.cn",
       "salary": 100000,
       "education": "本科",
       "address": "483 SCAU",
       "verify": "4123"
-      // 验证码
     },
     "return": {
       "success": {
         "code": 0,
         "message": ""
-        //        "message":"日期不正确"或其他错误消息
+      },
+      "fail": {
+        "code": 1,
+        "message": "验证码有误 or 其他错误"
       }
     }
   },
-  {
-    "function": "登出",
+  "登出": {
     "url": "/signout",
-    "GET": {},
+    "method": "GET",
     "return": {
       "success": {
         "code": 0,
@@ -63,19 +64,18 @@
       },
       "fail": {
         "code": 1,
-        "message": "用户未登录"
+        "message": "用户未登录",
+        "redirect": ""
       }
     }
   },
-  {
-    "function": "简单搜索",
+  "简单搜索": {
     "url": "/basicsearch",
-    "GET": {
+    "method": "GET",
+    "data": {
       "key": "关键词",
       "pageNo": 1,
-      // 起始页为1
       "pageSize": 10
-      // 每页返回条数
     },
     "return": {
       "success": {
@@ -83,6 +83,7 @@
         "key": "关键词",
         "users": [
           {
+            "id": 1,
             "realname": "Nikola Tesla",
             "nickname": "TESLA_CN",
             "gender": 1,
@@ -90,6 +91,7 @@
             "education": "本科"
           },
           {
+            "id": 1,
             "realname": "Nikola Tesla",
             "nickname": "TESLA_CN",
             "gender": 1,
@@ -100,26 +102,43 @@
       }
     }
   },
-  {
-    "function": "高级搜索",
+  "高级搜索": {
     "url": "/advancedsearch",
-    "GET": {
+    "method": "GET",
+    "data": {
       "key": "关键词",
-      "example": {
-      }
+      "startDate": "1990-01-01",
+      "endDate": "2000-12-31"
     },
     "return": {
       "success": {
+        "code": 0,
+        "key": "关键词",
+        "users": [
+          {
+            "id": 1,
+            "realname": "Nikola Tesla",
+            "nickname": "TESLA_CN",
+            "gender": 1,
+            "birth": 1530586969051,
+            "education": "本科"
+          },
+          {
+            "id": 1,
+            "realname": "Nikola Tesla",
+            "nickname": "TESLA_CN",
+            "gender": 1,
+            "birth": 1530586969051,
+            "education": "本科"
+          }
+        ]
       }
     }
   },
-  {
-    "function": "添加好友",
-    "url": "/relationrequest",
-    "GET": {
-      "targetUser": 1
-      // User ID
-    },
+  "添加好友": {
+    "url": "/friend/{id}",
+    "example": "/friend/52",
+    "method": "PUT",
     "return": {
       "success": {
         "code": 0,
@@ -127,11 +146,154 @@
       }
     }
   },
-  {
-    "function": "获取好友列表",
-    "url":"/friends",
+  "获取好友列表": {
+    "url": "/friends",
     "GET": {
-
+      "pageNo": 3,
+      "pageSize": 20
+    },
+    "return": {
+      "success": {
+        "code": 0,
+        "users": [
+          {
+            "realname": "Nikola Tesla",
+            "nickname": "TESLA_CN",
+            "gender": 1,
+            "birth": "1997-01-08",
+            "education": "本科"
+          },
+          {
+            "realname": "Nikola Tesla",
+            "nickname": "TESLA_CN",
+            "gender": 1,
+            "birth": "1997-01-08",
+            "education": "本科"
+          }
+        ]
+      }
+    }
+  },
+  "删除好友": {
+    "url": "/friend/{id}",
+    "example": "/friend/7",
+    "method": "DELETE",
+    "return": {
+      "success": {
+        "code": 0,
+        "message": "deleted"
+      }
+    }
+  },
+  "查看个人信息": {
+    "url": "/me",
+    "method": "GET",
+    "return": {
+      "success": {
+        "user": {
+          "realname": "",
+          "account": "",
+          "nickname": "TESLA_CN",
+          "gender": 0,
+          "birth": "1997-01-08",
+          "zodiac": 0,
+          "email": "wuweijie@scau.edu.cn",
+          "salary": 100000,
+          "education": "本科",
+          "address": "483 SCAU"
+        }
+      },
+      "fail": {
+        "code": 1,
+        "message": "未登录",
+        "redirect": "/signin.html"
+      }
+    }
+  },
+  "修改个人信息": {
+    "url": "/me",
+    "method": "POST",
+    "data": {
+      "realname": "",
+      "account": "",
+      "password": "",
+      "nickname": "TESLA_CN",
+      "gender": 0,
+      "birth": "1997-01-08",
+      "zodiac": 0,
+      "email": "wuweijie@scau.edu.cn",
+      "salary": 100000,
+      "education": "本科",
+      "address": "483 SCAU"
+    },
+    "return": {
+    }
+  },
+  "获取所有邮件": {
+    "url": "/emails",
+    "method": "GET",
+    "data": {
+      "pageNo": 3,
+      "pageSize": 20
+    },
+    "return": {
+      "success": {
+        "code": 0,
+        "emails": [
+          {
+            "id": 231,
+            "fromAddress": "maven@gmail.com",
+            "toAddress": "wuweijie.io@qq.com",
+            "subject": "Hello, World!",
+            "content": "Talk is cheap. Show me the code!",
+            "sendTime": "具体格式有待协商",
+            "isRead": false
+          },
+          {
+            "id": 231,
+            "fromAddress": "maven@gmail.com",
+            "toAddress": "wuweijie.io@qq.com",
+            "subject": "Hello, World!",
+            "content": "Talk is cheap. Show me the code!",
+            "sendTime": "具体格式有待协商",
+            "isRead": false
+          }
+        ]
+      }
+    }
+  },
+  "查看指定邮件": {
+    "url": "/email/{id}",
+    "method": "GET",
+    "return": {
+      "success": {
+        "code": 0,
+        "email": {
+          "id": 231,
+          "fromAddress": "maven@gmail.com",
+          "toAddress": "wuweijie.io@qq.com",
+          "subject": "Hello, World!",
+          "content": "Talk is cheap. Show me the code!",
+          "sendTime": "具体格式有待协商",
+          "isRead": false
+        }
+      }
+    }
+  },
+  "发送邮件": {
+    "url": "/email",
+    "method": "POST",
+    "data": {
+      "fromAddress": "maven@gmail.com",
+      "toAddress": "wuweijie.io@qq.com",
+      "subject": "Hello, World!",
+      "content": "Talk is cheap. Show me the code!"
+    },
+    "return": {
+      "success": {
+        "code": 0,
+        "message": "已投递"
+      }
     }
   }
-]
+}
