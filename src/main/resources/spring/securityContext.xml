@@ -11,7 +11,7 @@
         <security:intercept-url pattern="/" access="permitAll()"/>
         <security:intercept-url pattern="/index.html" access="permitAll()"/>
         <security:intercept-url pattern="/signin.html" access="permitAll()"/>
-        <security:intercept-url pattern="/signup.html" access="permitAll()"/>
+        <security:intercept-url pattern="/register.html" access="permitAll()"/>
         <security:intercept-url pattern="/signin" access="permitAll()"/>
         <security:intercept-url pattern="/signup" access="permitAll()"/>
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
