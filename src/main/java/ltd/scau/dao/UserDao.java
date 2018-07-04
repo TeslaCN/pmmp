@@ -15,6 +15,8 @@ public interface UserDao {
 
     User persist(User user);
 
+    User persistAndGrantUserRole(User user);
+
     User update(User user);
 
 }

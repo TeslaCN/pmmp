@@ -2,9 +2,9 @@ package ltd.scau.dto;
 
 public class ResultDto {
 
-    private int code = 0;
+    protected int code = 0;
 
-    private String message;
+    protected String message;
 
     public int getCode() {
         return code;

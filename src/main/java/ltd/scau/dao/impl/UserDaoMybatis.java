@@ -1,9 +1,10 @@
 package ltd.scau.dao.impl;
 
 import ltd.scau.dao.UserDao;
+import ltd.scau.mybatis.mapper.RoleMapper;
 import ltd.scau.mybatis.mapper.UserMapper;
-import ltd.scau.mybatis.po.User;
-import ltd.scau.mybatis.po.UserExample;
+import ltd.scau.mybatis.mapper.UserRoleMapper;
+import ltd.scau.mybatis.po.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +18,12 @@ public class UserDaoMybatis implements UserDao {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private RoleMapper roleMapper;
+
+    @Autowired
+    private UserRoleMapper userRoleMapper;
 
     @Override
     public User findById(Long id) {
@@ -37,6 +44,19 @@ public class UserDaoMybatis implements UserDao {
     @Override
     public User persist(User user) {
         int record = userMapper.insertSelective(user);
+        return user;
+    }
+
+    @Override
+    public User persistAndGrantUserRole(User user) {
+        persist(user);
+        RoleExample roleExample = new RoleExample();
+        roleExample.createCriteria().andRolenameEqualTo(Role.ROLE_USER);
+        Role role = roleMapper.selectByExample(roleExample).get(0);
+        UserRole userRole = new UserRole();
+        userRole.setUserId(user.getId());
+        userRole.setRoleId(role.getId());
+        userRoleMapper.insert(userRole);
         return user;
     }
 

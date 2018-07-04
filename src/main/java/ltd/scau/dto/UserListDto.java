@@ -10,11 +10,11 @@ import java.util.List;
  */
 public class UserListDto extends ResultDto {
 
-    private int pageSize;
+    protected int pageSize;
 
-    private int pageNo;
+    protected int pageNo;
 
-    private List<User> users;
+    protected List<User> users;
 
     public List<User> getUsers() {
         return users;
