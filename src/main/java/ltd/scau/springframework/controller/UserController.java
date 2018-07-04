@@ -1,10 +1,16 @@
 package ltd.scau.springframework.controller;
 
+import ltd.scau.dao.UserDao;
 import ltd.scau.dto.ResultDto;
+import ltd.scau.mybatis.mapper.RoleMapper;
+import ltd.scau.mybatis.mapper.UserMapper;
+import ltd.scau.mybatis.mapper.UserRoleMapper;
 import ltd.scau.mybatis.po.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,11 +29,17 @@ public class UserController {
 
     private static final Log logger = LogFactory.getLog(UserController.class);
 
+    @Autowired
+    private UserDao userDao;
+
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ResultDto signUp(User user, String verify) {
         ResultDto dto = new ResultDto();
-        logger.info(user);
-        logger.info("VERIFY: " + verify);
+        Md5PasswordEncoder encoder = new Md5PasswordEncoder();
+        user.setPassword(encoder.encodePassword(user.getPassword(), null));
+        userDao.persist(user);
+        dto.setMessage("success");
+        logger.info("PERSIST" + user);
         return dto;
     }
 

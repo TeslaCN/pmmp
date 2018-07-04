@@ -4,15 +4,17 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 
-    <classPathEntry location="/Users/TESLA_CN/.m2/repository/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar"/>
+    <classPathEntry
+            location="/Users/TESLA_CN/.m2/repository/mysql/mysql-connector-java/5.1.46/mysql-connector-java-5.1.46.jar"/>
 
-    <context id="context" targetRuntime="MyBatis3Simple">
+    <context id="context" targetRuntime="MyBatis3">
         <commentGenerator>
             <property name="suppressAllComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
 
-        <jdbcConnection userId="maven" password="sudo reboot" driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1/pmmp"/>
+        <jdbcConnection userId="maven" password="sudo reboot" driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1/pmmp"/>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
@@ -31,13 +33,25 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
-        <!--<table schema="" tableName="" enableCountByExample="false" enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false" enableUpdateByExample="false"/>-->
-        <table tableName="user"/>
-        <table tableName="role"/>
-        <table tableName="user_relation"/>
-        <table tableName="user_role"/>
-        <table tableName="email"/>
-        <table tableName="image"/>
+        <table tableName="user" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="role" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="user_role" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"/>
+        <table tableName="user_relation" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true"/>
+        <table tableName="image" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="email" enableCountByExample="true" enableDeleteByExample="true"
+               enableSelectByExample="true" enableUpdateByExample="true">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

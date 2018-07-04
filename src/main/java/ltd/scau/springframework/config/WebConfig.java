@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @author Weijie Wu
  */
 @EnableWebMvc
-@ComponentScan("ltd.scau.springframework.*")
+@ComponentScan("ltd.scau.*")
 @Configuration
 @ImportResource("classpath:spring/*Context.xml")
 public class WebConfig {

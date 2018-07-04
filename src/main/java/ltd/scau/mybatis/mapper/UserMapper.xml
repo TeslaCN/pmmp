@@ -19,24 +19,350 @@
     <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="is_real" jdbcType="TINYINT" property="isReal" />
   </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, account, password, nickname, realname, birth, salary, gender, email, education, 
+    address, zodiac, sign_up_time, profile_url, description, is_real
+  </sql>
+  <select id="selectByExample" parameterType="ltd.scau.mybatis.po.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from user
     where id = #{id,jdbcType=BIGINT}
   </delete>
+  <delete id="deleteByExample" parameterType="ltd.scau.mybatis.po.UserExample">
+    delete from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
   <insert id="insert" parameterType="ltd.scau.mybatis.po.User">
-    insert into user (id, account, password, 
-      nickname, realname, birth, 
-      salary, gender, email, 
-      education, address, zodiac, 
-      sign_up_time, profile_url, description, 
-      is_real)
-    values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{nickname,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, 
-      #{salary,jdbcType=BIGINT}, #{gender,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
-      #{education,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{zodiac,jdbcType=INTEGER}, 
-      #{signUpTime,jdbcType=TIMESTAMP}, #{profileUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{isReal,jdbcType=TINYINT})
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user (account, password, nickname, 
+      realname, birth, salary, 
+      gender, email, education, 
+      address, zodiac, sign_up_time, 
+      profile_url, description, is_real
+      )
+    values (#{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{realname,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{salary,jdbcType=BIGINT}, 
+      #{gender,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{zodiac,jdbcType=INTEGER}, #{signUpTime,jdbcType=TIMESTAMP}, 
+      #{profileUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{isReal,jdbcType=TINYINT}
+      )
   </insert>
+  <insert id="insertSelective" parameterType="ltd.scau.mybatis.po.User">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        account,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="birth != null">
+        birth,
+      </if>
+      <if test="salary != null">
+        salary,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="zodiac != null">
+        zodiac,
+      </if>
+      <if test="signUpTime != null">
+        sign_up_time,
+      </if>
+      <if test="profileUrl != null">
+        profile_url,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="isReal != null">
+        is_real,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        #{birth,jdbcType=DATE},
+      </if>
+      <if test="salary != null">
+        #{salary,jdbcType=BIGINT},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zodiac != null">
+        #{zodiac,jdbcType=INTEGER},
+      </if>
+      <if test="signUpTime != null">
+        #{signUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="profileUrl != null">
+        #{profileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="isReal != null">
+        #{isReal,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="ltd.scau.mybatis.po.UserExample" resultType="java.lang.Long">
+    select count(*) from user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.account != null">
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null">
+        nickname = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realname != null">
+        realname = #{record.realname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birth != null">
+        birth = #{record.birth,jdbcType=DATE},
+      </if>
+      <if test="record.salary != null">
+        salary = #{record.salary,jdbcType=BIGINT},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=INTEGER},
+      </if>
+      <if test="record.email != null">
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.education != null">
+        education = #{record.education,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.zodiac != null">
+        zodiac = #{record.zodiac,jdbcType=INTEGER},
+      </if>
+      <if test="record.signUpTime != null">
+        sign_up_time = #{record.signUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.profileUrl != null">
+        profile_url = #{record.profileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isReal != null">
+        is_real = #{record.isReal,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update user
+    set id = #{record.id,jdbcType=BIGINT},
+      account = #{record.account,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
+      realname = #{record.realname,jdbcType=VARCHAR},
+      birth = #{record.birth,jdbcType=DATE},
+      salary = #{record.salary,jdbcType=BIGINT},
+      gender = #{record.gender,jdbcType=INTEGER},
+      email = #{record.email,jdbcType=VARCHAR},
+      education = #{record.education,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR},
+      zodiac = #{record.zodiac,jdbcType=INTEGER},
+      sign_up_time = #{record.signUpTime,jdbcType=TIMESTAMP},
+      profile_url = #{record.profileUrl,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      is_real = #{record.isReal,jdbcType=TINYINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="ltd.scau.mybatis.po.User">
+    update user
+    <set>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="birth != null">
+        birth = #{birth,jdbcType=DATE},
+      </if>
+      <if test="salary != null">
+        salary = #{salary,jdbcType=BIGINT},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="zodiac != null">
+        zodiac = #{zodiac,jdbcType=INTEGER},
+      </if>
+      <if test="signUpTime != null">
+        sign_up_time = #{signUpTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="profileUrl != null">
+        profile_url = #{profileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="isReal != null">
+        is_real = #{isReal,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
   <update id="updateByPrimaryKey" parameterType="ltd.scau.mybatis.po.User">
     update user
     set account = #{account,jdbcType=VARCHAR},
@@ -56,15 +382,4 @@
       is_real = #{isReal,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select id, account, password, nickname, realname, birth, salary, gender, email, education, 
-    address, zodiac, sign_up_time, profile_url, description, is_real
-    from user
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select id, account, password, nickname, realname, birth, salary, gender, email, education, 
-    address, zodiac, sign_up_time, profile_url, description, is_real
-    from user
-  </select>
 </mapper>
