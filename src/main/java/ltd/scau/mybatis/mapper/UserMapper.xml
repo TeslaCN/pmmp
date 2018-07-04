@@ -7,7 +7,7 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="realname" jdbcType="VARCHAR" property="realname" />
-    <result column="birth" jdbcType="TIMESTAMP" property="birth" />
+    <result column="birth" jdbcType="DATE" property="birth" />
     <result column="salary" jdbcType="BIGINT" property="salary" />
     <result column="gender" jdbcType="INTEGER" property="gender" />
     <result column="email" jdbcType="VARCHAR" property="email" />
@@ -31,7 +31,7 @@
       sign_up_time, profile_url, description, 
       is_real)
     values (#{id,jdbcType=BIGINT}, #{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{nickname,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{birth,jdbcType=TIMESTAMP}, 
+      #{nickname,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, 
       #{salary,jdbcType=BIGINT}, #{gender,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, 
       #{education,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{zodiac,jdbcType=INTEGER}, 
       #{signUpTime,jdbcType=TIMESTAMP}, #{profileUrl,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
@@ -43,7 +43,7 @@
       password = #{password,jdbcType=VARCHAR},
       nickname = #{nickname,jdbcType=VARCHAR},
       realname = #{realname,jdbcType=VARCHAR},
-      birth = #{birth,jdbcType=TIMESTAMP},
+      birth = #{birth,jdbcType=DATE},
       salary = #{salary,jdbcType=BIGINT},
       gender = #{gender,jdbcType=INTEGER},
       email = #{email,jdbcType=VARCHAR},

@@ -1,6 +1,7 @@
 package ltd.scau.mybatis.po;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class User {
     private Long id;
@@ -161,5 +162,41 @@ public class User {
 
     public void setIsReal(Byte isReal) {
         this.isReal = isReal;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", realname='" + realname + '\'' +
+                ", birth=" + birth +
+                ", salary=" + salary +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                ", education='" + education + '\'' +
+                ", address='" + address + '\'' +
+                ", zodiac=" + zodiac +
+                ", signUpTime=" + signUpTime +
+                ", profileUrl='" + profileUrl + '\'' +
+                ", description='" + description + '\'' +
+                ", isReal=" + isReal +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(id, user.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 }

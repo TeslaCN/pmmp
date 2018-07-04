@@ -4,16 +4,24 @@
        xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <security:http pattern="/resource/**" security="none"/>
     <security:http auto-config="true">
+        <security:csrf disabled="true"/>
+        <security:form-login login-page="/signin.html"/>
         <security:intercept-url pattern="/" access="permitAll()"/>
         <security:intercept-url pattern="/index.html" access="permitAll()"/>
-        <security:intercept-url pattern="/**.html" access="permitAll()"/>
+        <security:intercept-url pattern="/signin.html" access="permitAll()"/>
+        <security:intercept-url pattern="/signup.html" access="permitAll()"/>
+        <security:intercept-url pattern="/signin" access="permitAll()"/>
+        <security:intercept-url pattern="/signup" access="permitAll()"/>
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <security:intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
     </security:http>
 
     <security:authentication-manager>
         <security:authentication-provider>
             <security:user-service>
-                <security:user name="admin" password="admin" authorities="ROLE_ADMIN"/>
+                <security:user name="admin" password="admin" authorities="ROLE_USER,ROLE_ADMIN"/>
                 <security:user name="user" password="user" authorities="ROLE_USER"/>
             </security:user-service>
         </security:authentication-provider>
