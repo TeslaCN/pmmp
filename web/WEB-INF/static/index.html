@@ -9,8 +9,8 @@
     <title>交友交友交</title>
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="resource/css/base.css" rel="stylesheet">
-    <link href="resource/css/index.css" rel="stylesheet">
+    <!--<link href="resource/css/base.css" rel="stylesheet">-->
+    <!--<link href="resource/css/index.css" rel="stylesheet">-->
     <script src="resource/js/jquery_3.3.1_jquery.js"></script>
     <script src="resource/js/constant.js"></script>
     <script src="resource/js/vue.js"></script>
@@ -18,60 +18,56 @@
 </head>
 
 <body>
+<div id="nav"></div>
+<div class="container">
 
-<div class="site-wrapper">
-    <div class="site-wrapper-inner">
-        <div class="cover-container">
-
-            <div class="masthead clearfix">
-                <div class="inner">
-                    <h3 class="masthead-brand">硬核交友网</h3>
-                    <nav>
-                        <ul class="nav masthead-nav">
-                            <li class="active"><a href="#">首页</a></li>
-                            <li><a href="signin.html">登陆</a></li>
-                            <li><a href="register.html">注册</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-
-            <div class="inner cover">
-                <h1 class="cover-heading">全球最大线上交友♂♀平台</h1>
-                <p class="lead">硬核交友，即刻开始</p>
-                <p class="lead">
-                    <a href="signin.html" class="btn btn-lg btn-default">马上登陆</a>
-                </p>
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <div id="index">
-                    <h1 v-if="user.id">{{user.id}}&nbsp;{{user.account}}</h1>
-                    <h1 v-else>No</h1>
-                </div>
-
-            </div>
-
-            <div class="mastfoot">
-                <div class="inner">
-                    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="#">@有请下一组</a>.
-                    </p>
-                </div>
-            </div>
-
-        </div>
+    <div class="jumbotron">
+        <h1>交友</h1>
+        <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
+        <p>To see the difference between static and fixed top navbars, just scroll.</p>
+        <p>
+            <a class="btn btn-lg btn-primary" href="signin.html" role="button">马上登陆</a>
+        </p>
     </div>
-</div>
+
+</div> <!-- /container -->
+
+<!--&lt;!&ndash;<div class="site-wrapper">&ndash;&gt;-->
+    <!--&lt;!&ndash;<div class="site-wrapper-inner">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="cover-container">&ndash;&gt;-->
+            <!--<div id="nav"></div>-->
+
+        <!--<br><br><br>-->
+
+            <!--<div class="inner cover">-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<p class="lead">硬核交友，即刻开始</p>-->
+                <!--<p class="lead">-->
+                    <!--<a href="signin.html" class="btn btn-lg btn-default">马上登陆</a>-->
+                <!--</p>-->
+
+                <!--<div id="index">-->
+                    <!--<h1 v-if="user.id">{{user.id}}&nbsp;{{user.account}}</h1>-->
+                    <!--<h1 v-else>No</h1>-->
+                <!--</div>-->
+
+            <!--</div>-->
+
+            <!--&lt;!&ndash;<div class="mastfoot">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="inner">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="#">@有请下一组</a>.&ndash;&gt;-->
+                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
 </body>
 <script>
+    $("#nav").load("navbar.html");
+
     var index = new Vue({
         el: '#index',
         data: {

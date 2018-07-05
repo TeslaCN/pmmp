@@ -14,7 +14,7 @@
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="resource/bootstrap-datepicker-master/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-    <link href="resource/css/base.css" rel="stylesheet">
+    <!--<link href="resource/css/base.css" rel="stylesheet">-->
     <link href="resource/css/signin.css" rel="stylesheet">
     <script src="resource/js/jquery_3.3.1_jquery.js"></script>
     <script src="resource/js/constant.js"></script>
@@ -24,106 +24,129 @@
     <script src="resource/js/vue.js"></script>
 </head>
 <body>
-<div class="site-wrapper">
+<div id="nav"></div>
+<div class="container">
 
-    <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-            <div class="masthead clearfix">
-                <div class="inner">
-                    <h3 class="masthead-brand">硬核交友网</h3>
-                    <nav>
-                        <ul class="nav masthead-nav">
-                            <li><a href="index.html">首页</a></li>
-                            <li><a href="signin.html">登陆</a></li>
-                            <li class="active"><a href="#">注册</a></li>
-                        </ul>
-                    </nav>
-                </div>
+    <form class="form-signin" onsubmit="return false" id="form">
+        <div class="panel panel-signin">
+            <div class="panel-heading">
+                <h3 class="panel-title">用户注册</h3>
             </div>
+            <div class="panel-body">
 
-            <form class="form-signin" onsubmit="return false" id="form">
-                <div class="panel panel-signin">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">用户注册</h3>
-                    </div>
-                    <div class="panel-body">
+                <div id="userRegister">
+                    <label for="inputAccount" class="sr-only">注册账号</label>
+                    <input  v-model="account" name="account" type="text" id="inputAccount" class="form-control" placeholder="注册账号" required autofocus>
+                    <br>
+                    <label for="inputPassword" class="sr-only">密码</label>
+                    <input v-model="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+                    <br>
+                    <label for="inputRePassword" class="sr-only">确认密码</label>
+                    <input v-model="rePassword" name="rePassword" type="text" id="inputRePassword" class="form-control" placeholder="确认密码" >
 
-                        <div id="userRegister">
-                            <label for="inputAccount" class="sr-only">注册账号</label>
-                            <input  v-model="account" name="account" type="text" id="inputAccount" class="form-control" placeholder="注册账号" required autofocus>
-                            <br>
-                            <label for="inputPassword" class="sr-only">密码</label>
-                            <input v-model="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
-                            <br>
-                            <label for="inputRePassword" class="sr-only">确认密码</label>
-                            <input v-model="rePassword" name="rePassword" type="text" id="inputRePassword" class="form-control" placeholder="确认密码" >
-
-                            <button class="btn btn-lg btn-primary btn-block" id="signin" @click="signIn()">登录</button>
-                        </div>
-
-
-                        <label class="attr">注册账号</label>
-                        <input type="text" class="inputText" id="account" name="account">
-                        <br>
-                        <label class="attr">密码</label>
-                        <input type="password" class="inputText" id="password" name="password">
-                        <br>
-                        <label class="attr">确认密码</label>
-                        <input type="password" class="inputText" id="rePassword">
-                        <br>
-                        <label class="attr">真实姓名</label>
-                        <input type="text" class="inputText" id="realname" name="realname">
-                        <br>
-                        <label class="attr">昵称</label>
-                        <input type="text" class="inputText" id="nickname" name="nickname">
-                        <br>
-                        <label class="attr">性别</label>
-                        <input id="male" class="ir" value="0"  type="radio" name="gender">
-                        <label class="sex male" for="male">男</label>
-                        <input id="female" class="ir" value="1" type="radio" name="gender">
-                        <label class="sex female" for="female">女</label>
-                        <br>
-                        <label class="attr">生日</label>
-                        <input type="text" class="inputText" id="birth" name="birth" value="1970-01-01">
-                        <br>
-
-
-
-                        <!--<input type='text' class="form-control" id='datetime' />
-
-                        <label class="attr">星座</label>
-                        <input type="text" class="inputText" id="zodiac" name="zodiac">
-                        <br>
-                        <label class="attr">邮箱</label>
-                        <input type="email" class="inputText" id="email" name="email">
-                        <br>
-                        <label class="attr">工资</label>
-                        <input type="text" class="inputText" id="salary" name="salary">
-                        <br>
-                        <label class="attr">学历</label>
-                        <input type="text" class="inputText" id="education" name="education">
-                        <br>
-                        <label class="attr">常住地</label>
-                        <input type="text" class="inputText" id="address" name="address">
-                        <br>
-                        <label class="attr">验证码</label>
-                        <input type="text" class="inputText" id="verify" name="verify">
-                        <br>-->
-                        <button class="btn btn-lg btn-primary btn-block" id="register" type="submit">免费注册</button>
-                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" id="signin" @click="signIn()">登录</button>
                 </div>
-            </form>
 
-        </div> <!-- /container -->
-    </div>
-</div>
+
+                <label class="attr">注册账号</label>
+                <input type="text" class="inputText" id="account" name="account">
+                <br>
+                <label class="attr">密码</label>
+                <input type="password" class="inputText" id="password" name="password">
+                <br>
+                <label class="attr">确认密码</label>
+                <input type="password" class="inputText" id="rePassword">
+                <br>
+                <label class="attr">真实姓名</label>
+                <input type="text" class="inputText" id="realname" name="realname">
+                <br>
+                <label class="attr">昵称</label>
+                <input type="text" class="inputText" id="nickname" name="nickname">
+                <br>
+                <label class="attr">性别</label>
+                <input id="male" class="ir" value="0"  type="radio" name="gender">
+                <label class="sex male" for="male">男</label>
+                <input id="female" class="ir" value="1" type="radio" name="gender">
+                <label class="sex female" for="female">女</label>
+                <br>
+                <label class="attr">生日</label>
+                <input type="text" class="inputText" id="birth" name="birth" value="1970-01-01">
+                <br>
+
+                <button class="btn btn-lg btn-primary btn-block" id="register" type="submit">免费注册</button>
+            </div>
+        </div>
+    </form>
+
+</div> <!-- /container -->
+<!--<div class="site-wrapper">-->
+
+<!--<div class="site-wrapper-inner">-->
+
+<!--<div class="cover-container">-->
+<!--<div id="nav"></div>-->
+
+<!--<form class="form-signin" onsubmit="return false" id="form">-->
+<!--<div class="panel panel-signin">-->
+<!--<div class="panel-heading">-->
+<!--<h3 class="panel-title">用户注册</h3>-->
+<!--</div>-->
+<!--<div class="panel-body">-->
+
+<!--<div id="userRegister">-->
+<!--<label for="inputAccount" class="sr-only">注册账号</label>-->
+<!--<input  v-model="account" name="account" type="text" id="inputAccount" class="form-control" placeholder="注册账号" required autofocus>-->
+<!--<br>-->
+<!--<label for="inputPassword" class="sr-only">密码</label>-->
+<!--<input v-model="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>-->
+<!--<br>-->
+<!--<label for="inputRePassword" class="sr-only">确认密码</label>-->
+<!--<input v-model="rePassword" name="rePassword" type="text" id="inputRePassword" class="form-control" placeholder="确认密码" >-->
+
+<!--<button class="btn btn-lg btn-primary btn-block" id="signin" @click="signIn()">登录</button>-->
+<!--</div>-->
+
+
+<!--<label class="attr">注册账号</label>-->
+<!--<input type="text" class="inputText" id="account" name="account">-->
+<!--<br>-->
+<!--<label class="attr">密码</label>-->
+<!--<input type="password" class="inputText" id="password" name="password">-->
+<!--<br>-->
+<!--<label class="attr">确认密码</label>-->
+<!--<input type="password" class="inputText" id="rePassword">-->
+<!--<br>-->
+<!--<label class="attr">真实姓名</label>-->
+<!--<input type="text" class="inputText" id="realname" name="realname">-->
+<!--<br>-->
+<!--<label class="attr">昵称</label>-->
+<!--<input type="text" class="inputText" id="nickname" name="nickname">-->
+<!--<br>-->
+<!--<label class="attr">性别</label>-->
+<!--<input id="male" class="ir" value="0"  type="radio" name="gender">-->
+<!--<label class="sex male" for="male">男</label>-->
+<!--<input id="female" class="ir" value="1" type="radio" name="gender">-->
+<!--<label class="sex female" for="female">女</label>-->
+<!--<br>-->
+<!--<label class="attr">生日</label>-->
+<!--<input type="text" class="inputText" id="birth" name="birth" value="1970-01-01">-->
+<!--<br>-->
+
+<!--<button class="btn btn-lg btn-primary btn-block" id="register" type="submit">免费注册</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->
+
+<!--</div> &lt;!&ndash; /container &ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
 </body>
 
 <script>
 
     $(document).ready(function() {
+
+        $("#nav").load("navbar.html");
 
         $("#birth").datepicker({
             format: "yyyy-mm-dd",

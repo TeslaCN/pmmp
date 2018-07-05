@@ -13,7 +13,7 @@
     <!-- Bootstrap core CSS -->
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="resource/css/base.css" rel="stylesheet">
+    <!--<link href="resource/css/base.css" rel="stylesheet">-->
 
     <link href="resource/css/signin.css" rel="stylesheet">
     <script src="resource/js/jquery_3.3.1_jquery.js"></script>
@@ -22,58 +22,79 @@
     <script src="resource/js/jquery.cookie.js"></script>
 </head>
 <body>
-<div class="site-wrapper">
+<div id="nav"></div>
+<div class="container">
 
-    <div class="site-wrapper-inner">
-
-        <div class="cover-container">
-
-            <div class="masthead clearfix">
-                <div class="inner">
-                    <h3 class="masthead-brand">硬核交友网</h3>
-                    <nav>
-                        <ul class="nav masthead-nav">
-                            <li><a href="index.html">首页</a></li>
-                            <li class="active"><a href="#">登陆</a></li>
-                            <li><a href="register.html">注册</a></li>
-                        </ul>
-                    </nav>
+    <form class="form-signin" onsubmit="return false" id="form">
+        <div class="panel panel-signin">
+            <div class="panel-heading">
+                <h3 class="panel-title">用户登录</h3>
+            </div>
+            <div class="panel-body">
+                <div id="userSignIn">
+                    <label for="inputUsername" class="sr-only">你的账号</label>
+                    <input v-model="username" name="username" type="text" id="inputUsername"
+                           class="form-control" placeholder="你的账号" required autofocus>
+                    <br>
+                    <label for="inputPassword" class="sr-only">密码</label>
+                    <input v-model="password" name="password" type="password" id="inputPassword"
+                           class="form-control" placeholder="密码" required>
+                    <br>
+                    <label for="inputVerify" class="sr-only">验证码</label>
+                    <input v-model="verify" name="verify" type="text" id="inputVerify" class="form-control"
+                           placeholder="验证码">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me"> 记住密码
+                        </label>
+                    </div>
+                    <button class="btn btn-lg btn-primary btn-block" id="signin" @click="signIn()">登录</button>
                 </div>
             </div>
-
-            <form class="form-signin" onsubmit="return false" id="form">
-                <div class="panel panel-signin">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">用户登录</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div id="userSignIn">
-                            <label for="inputUsername" class="sr-only">你的账号</label>
-                            <input v-model="username" name="username" type="text" id="inputUsername"
-                                   class="form-control" placeholder="你的账号" required autofocus>
-                            <br>
-                            <label for="inputPassword" class="sr-only">密码</label>
-                            <input v-model="password" name="password" type="password" id="inputPassword"
-                                   class="form-control" placeholder="密码" required>
-                            <br>
-                            <label for="inputVerify" class="sr-only">验证码</label>
-                            <input v-model="verify" name="verify" type="text" id="inputVerify" class="form-control"
-                                   placeholder="验证码">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="remember-me"> 记住密码
-                                </label>
-                            </div>
-                            <button class="btn btn-lg btn-primary btn-block" id="signin" @click="signIn()">登录</button>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
         </div>
-    </div>
-</div>
-</body>
+    </form>
 
+</div> <!-- /container -->
+<!--<div class="site-wrapper">-->
+
+<!--<div class="site-wrapper-inner">-->
+
+<!--<div class="cover-container">-->
+<!--<div id="nav"></div>-->
+
+<!--<form class="form-signin" onsubmit="return false" id="form">-->
+<!--<div class="panel panel-signin">-->
+<!--<div class="panel-heading">-->
+<!--<h3 class="panel-title">用户登录</h3>-->
+<!--</div>-->
+<!--<div class="panel-body">-->
+<!--<div id="userSignIn">-->
+<!--<label for="inputUsername" class="sr-only">你的账号</label>-->
+<!--<input v-model="username" name="username" type="text" id="inputUsername"-->
+<!--class="form-control" placeholder="你的账号" required autofocus>-->
+<!--<br>-->
+<!--<label for="inputPassword" class="sr-only">密码</label>-->
+<!--<input v-model="password" name="password" type="password" id="inputPassword"-->
+<!--class="form-control" placeholder="密码" required>-->
+<!--<br>-->
+<!--<label for="inputVerify" class="sr-only">验证码</label>-->
+<!--<input v-model="verify" name="verify" type="text" id="inputVerify" class="form-control"-->
+<!--placeholder="验证码">-->
+<!--<div class="checkbox">-->
+<!--<label>-->
+<!--<input type="checkbox" value="remember-me"> 记住密码-->
+<!--</label>-->
+<!--</div>-->
+<!--<button class="btn btn-lg btn-primary btn-block" id="signin" @click="signIn()">登录</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</form>-->
+
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+</body>
 <script src="resource/js/signin.js"></script>
+
 </html>
