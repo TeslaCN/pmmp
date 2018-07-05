@@ -10,32 +10,32 @@ import java.util.Date;
 public class AdvancedSearchResultDto extends SearchResultDto {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    protected Date start;
+    protected Date startDate;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    protected Date end;
+    protected Date endDate;
 
-    public Date getStart() {
-        return start;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setStart(Date start) {
-        this.start = start;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getEnd() {
-        return end;
+    public Date getEndDate() {
+        return endDate;
     }
 
-    public void setEnd(Date end) {
-        this.end = end;
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     @Override
     public String toString() {
         return "AdvancedSearchResultDto{" +
-                "start=" + start +
-                ", end=" + end +
+                "startDate=" + startDate +
+                ", endDate=" + endDate +
                 ", key='" + key + '\'' +
                 ", pageSize=" + pageSize +
                 ", pageNo=" + pageNo +

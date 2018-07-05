@@ -147,6 +147,34 @@
       }
     }
   },
+  "获取所有添加请求": {
+    "url": "/requests",
+    "method": "GET",
+    "return": {
+      "success": {
+        "code": 0,
+        "message": "",
+        "users": [
+          {
+            "id": 1,
+            "realname": "Nikola Tesla",
+            "nickname": "TESLA_CN",
+            "gender": 1,
+            "birth": 1530586969051,
+            "education": "本科"
+          },
+          {
+            "id": 1,
+            "realname": "Nikola Tesla",
+            "nickname": "TESLA_CN",
+            "gender": 1,
+            "birth": 1530586969051,
+            "education": "本科"
+          }
+        ]
+      }
+    }
+  },
   "获取好友列表": {
     "url": "/friends",
     "GET": {
@@ -294,5 +322,9 @@
         "message": "已投递"
       }
     }
+  },
+  "验证码图片": {
+    "url": "/util/code",
+    "method": "GET"
   }
 }

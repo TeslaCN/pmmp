@@ -4,7 +4,6 @@ import com.github.pagehelper.PageHelper;
 import ltd.scau.dao.UserDao;
 import ltd.scau.dto.AdvancedSearchResultDto;
 import ltd.scau.dto.SearchResultDto;
-import ltd.scau.dto.UserListDto;
 import ltd.scau.mybatis.po.User;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -63,7 +62,7 @@ public class SearchController {
             dto.setCode(0);
 
             PageHelper.startPage(dto.getPageNo(), dto.getPageSize());
-            List<User> users = userDao.findAllByKey("%" + dto.getKey() + "%", dto.getStart(), dto.getEnd());
+            List<User> users = userDao.findAllByKey("%" + dto.getKey() + "%", dto.getStartDate(), dto.getEndDate());
 
             dto.setUsers(users);
         }

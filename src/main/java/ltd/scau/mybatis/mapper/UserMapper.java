@@ -20,7 +20,7 @@ public interface UserMapper {
 
     List<User> selectByExample(UserExample example);
 
-    List<User> selectByBirthAndKey(@Param("key") String key, @Param("start") Date start, @Param("end") Date end);
+    List<User> selectByBirthAndKey(@Param("key") String key, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
     User selectByPrimaryKey(Long id);
 

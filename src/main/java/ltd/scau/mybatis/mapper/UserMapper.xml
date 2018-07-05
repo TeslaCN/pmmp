@@ -98,7 +98,7 @@
     select
     <include refid="Base_Column_List" />
     from user
-    where birth between #{start} and #{end}
+    where birth between #{startDate} and #{endDate}
     and (nickname like #{key} or realname like #{key} or education like #{key} or description like #{key} or address like #{key} or email like #{key})
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
