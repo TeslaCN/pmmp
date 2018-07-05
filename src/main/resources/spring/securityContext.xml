@@ -4,6 +4,8 @@
        xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
+    <security:debug/>
+
     <security:http pattern="/resource/**" security="none"/>
     <security:http auto-config="true" entry-point-ref="customEntryPoint">
         <security:csrf disabled="true"/>
@@ -26,7 +28,7 @@
         <security:custom-filter ref="customVerificationCodeAuthenticationFilter" before="FORM_LOGIN_FILTER"/>
     </security:http>
 
-    <security:authentication-manager>
+    <security:authentication-manager id="authenticationManager">
         <security:authentication-provider>
             <security:password-encoder hash="md5"/>
             <security:jdbc-user-service data-source-ref="dataSource"
@@ -45,5 +47,11 @@
     <bean id="customFailureHandler"
           class="ltd.scau.springframework.security.web.authentication.CustomAuthenticationFailureHandler"/>
 
-    <bean id="customVerificationCodeAuthenticationFilter" class="ltd.scau.springframework.security.web.authentication.VerificationCodeAuthenticationFilter"/>
+    <bean id="customVerificationCodeAuthenticationFilter" class="ltd.scau.springframework.security.web.authentication.VerificationCodeAuthenticationFilter">
+        <property name="authenticationManager" ref="authenticationManager"/>
+        <property name="authenticationSuccessHandler" ref="customSuccessHandler"/>
+        <property name="authenticationFailureHandler" ref="customFailureHandler"/>
+        <property name="filterProcessesUrl" value="/signin"/>
+    </bean>
+
 </beans>
