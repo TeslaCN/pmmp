@@ -15,10 +15,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.Map;
 
 /**
@@ -74,13 +72,7 @@ public class UserController {
     public ResultDto check(@SessionAttribute(value = "SPRING_SECURITY_CONTEXT", required = false) SecurityContext securityContext,
                            @SessionAttribute(value = "redirect", required = false) String redirect,
                            @SessionAttribute(value = "user", required = false) User user,
-                           HttpServletRequest request,
                            Map<String, Object> map) {
-        Enumeration<String> names = request.getAttributeNames();
-        while (names.hasMoreElements()) {
-            String name = names.nextElement();
-            System.out.println(name + " --> " + request.getAttribute(name));
-        }
 
         logger.info("CHECK: " + user + "\nREDIRECT: " + redirect + "\nSECURITY_CONTEXT" + securityContext);
 
@@ -107,7 +99,6 @@ public class UserController {
             }
 
             rrdto.setMessage("Redirect to url before sign in.");
-//            request.getSession().setAttribute("redirect", null);
             map.put("redirect", null);
 
             return rrdto;

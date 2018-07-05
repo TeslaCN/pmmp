@@ -1,6 +1,8 @@
 package ltd.scau.mybatis.mapper;
 
+import java.util.Date;
 import java.util.List;
+
 import ltd.scau.mybatis.po.User;
 import ltd.scau.mybatis.po.UserExample;
 import org.apache.ibatis.annotations.Param;
@@ -17,6 +19,8 @@ public interface UserMapper {
     int insertSelective(User record);
 
     List<User> selectByExample(UserExample example);
+
+    List<User> selectByBirthAndKey(@Param("key") String key, @Param("start") Date start, @Param("end") Date end);
 
     User selectByPrimaryKey(Long id);
 

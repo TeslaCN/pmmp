@@ -77,11 +77,25 @@ public class UserDaoMybatis implements UserDao {
     public List<User> findAllByKey(String key, Date start, Date end) {
         UserExample example = new UserExample();
 
+        example.or(example.createCriteria().andNicknameLike(key));
+        example.or(example.createCriteria().andEducationLike(key));
+        example.or(example.createCriteria().andDescriptionLike(key));
+        example.or(example.createCriteria().andAddressLike(key));
+        example.or(example.createCriteria().andEmailLike(key));
+        example.or(example.createCriteria().andRealnameLike(key));
+
         if (start != null && end != null && start.before(end)) {
-            example.createCriteria().andNicknameLike(key);
-        } else {
-            example.createCriteria().andNicknameLike(key).andBirthBetween(start, end);
+            example.or().andBirthBetween(start, end);
         }
+
+        return userMapper.selectByBirthAndKey(key, start, end);
+    }
+
+    @Override
+    public List<User> findAllByKey(String key) {
+        UserExample example = new UserExample();
+
+        example.or(example.createCriteria().andNicknameLike(key));
         example.or(example.createCriteria().andEducationLike(key));
         example.or(example.createCriteria().andDescriptionLike(key));
         example.or(example.createCriteria().andAddressLike(key));
@@ -89,11 +103,6 @@ public class UserDaoMybatis implements UserDao {
         example.or(example.createCriteria().andRealnameLike(key));
 
         return userMapper.selectByExample(example);
-    }
-
-    @Override
-    public List<User> findAllByKey(String key) {
-        return findAllByKey(key, null, null);
     }
 
     @Override

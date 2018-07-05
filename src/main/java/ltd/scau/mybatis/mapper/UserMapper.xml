@@ -94,8 +94,15 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByBirthAndKey" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where birth between #{start} and #{end}
+    and (nickname like #{key} or realname like #{key} or education like #{key} or description like #{key} or address like #{key} or email like #{key})
+  </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from user
     where id = #{id,jdbcType=BIGINT}
@@ -114,15 +121,15 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user (account, password, nickname, 
-      realname, birth, salary, 
-      gender, email, education, 
-      address, sign_up_time, profile_url, 
+    insert into user (account, password, nickname,
+      realname, birth, salary,
+      gender, email, education,
+      address, sign_up_time, profile_url,
       description, is_real)
-    values (#{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
-      #{realname,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{salary,jdbcType=BIGINT}, 
-      #{gender,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{signUpTime,jdbcType=TIMESTAMP}, #{profileUrl,jdbcType=VARCHAR}, 
+    values (#{account,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
+      #{realname,jdbcType=VARCHAR}, #{birth,jdbcType=DATE}, #{salary,jdbcType=BIGINT},
+      #{gender,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR},
+      #{address,jdbcType=VARCHAR}, #{signUpTime,jdbcType=TIMESTAMP}, #{profileUrl,jdbcType=VARCHAR},
       #{description,jdbcType=VARCHAR}, #{isReal,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="ltd.scau.mybatis.po.User">
