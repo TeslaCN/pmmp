@@ -1,21 +1,30 @@
 package ltd.scau.mybatis.po;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.Objects;
 
 public class User {
     private Long id;
 
+    @NotNull
     private String account;
 
+    @NotNull
+    @Size(min = 8, max = 64)
     private String password;
 
     private String nickname;
 
     private String realname;
 
+    @Past
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private Date birth;
 
+    @Min(0)
     private Long salary;
 
     private Integer gender;
@@ -26,14 +35,14 @@ public class User {
 
     private String address;
 
-    private Integer zodiac;
-
     private Date signUpTime;
 
     private String profileUrl;
 
     private String description;
 
+    @Min(0)
+    @Max(1)
     private Byte isReal;
 
     public Long getId() {
@@ -124,14 +133,6 @@ public class User {
         this.address = address == null ? null : address.trim();
     }
 
-    public Integer getZodiac() {
-        return zodiac;
-    }
-
-    public void setZodiac(Integer zodiac) {
-        this.zodiac = zodiac;
-    }
-
     public Date getSignUpTime() {
         return signUpTime;
     }
@@ -178,7 +179,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", education='" + education + '\'' +
                 ", address='" + address + '\'' +
-                ", zodiac=" + zodiac +
                 ", signUpTime=" + signUpTime +
                 ", profileUrl='" + profileUrl + '\'' +
                 ", description='" + description + '\'' +

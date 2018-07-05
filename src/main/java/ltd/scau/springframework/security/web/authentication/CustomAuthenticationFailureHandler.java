@@ -14,6 +14,7 @@ import java.io.IOException;
 public class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-        // TODO Response failure sign in
+        request.setAttribute("SPRING_SECURITY_LAST_EXCEPTION", exception);
+        request.getRequestDispatcher("/error").forward(request, response);
     }
 }

@@ -6,7 +6,6 @@ import ltd.scau.mybatis.po.UserExample;
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
-
     long countByExample(UserExample example);
 
     int deleteByExample(UserExample example);

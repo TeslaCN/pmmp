@@ -2,6 +2,7 @@ package ltd.scau.dto;
 
 import ltd.scau.mybatis.po.User;
 
+import javax.validation.constraints.Min;
 import java.util.Collections;
 import java.util.List;
 
@@ -10,8 +11,10 @@ import java.util.List;
  */
 public class UserListDto extends ResultDto {
 
+    @Min(1)
     protected int pageSize;
 
+    @Min(1)
     protected int pageNo;
 
     protected List<User> users;

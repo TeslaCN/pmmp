@@ -36,7 +36,6 @@
       "nickname": "TESLA_CN",
       "gender //(male:0, female:1)": 0,
       "birth //(yyyy-MM-dd)": "1997-01-08",
-      "zodiac //(0~11)": 0,
       "email": "wuweijie@scau.edu.cn",
       "salary": 100000,
       "education": "本科",
@@ -81,6 +80,8 @@
       "success": {
         "code": 0,
         "key": "关键词",
+        "pageNo": 1,
+        "pageSize": 10,
         "users": [
           {
             "id": 1,
@@ -196,7 +197,6 @@
           "nickname": "TESLA_CN",
           "gender": 0,
           "birth": "1997-01-08",
-          "zodiac": 0,
           "email": "wuweijie@scau.edu.cn",
           "salary": 100000,
           "education": "本科",
@@ -220,7 +220,6 @@
       "nickname": "TESLA_CN",
       "gender": 0,
       "birth": "1997-01-08",
-      "zodiac": 0,
       "email": "wuweijie@scau.edu.cn",
       "salary": 100000,
       "education": "本科",

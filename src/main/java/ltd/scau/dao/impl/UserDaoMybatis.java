@@ -8,6 +8,7 @@ import ltd.scau.mybatis.po.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -62,7 +63,41 @@ public class UserDaoMybatis implements UserDao {
 
     @Override
     public User update(User user) {
-        // TODO implement
-        return null;
+        userMapper.updateByPrimaryKey(user);
+        return user;
+    }
+
+    @Override
+    public User updateSelective(User user) {
+        userMapper.updateByPrimaryKeySelective(user);
+        return user;
+    }
+
+    @Override
+    public List<User> findAllByKey(String key, Date start, Date end) {
+        UserExample example = new UserExample();
+
+        if (start != null && end != null && start.before(end)) {
+            example.createCriteria().andNicknameLike(key);
+        } else {
+            example.createCriteria().andNicknameLike(key).andBirthBetween(start, end);
+        }
+        example.or(example.createCriteria().andEducationLike(key));
+        example.or(example.createCriteria().andDescriptionLike(key));
+        example.or(example.createCriteria().andAddressLike(key));
+        example.or(example.createCriteria().andEmailLike(key));
+        example.or(example.createCriteria().andRealnameLike(key));
+
+        return userMapper.selectByExample(example);
+    }
+
+    @Override
+    public List<User> findAllByKey(String key) {
+        return findAllByKey(key, null, null);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userMapper.selectByExample(null);
     }
 }

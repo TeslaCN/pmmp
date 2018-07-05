@@ -862,66 +862,6 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andZodiacIsNull() {
-            addCriterion("zodiac is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacIsNotNull() {
-            addCriterion("zodiac is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacEqualTo(Integer value) {
-            addCriterion("zodiac =", value, "zodiac");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacNotEqualTo(Integer value) {
-            addCriterion("zodiac <>", value, "zodiac");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacGreaterThan(Integer value) {
-            addCriterion("zodiac >", value, "zodiac");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacGreaterThanOrEqualTo(Integer value) {
-            addCriterion("zodiac >=", value, "zodiac");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacLessThan(Integer value) {
-            addCriterion("zodiac <", value, "zodiac");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacLessThanOrEqualTo(Integer value) {
-            addCriterion("zodiac <=", value, "zodiac");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacIn(List<Integer> values) {
-            addCriterion("zodiac in", values, "zodiac");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacNotIn(List<Integer> values) {
-            addCriterion("zodiac not in", values, "zodiac");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacBetween(Integer value1, Integer value2) {
-            addCriterion("zodiac between", value1, value2, "zodiac");
-            return (Criteria) this;
-        }
-
-        public Criteria andZodiacNotBetween(Integer value1, Integer value2) {
-            addCriterion("zodiac not between", value1, value2, "zodiac");
-            return (Criteria) this;
-        }
-
         public Criteria andSignUpTimeIsNull() {
             addCriterion("sign_up_time is null");
             return (Criteria) this;
