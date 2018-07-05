@@ -25,7 +25,7 @@ var userSignIn = new Vue({
                         }
                     }, 'json');
                     if (data.redirect) {
-                        location.href = APP_PREFIX + data.redirect
+                        location.href = data.redirect
                     } else {
                         location.href = APP_PREFIX + '/'
                     }
@@ -34,3 +34,5 @@ var userSignIn = new Vue({
         }
     }
 })
+
+$("#nav").load("navbar.html");
