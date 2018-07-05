@@ -1,19 +1,18 @@
 package ltd.scau.springframework.controller;
 
+import ltd.scau.util.Constant;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Random;
 
 /**
@@ -21,13 +20,12 @@ import java.util.Random;
  */
 @RestController
 @RequestMapping("/util")
-@SessionAttributes(value = {"VERIFICATION_CODE"}, types = {String.class})
 public class UtilController {
 
     private static final Log logger = LogFactory.getLog(UserController.class);
 
     @RequestMapping(value = "/code", produces = "image/jpeg")
-    public void getCode(Map<String, Object> map, HttpServletResponse response) {
+    public void getCode(HttpSession session, HttpServletResponse response) {
         int width = 120;
         int height = 40;
         int codeCount = 4;
@@ -75,7 +73,7 @@ public class UtilController {
             g.drawString(strRand, (i + 1) * x, codeY);
             randomCode.append(strRand);
         }
-        map.put("VERIFICATION_CODE", randomCode.toString());
+        session.setAttribute(Constant.VERIFICATION_CODE, randomCode.toString());
         ServletOutputStream sos;
         try {
             sos = response.getOutputStream();

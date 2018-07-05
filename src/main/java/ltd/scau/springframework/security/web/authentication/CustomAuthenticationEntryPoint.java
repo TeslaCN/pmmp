@@ -1,5 +1,6 @@
 package ltd.scau.springframework.security.web.authentication;
 
+import ltd.scau.util.Constant;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.core.AuthenticationException;
@@ -30,7 +31,7 @@ public class CustomAuthenticationEntryPoint extends LoginUrlAuthenticationEntryP
         HttpSession session = request.getSession();
         String uri = request.getRequestURI();
         logger.info(uri);
-        session.setAttribute("redirect", uri);
+        session.setAttribute(Constant.SESSION_REDIRECT, uri);
         return super.determineUrlToUseForThisRequest(request, response, exception);
     }
 }

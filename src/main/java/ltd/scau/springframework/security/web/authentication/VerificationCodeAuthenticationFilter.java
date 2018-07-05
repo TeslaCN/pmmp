@@ -1,5 +1,6 @@
 package ltd.scau.springframework.security.web.authentication;
 
+import ltd.scau.util.Constant;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,7 +24,8 @@ public class VerificationCodeAuthenticationFilter extends UsernamePasswordAuthen
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-        String verificationCode = (String) request.getSession().getAttribute("VERIFICATION_CODE");
+        String verificationCode = (String) request.getSession().getAttribute(Constant.VERIFICATION_CODE);
+        request.getSession().setAttribute(Constant.VERIFICATION_CODE, null);
         String inputCode = request.getParameter("verify");
 
         logger.info("SESSION: " + verificationCode + ", INPUT: " + inputCode);

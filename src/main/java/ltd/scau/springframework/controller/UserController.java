@@ -5,6 +5,7 @@ import ltd.scau.dto.RedirectResultDto;
 import ltd.scau.dto.ResultDto;
 import ltd.scau.dto.UserInfoDto;
 import ltd.scau.mybatis.po.User;
+import ltd.scau.util.Constant;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import java.util.Map;
  * @author Weijie Wu
  */
 @RestController
-@SessionAttributes(value = {"user", "redirect"}, types = {User.class, String.class})
+@SessionAttributes(value = {Constant.SESSION_USER, Constant.SESSION_REDIRECT, Constant.VERIFICATION_CODE}, types = {User.class, String.class})
 public class UserController {
 
     private static final Log logger = LogFactory.getLog(UserController.class);
@@ -32,8 +33,19 @@ public class UserController {
     private UserDao userDao;
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ResultDto signUp(@Valid User user, String verify, Errors errors) {
+    public ResultDto signUp(@Valid User user, String verify, Errors errors,
+                            @SessionAttribute(Constant.VERIFICATION_CODE) String verificationCode,
+                            Map<String, Object> map) {
         ResultDto dto = new ResultDto();
+        map.put(Constant.VERIFICATION_CODE, null);
+
+        if (verificationCode == null || verify == null || verificationCode.trim().equals("") || verify.trim().equals("") || !verificationCode.equalsIgnoreCase(verify)) {
+
+            dto.setCode(1);
+            dto.setMessage("验证码不一致");
+
+            return dto;
+        }
 
         if (errors.hasErrors()) {
 
@@ -48,7 +60,7 @@ public class UserController {
             user.setPassword(encoder.encodePassword(user.getPassword(), null));
 
             userDao.persistAndGrantUserRole(user);
-            dto.setMessage("success");
+            dto.setMessage(Constant.SUCCESS);
 
             logger.info("PERSIST: " + user);
         }
@@ -70,8 +82,8 @@ public class UserController {
 
     @RequestMapping("/check")
     public ResultDto check(@SessionAttribute(value = "SPRING_SECURITY_CONTEXT", required = false) SecurityContext securityContext,
-                           @SessionAttribute(value = "redirect", required = false) String redirect,
-                           @SessionAttribute(value = "user", required = false) User user,
+                           @SessionAttribute(value = Constant.SESSION_REDIRECT, required = false) String redirect,
+                           @SessionAttribute(value = Constant.SESSION_USER, required = false) User user,
                            Map<String, Object> map) {
 
         logger.info("CHECK: " + user + "\nREDIRECT: " + redirect + "\nSECURITY_CONTEXT" + securityContext);
@@ -88,7 +100,7 @@ public class UserController {
 
             if (user == null) {
                 user = userDao.findByAccount(securityContext.getAuthentication().getName());
-                map.put("user", user);
+                map.put(Constant.SESSION_USER, user);
             }
 
             RedirectResultDto rrdto = new RedirectResultDto();
@@ -99,7 +111,7 @@ public class UserController {
             }
 
             rrdto.setMessage("Redirect to url before sign in.");
-            map.put("redirect", null);
+            map.put(Constant.SESSION_REDIRECT, null);
 
             return rrdto;
 
@@ -109,7 +121,7 @@ public class UserController {
 
             if (user == null) {
                 user = userDao.findByAccount(securityContext.getAuthentication().getName());
-                map.put("user", user);
+                map.put(Constant.SESSION_USER, user);
             }
 
             dto.setMessage("Signed in.");
@@ -125,13 +137,13 @@ public class UserController {
 
         UserInfoDto dto = new UserInfoDto();
         dto.setUser(me);
-        dto.setMessage("success");
+        dto.setMessage(Constant.SUCCESS);
 
         return dto;
     }
 
     @RequestMapping(value = "/me", method = RequestMethod.POST)
-    public ResultDto updateUser(@SessionAttribute("user") User oldValue, @Valid User newValue, Errors errors) {
+    public ResultDto updateUser(@SessionAttribute(Constant.SESSION_USER) User oldValue, @Valid User newValue, Errors errors) {
         ResultDto dto = new ResultDto();
 
         if (errors.hasErrors()) {
