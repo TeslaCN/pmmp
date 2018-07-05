@@ -13,6 +13,8 @@
     <link href="resource/css/index.css" rel="stylesheet">
     <script src="resource/js/jquery_3.3.1_jquery.js"></script>
     <script src="resource/js/constant.js"></script>
+    <script src="resource/js/vue.js"></script>
+    <script src="resource/js/jquery.cookie.js"></script>
 </head>
 
 <body>
@@ -40,11 +42,28 @@
                 <p class="lead">
                     <a href="signin.html" class="btn btn-lg btn-default">马上登陆</a>
                 </p>
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
+                <div id="index">
+                    <h1 v-if="user.id">{{user.id}}&nbsp;{{user.account}}</h1>
+                    <h1 v-else>No</h1>
+                </div>
+
             </div>
 
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="#">@有请下一组</a>.</p>
+                    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="#">@有请下一组</a>.
+                    </p>
                 </div>
             </div>
 
@@ -53,5 +72,14 @@
 </div>
 </body>
 <script>
+    var index = new Vue({
+        el: '#index',
+        data: {
+            user: {}
+        }
+    })
+    if ($.cookie('user')) {
+        index.user = JSON.parse($.cookie('user'))
+    }
 </script>
 </html>

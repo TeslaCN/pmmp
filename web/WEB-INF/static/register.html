@@ -21,6 +21,7 @@
     <script src="resource/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="resource/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js"></script>
     <script src="resource/bootstrap-datepicker-master/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script src="resource/js/vue.js"></script>
 </head>
 <body>
 <div class="site-wrapper">
@@ -48,6 +49,21 @@
                         <h3 class="panel-title">用户注册</h3>
                     </div>
                     <div class="panel-body">
+
+                        <div id="userRegister">
+                            <label for="inputAccount" class="sr-only">注册账号</label>
+                            <input  v-model="account" name="account" type="text" id="inputAccount" class="form-control" placeholder="注册账号" required autofocus>
+                            <br>
+                            <label for="inputPassword" class="sr-only">密码</label>
+                            <input v-model="password" name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+                            <br>
+                            <label for="inputRePassword" class="sr-only">确认密码</label>
+                            <input v-model="rePassword" name="rePassword" type="text" id="inputRePassword" class="form-control" placeholder="确认密码" >
+
+                            <button class="btn btn-lg btn-primary btn-block" id="signin" @click="signIn()">登录</button>
+                        </div>
+
+
                         <label class="attr">注册账号</label>
                         <input type="text" class="inputText" id="account" name="account">
                         <br>

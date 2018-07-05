@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>全球最大线上交♂友♀平台</title>
+    <title>全球最大线上交友♂♀平台</title>
 
     <!-- Bootstrap core CSS -->
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
@@ -18,6 +18,8 @@
     <link href="resource/css/signin.css" rel="stylesheet">
     <script src="resource/js/jquery_3.3.1_jquery.js"></script>
     <script src="resource/js/constant.js"></script>
+    <script src="resource/js/vue.js"></script>
+    <script src="resource/js/jquery.cookie.js"></script>
 </head>
 <body>
 <div class="site-wrapper">
@@ -45,59 +47,33 @@
                         <h3 class="panel-title">用户登录</h3>
                     </div>
                     <div class="panel-body">
-                        <!-- <h2 class="form-signin-heading">立即登录</h2> -->
-                        <label for="inputEmail" class="sr-only">你的邮箱</label>
-                        <input name="username" type="text" id="inputEmail" class="form-control" placeholder="你的邮箱" required autofocus>
-                        <br>
-                        <label for="inputPassword" class="sr-only">密码</label>
-                        <input name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
-                        <br>
-                        <label for="inputVerification" class="sr-only">验证码</label>
-                        <input name="verify" type="text" id="inputVerification" class="form-control" placeholder="验证码" >
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="remember-me"> 记住密码
-                            </label>
+                        <div id="userSignIn">
+                            <label for="inputUsername" class="sr-only">你的账号</label>
+                            <input v-model="username" name="username" type="text" id="inputUsername"
+                                   class="form-control" placeholder="你的账号" required autofocus>
+                            <br>
+                            <label for="inputPassword" class="sr-only">密码</label>
+                            <input v-model="password" name="password" type="password" id="inputPassword"
+                                   class="form-control" placeholder="密码" required>
+                            <br>
+                            <label for="inputVerify" class="sr-only">验证码</label>
+                            <input v-model="verify" name="verify" type="text" id="inputVerify" class="form-control"
+                                   placeholder="验证码">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="remember-me"> 记住密码
+                                </label>
+                            </div>
+                            <button class="btn btn-lg btn-primary btn-block" id="signin" @click="signIn()">登录</button>
                         </div>
-                        <button class="btn btn-lg btn-primary btn-block" id="signin" type="submit">登录</button>
-                        <!--<button class="btn btn-lg btn-primary btn-block" id="testx">test</button>-->
                     </div>
                 </div>
             </form>
 
-        </div> <!-- /container -->
+        </div>
     </div>
 </div>
 </body>
 
-<script>
-
-    $(document).ready(function() {
-
-        //$("#page1").load("test2.html");
-
-        $("#signin").click(function(){
-            // var account = $("#inputEmail").val()
-            // var password = $("#inputPassword").val()
-            var data = $('#form').serialize()
-            $.post(
-                APP_PREFIX + "/signin",data,function (data) {
-                    if(data.redirect){
-                        location.href = data.redirect
-                    } else {
-                        location.href = APP_PREFIX + '/'
-                    }
-                },'json'
-            )
-            //$("#test").after("<p>account=" + account + "</p>");
-        });
-        /*function submit() {
-            var account = document.getElementById('inputEmail').value
-            var password = document.getElementById('inputPassword').value
-            $.post(APP_PREFIX + '/signin', {'account': account, 'password': password}, function () {
-                alert('post')
-            }, 'json')
-        }*/
-    })
-</script>
+<script src="resource/js/signin.js"></script>
 </html>
