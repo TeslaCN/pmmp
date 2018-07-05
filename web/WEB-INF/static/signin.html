@@ -14,6 +14,7 @@
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet">
     <link href="resource/css/base.css" rel="stylesheet">
+
     <link href="resource/css/signin.css" rel="stylesheet">
     <script src="resource/js/jquery_3.3.1_jquery.js"></script>
     <script src="resource/js/constant.js"></script>
@@ -23,7 +24,7 @@
 
     <div class="site-wrapper-inner">
 
-        <div class="container">
+        <div class="cover-container">
 
             <div class="masthead clearfix">
                 <div class="inner">
@@ -46,7 +47,7 @@
                     <div class="panel-body">
                         <!-- <h2 class="form-signin-heading">立即登录</h2> -->
                         <label for="inputEmail" class="sr-only">你的邮箱</label>
-                        <input name="account" type="text" id="inputEmail" class="form-control" placeholder="你的邮箱" required autofocus>
+                        <input name="username" type="text" id="inputEmail" class="form-control" placeholder="你的邮箱" required autofocus>
                         <br>
                         <label for="inputPassword" class="sr-only">密码</label>
                         <input name="password" type="password" id="inputPassword" class="form-control" placeholder="密码" required>
@@ -76,12 +77,16 @@
         //$("#page1").load("test2.html");
 
         $("#signin").click(function(){
-            var account = $("#inputEmail").val()
-            var password = $("#inputPassword").val()
+            // var account = $("#inputEmail").val()
+            // var password = $("#inputPassword").val()
             var data = $('#form').serialize()
             $.post(
-                APP_PREFIX + "/signin",data,function () {
-                    location.href = 'test.html'
+                APP_PREFIX + "/signin",data,function (data) {
+                    if(data.redirect){
+                        location.href = data.redirect
+                    } else {
+                        location.href = APP_PREFIX + '/'
+                    }
                 },'json'
             )
             //$("#test").after("<p>account=" + account + "</p>");

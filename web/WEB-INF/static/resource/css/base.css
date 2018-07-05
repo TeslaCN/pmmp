@@ -15,7 +15,6 @@ a:hover {
     border: 1px solid #fff;
 }
 
-
 /*
  * Base structure
  */
@@ -30,15 +29,10 @@ body {
     display: flex;
     -ms-flex-align: center;
     align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-top: 0px;/*上边距*/
+    padding-bottom: 0px;
     background: -webkit-gradient(linear, left top, right top, from(#5D99FF), to(#FF69A3));
 }
-/*body {
-    color: #fff;
-    text-align: center;
-    text-shadow: 0 1px 3px rgba(0,0,0,.5);
-}*/
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
 .site-wrapper {
@@ -63,11 +57,11 @@ body {
     padding: 30px;
 }
 
-
 /*
  * Header
  */
 .masthead-brand {
+    color: #fff;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -106,6 +100,40 @@ body {
     }
     .masthead-nav {
         float: right;
+    }
+}
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+    /* Pull out the header and footer */
+    .masthead {
+        position: fixed;
+        top: 0;
+    }
+    .mastfoot {
+        position: fixed;
+        bottom: 0;
+    }
+    /* Start the vertical centering */
+    .site-wrapper-inner {
+        vertical-align: middle;
+    }
+    /* Handle the widths */
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 100%; /* Must be percentage or pixels for horizontal alignment */
+    }
+}
+
+@media (min-width: 992px) {
+    .masthead,
+    .mastfoot,
+    .cover-container {
+        width: 700px;
     }
 }
 
