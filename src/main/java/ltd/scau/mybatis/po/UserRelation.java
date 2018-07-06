@@ -3,6 +3,13 @@ package ltd.scau.mybatis.po;
 import java.util.Date;
 
 public class UserRelation {
+
+    public static final Integer NONE = 0;
+
+    public static final Integer WAIT_FOR_ACCEPT = 1;
+
+    public static final Integer FRIEND = 2;
+
     private Long userAId;
 
     private Long userBId;
