@@ -46,50 +46,59 @@
             <!--</ul>-->
             <!--</li>-->
             <!--</ul>-->
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" v-if="user.id">
+                <li v-for="item in nav2" @click="selectMapNav(item.href)">
+                    <a>{{item.title}}</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" v-else>
                 <!--<li class="active"><a href="index.html">首页</a></li>-->
                 <!--<li><a href="signin.html">登录</a></li>-->
                 <!--<li><a href="register.html">注册</a></li>-->
-                <!--<todo-item-->
-                        <!--v-for="item in groceryList"-->
-                        <!--v-bind:todo="item"-->
-                        <!--v-bind:key="item.id">-->
-                <!--</todo-item>-->
-                <li v-for="item in footNav" @click="selectMapNav(item.title)">
-                    <p>{{item.title}}</p>
-                </li>
 
+
+                <!--<todo-item-->
+                <!--v-for="item in groceryList"-->
+                <!--v-bind:todo="item"-->
+                <!--v-bind:key="item.id">-->
+                <!--</todo-item>-->
+                    <li v-for="item in nav" @click="selectMapNav(item.href)">
+                        <a>{{item.title}}</a>
+                    </li>
             </ul>
         </div>
     </div>
 </nav>
 </body>
 <script>
-    // Vue.component('todo-item', {
-    //     props: ['todo'],
-    //     template: '<li><a >{{todo.text}}</a></li>'
-    // })
-    //
-    // var navbar = new Vue({
-    //     el: '#navbar',
-    //     data: {
-    //         groceryList: [
-    //             { id: 0, text: '首页', href:'href="index.html"' },
-    //             { id: 1, text: '登录', href:'href="signin.html"' },
-    //             { id: 2, text: '注册', href:'href="register.html"' }
-    //         ]
-    //     }
-    // })
 
     var navbar = new Vue({
         el: '#navbar',
         data: {
-            groceryList: [
-                { id: 0, text: '首页', href:'href="index.html"' },
-                { id: 1, text: '登录', href:'href="signin.html"' },
-                { id: 2, text: '注册', href:'href="register.html"' }
+            test:true,
+            user:{},
+            nav: [
+                { id: 0, title: '首页', href:'/index.html' },
+                { id: 1, title: '登录', href:'/signin.html' },
+                { id: 2, title: '注册', href:'/register.html' }
+            ],
+            nav2: [
+                { id: 0, title: '首页', href:'/index.html' },
+                { id: 1, title: '个人中心', href:'/signin.html' },
+                { id: 2, title: '退出', href:'/register.html' }
             ]
+        },
+        methods: {
+            selectMapNav:function (href) {
+                //alert(id+href)
+                //$(location).attr('href', href);
+                location.href = APP_PREFIX + href
+            }
         }
     })
+
+    if ($.cookie('user')) {
+        navbar.user = JSON.parse($.cookie('user'))
+    }
 </script>
 </html>

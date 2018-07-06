@@ -19,9 +19,12 @@
 
 <body>
 <div id="nav"></div>
-<div class="container">
+<div class="container" id="index">
 
-    <div class="jumbotron">
+    <div class="jumbotron" v-if="user.account">
+        <h1>欢迎回来，{{user.id}}</h1>
+    </div>
+    <div class="jumbotron" v-else>
         <h1>交友</h1>
         <p>This example is a quick exercise to illustrate how the default, static and fixed to top navbar work. It includes the responsive CSS and HTML, so it also adapts to your viewport and device.</p>
         <p>To see the difference between static and fixed top navbars, just scroll.</p>
