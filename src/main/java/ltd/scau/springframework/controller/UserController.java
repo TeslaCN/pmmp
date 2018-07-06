@@ -160,10 +160,13 @@ public class UserController {
                     && !newValue.getPassword().equals(oldValue.getPassword())
                     && !encoder.isPasswordValid(oldValue.getPassword(), newValue.getPassword(), null)) {
                 newValue.setPassword(encoder.encodePassword(newValue.getPassword(), null));
+            } else {
+                newValue.setPassword(null);
             }
 
             newValue.setId(oldValue.getId());
-            userDao.update(newValue);
+            newValue.setAccount(null);
+            userDao.updateSelective(newValue);
         }
         return dto;
     }
