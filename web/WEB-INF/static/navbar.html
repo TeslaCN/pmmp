@@ -20,7 +20,8 @@
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -47,8 +48,10 @@
             <!--</li>-->
             <!--</ul>-->
             <ul class="nav navbar-nav navbar-right" v-if="user.id">
-                <li v-for="item in nav2" @click="selectMapNav(item.href)">
-                    <a>{{item.title}}</a>
+                <!--<li v-for="item in nav2" @click="selectMapNav(item.href)">-->
+                <li v-for="item in nav2">
+                    <a v-if="item.href != '/signout'" :href="prefix + item.href">{{item.title}}</a>
+                    <a v-else @click="signOut()" :href="prefix + item.href">{{item.title}}</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" v-else>
@@ -62,9 +65,10 @@
                 <!--v-bind:todo="item"-->
                 <!--v-bind:key="item.id">-->
                 <!--</todo-item>-->
-                    <li v-for="item in nav" @click="selectMapNav(item.href)">
-                        <a>{{item.title}}</a>
-                    </li>
+                <!--<li v-for="item in nav" @click="selectMapNav(item.href)">-->
+                <li v-for="item in nav" @click="selectMapNav(item.href)">
+                    <a :href="prefix + item.href">{{item.title}}</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -75,28 +79,32 @@
     var navbar = new Vue({
         el: '#navbar',
         data: {
-            test:true,
-            user:{},
+            prefix: APP_PREFIX,
+            test: true,
+            user: {},
             nav: [
-                { id: 0, title: '首页', href:'/index.html' },
-                { id: 1, title: '登录', href:'/signin.html' },
-                { id: 2, title: '注册', href:'/register.html' }
+                {id: 0, title: '首页', href: '/index.html'},
+                {id: 1, title: '登录', href: '/signin.html'},
+                {id: 2, title: '注册', href: '/register.html'}
             ],
             nav2: [
-                { id: 0, title: '首页', href:'/index.html' },
-                { id: 1, title: '个人中心', href:'/signin.html' },
-                { id: 2, title: '退出', href:'/register.html' }
+                {id: 0, title: '首页', href: '/index.html'},
+                {id: 1, title: '个人中心', href: '/signin.html'},
+                {id: 2, title: '退出', href: '/signout'}
             ]
         },
         methods: {
-            selectMapNav:function (href) {
+            selectMapNav: function (href) {
                 //alert(id+href)
                 //$(location).attr('href', href);
                 location.href = APP_PREFIX + href
+            },
+            signOut: function () {
+                console.log('Sign Out and clear Cookie')
+                $.cookie('user', '')
             }
         }
     })
-
     if ($.cookie('user')) {
         navbar.user = JSON.parse($.cookie('user'))
     }

@@ -21,18 +21,20 @@ var userSignIn = new Vue({
                     }
                     $.get(APP_PREFIX + '/me', {}, function (d) {
                         if (d.user) {
-                            alert(d.user.id)
                             $.cookie('user', JSON.stringify(d.user))
                         }
                     }, 'json');
-                    while ($.cookie('user') == null){
-                        alert("???")
-                    }
-                    if (data.redirect) {
-                        location.href = data.redirect
-                    } else {
-                        location.href = APP_PREFIX + '/'
-                    }
+                    setInterval(function () {
+                        console.log($.cookie('user'))
+                        if (!$.cookie('user')) {
+                            return
+                        }
+                        if (data.redirect) {
+                            location.href = data.redirect
+                        } else {
+                            location.href = APP_PREFIX + '/'
+                        }
+                    }, 500)
                 }, 'json'
             )
         }
