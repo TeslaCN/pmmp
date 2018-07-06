@@ -156,7 +156,9 @@ public class UserController {
         } else {
 
             Md5PasswordEncoder encoder = new Md5PasswordEncoder();
-            if (newValue.getPassword() != null) {
+            if (newValue.getPassword() != null
+                    && !newValue.getPassword().equals(oldValue.getPassword())
+                    && !encoder.isPasswordValid(oldValue.getPassword(), newValue.getPassword(), null)) {
                 newValue.setPassword(encoder.encodePassword(newValue.getPassword(), null));
             }
 

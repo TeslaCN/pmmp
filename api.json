@@ -175,6 +175,56 @@
       }
     }
   },
+  "获取所有被拒请求": {
+    "url": "/refused",
+    "method": "GET",
+    "return": {
+      "success": {
+        "code": 0,
+        "message": "",
+        "users": [
+          {
+            "id": 1,
+            "realname": "Nikola Tesla",
+            "nickname": "TESLA_CN",
+            "gender": 1,
+            "birth": 1530586969051,
+            "education": "本科"
+          },
+          {
+            "id": 1,
+            "realname": "Nikola Tesla",
+            "nickname": "TESLA_CN",
+            "gender": 1,
+            "birth": 1530586969051,
+            "education": "本科"
+          }
+        ]
+      }
+    }
+  },
+  "接收好友请求": {
+    "url": "/accept/{id}",
+    "example": "/accept/52",
+    "method": "GET",
+    "return": {
+      "success": {
+        "code": 0,
+        "message": ""
+      }
+    }
+  },
+  "拒绝好友请求": {
+    "url": "/refuse/{id}",
+    "example": "/refuse/52",
+    "method": "GET",
+    "return": {
+      "success": {
+        "code": 0,
+        "message": ""
+      }
+    }
+  },
   "获取好友列表": {
     "url": "/friends",
     "GET": {

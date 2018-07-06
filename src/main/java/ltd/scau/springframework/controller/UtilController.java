@@ -26,7 +26,7 @@ public class UtilController {
 
     @RequestMapping(value = "/code", produces = "image/jpeg")
     public void getCode(HttpSession session, HttpServletResponse response) {
-        int width = 120;
+        int width = 160;
         int height = 40;
         int codeCount = 4;
         int x = 0;
@@ -47,17 +47,19 @@ public class UtilController {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, width, height);
 
-        Font font = new Font("Fixedsys", Font.PLAIN, fontHeight);
+        Font font = new Font(Font.MONOSPACED, Font.PLAIN, fontHeight);
         g.setFont(font);
 
         g.setColor(Color.BLACK);
+
         int lines = 20;
         for (int i = 0; i < lines; i++) {
+            int x1 = random.nextInt(width);
+            int y1 = random.nextInt(height);
             int x2 = random.nextInt(width);
             int y2 = random.nextInt(height);
-            int xl = random.nextInt(12);
-            int yl = random.nextInt(12);
-            g.drawLine(x2, y2, x + xl, y2 + yl);
+            g.drawLine(x1, y1, x2, y2);
+            g.drawLine(x1, y1, x2, y2);
         }
 
         StringBuffer randomCode = new StringBuffer();
@@ -65,7 +67,7 @@ public class UtilController {
         int red = 0, green = 0, blue = 0;
 
         for (int i = 0; i < codeCount; i++) {
-            String strRand = String.valueOf(codeSequence[random.nextInt(36)]);
+            String strRand = String.valueOf(codeSequence[random.nextInt(codeSequence.length)]);
             red = random.nextInt(255);
             green = random.nextInt(255);
             blue = random.nextInt(255);
@@ -74,11 +76,12 @@ public class UtilController {
             randomCode.append(strRand);
         }
         session.setAttribute(Constant.VERIFICATION_CODE, randomCode.toString());
-        ServletOutputStream sos;
-        try {
-            sos = response.getOutputStream();
+        logger.info("DRAW: " + randomCode.toString());
+
+        try (ServletOutputStream sos = response.getOutputStream()) {
+
             ImageIO.write(buffImg, "jpeg", sos);
-            sos.close();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
