@@ -1,11 +1,21 @@
-$("#birth").datepicker({
-        format: "yyyy-mm-dd",
-        startView: 2,
-        language: "zh-CN",
-        autoclose: true
-    });
+// $("#birth").datepicker({
+//     format: "yyyy-mm-dd",
+//     startView: 2,
+//     endDate:new Date(),
+//     language: "zh-CN",
+//     autoclose: true
+// }).on('changeDate',function(){
+//     userRegister.birth = $('#birth').val()
+// });
 
-$("#nav").load("navbar.html");
+var re
+$(document).ready(function () {
+        re = function refresh() {
+            $("#verifyImg").remove()
+            $("#inputVerify").after("<img src=\"util/code\" id=\"verifyImg\" onclick='re()' title=\"看不清可单击图片刷新\">")
+        }
+    }
+);
 
 var userRegister = new Vue({
     el: "#userRegister",
