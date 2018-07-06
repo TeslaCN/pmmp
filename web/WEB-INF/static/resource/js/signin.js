@@ -1,3 +1,14 @@
+
+var re
+$(document).ready(function () {
+        re = function refresh() {
+            $("#verifyImg").remove()
+            $("#inputVerify").after("<img src=\"util/code\" id=\"verifyImg\" onclick='re()' title=\"看不清可单击图片刷新\">")
+        }
+    }
+);
+
+
 var userSignIn = new Vue({
     el: "#userSignIn",
     data: {
@@ -40,5 +51,3 @@ var userSignIn = new Vue({
         }
     }
 })
-
-$("#nav").load("navbar.html");

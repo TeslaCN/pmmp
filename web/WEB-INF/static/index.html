@@ -22,7 +22,7 @@
 <div class="container" id="index">
 
     <div class="jumbotron" v-if="user.account">
-        <h1>欢迎回来，{{user.id}}</h1>
+        <h1>欢迎回来，{{user.nickname}}</h1>
     </div>
     <div class="jumbotron" v-else>
         <h1>交友</h1>
@@ -35,41 +35,9 @@
 
 </div> <!-- /container -->
 
-<!--&lt;!&ndash;<div class="site-wrapper">&ndash;&gt;-->
-    <!--&lt;!&ndash;<div class="site-wrapper-inner">&ndash;&gt;-->
-        <!--&lt;!&ndash;<div class="cover-container">&ndash;&gt;-->
-            <!--<div id="nav"></div>-->
-
-        <!--<br><br><br>-->
-
-            <!--<div class="inner cover">-->
-                <!--<h1 class="cover-heading">全球最大线上交友♂♀平台</h1>-->
-                <!--<p class="lead">硬核交友，即刻开始</p>-->
-                <!--<p class="lead">-->
-                    <!--<a href="signin.html" class="btn btn-lg btn-default">马上登陆</a>-->
-                <!--</p>-->
-
-                <!--<div id="index">-->
-                    <!--<h1 v-if="user.id">{{user.id}}&nbsp;{{user.account}}</h1>-->
-                    <!--<h1 v-else>No</h1>-->
-                <!--</div>-->
-
-            <!--</div>-->
-
-            <!--&lt;!&ndash;<div class="mastfoot">&ndash;&gt;-->
-                <!--&lt;!&ndash;<div class="inner">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="#">@有请下一组</a>.&ndash;&gt;-->
-                    <!--&lt;!&ndash;</p>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-            <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-        <!--&lt;!&ndash;</div>&ndash;&gt;-->
-    <!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-
 </body>
+<script src="resource/js/header.js"></script>
 <script>
-    $("#nav").load("navbar.html");
 
     var index = new Vue({
         el: '#index',

@@ -55,17 +55,6 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right" v-else>
-                <!--<li class="active"><a href="index.html">首页</a></li>-->
-                <!--<li><a href="signin.html">登录</a></li>-->
-                <!--<li><a href="register.html">注册</a></li>-->
-
-
-                <!--<todo-item-->
-                <!--v-for="item in groceryList"-->
-                <!--v-bind:todo="item"-->
-                <!--v-bind:key="item.id">-->
-                <!--</todo-item>-->
-                <!--<li v-for="item in nav" @click="selectMapNav(item.href)">-->
                 <li v-for="item in nav" @click="selectMapNav(item.href)">
                     <a :href="prefix + item.href">{{item.title}}</a>
                 </li>
@@ -89,7 +78,7 @@
             ],
             nav2: [
                 {id: 0, title: '首页', href: '/index.html'},
-                {id: 1, title: '个人中心', href: '/signin.html'},
+                {id: 1, title: '个人中心', href: '/information.html'},
                 {id: 2, title: '退出', href: '/signout'}
             ]
         },
