@@ -1,5 +1,6 @@
 package ltd.scau.springframework.controller;
 
+import com.github.pagehelper.PageHelper;
 import ltd.scau.dao.UserDao;
 import ltd.scau.dao.UserRelationDao;
 import ltd.scau.dto.ResultDto;
@@ -66,7 +67,7 @@ public class RelationController {
 
         UserRelation relation = userRelationDao.findByUsersId(id, me.getId(), true);
 
-        if (UserRelation.WAIT_FOR_ACCEPT.equals(relation.getRelation())) {
+        if (relation != null && UserRelation.WAIT_FOR_ACCEPT.equals(relation.getRelation())) {
 
             relation.setRelation(UserRelation.FRIEND);
             userRelationDao.update(relation);
@@ -88,7 +89,7 @@ public class RelationController {
 
         UserRelation relation = userRelationDao.findByUsersId(id, me.getId(), true);
 
-        if (UserRelation.WAIT_FOR_ACCEPT.equals(relation.getRelation())) {
+        if (relation != null && UserRelation.WAIT_FOR_ACCEPT.equals(relation.getRelation())) {
 
             relation.setRelation(UserRelation.NONE);
             userRelationDao.update(relation);
@@ -122,12 +123,49 @@ public class RelationController {
     }
 
     @RequestMapping("/requests")
-    public UserListDto getRequests(@SessionAttribute(Constant.SESSION_USER) User me) {
-        UserListDto dto = new UserListDto();
+    public UserListDto getRequests(@SessionAttribute(Constant.SESSION_USER) User me, UserListDto dto) {
 
+        PageHelper.startPage(dto.getPageNo(), dto.getPageSize());
         List<User> users = userRelationDao.findAllRequests(me.getId());
 
+        for (User u : users) {
+            u.setAccount(null);
+            u.setPassword(null);
+        }
+
         dto.setUsers(users);
+
+        return dto;
+    }
+
+    @RequestMapping("/friends")
+    public UserListDto getFriends(@SessionAttribute(Constant.SESSION_USER) User me, UserListDto dto) {
+
+        PageHelper.startPage(dto.getPageNo(), dto.getPageSize());
+        List<User> friends = userRelationDao.findAllFriends(me.getId());
+
+        for (User u : friends) {
+            u.setAccount(null);
+            u.setPassword(null);
+        }
+
+        dto.setUsers(friends);
+
+        return dto;
+    }
+
+    @RequestMapping("/refusedme")
+    public UserListDto getRefusedMe(@SessionAttribute(Constant.SESSION_USER) User me, UserListDto dto) {
+
+        PageHelper.startPage(dto.getPageNo(), dto.getPageSize());
+        List<User> friends = userRelationDao.findAllRefusedMe(me.getId());
+
+        for (User u : friends) {
+            u.setAccount(null);
+            u.setPassword(null);
+        }
+
+        dto.setUsers(friends);
 
         return dto;
     }

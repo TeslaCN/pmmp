@@ -13,7 +13,6 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -49,10 +48,8 @@ public class UserController {
 
         if (errors.hasErrors()) {
 
-            ObjectError[] errorArray = (ObjectError[]) errors.getAllErrors().toArray();
-
             dto.setCode(1);
-            dto.setMessage(Arrays.toString(errorArray));
+            dto.setMessage(Arrays.toString(errors.getAllErrors().toArray()));
 
         } else {
 
@@ -136,6 +133,7 @@ public class UserController {
         User me = userDao.findByAccount(securityContext.getAuthentication().getName());
 
         UserInfoDto dto = new UserInfoDto();
+        me.setPassword(null);
         dto.setUser(me);
         dto.setMessage(Constant.SUCCESS);
 
@@ -148,10 +146,8 @@ public class UserController {
 
         if (errors.hasErrors()) {
 
-            ObjectError[] errorArray = (ObjectError[]) errors.getAllErrors().toArray();
-
             dto.setCode(1);
-            dto.setMessage(Arrays.toString(errorArray));
+            dto.setMessage(Arrays.toString(errors.getAllErrors().toArray()));
 
         } else {
 

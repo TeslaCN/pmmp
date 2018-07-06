@@ -131,6 +131,25 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+    <select id="findAllWaitingForMe" resultType="ltd.scau.mybatis.po.User">
+      select u.*
+      from user_relation ur inner join user u on ur.user_a_id = u.id
+      where ur.relation = 1 and ur.user_b_id = #{id}
+    </select>
+  <select id="findAllFriends" resultType="ltd.scau.mybatis.po.User">
+    select u.*
+    from (
+      select user_a_id id from user_relation where relation = 2 and user_b_id = #{id}
+      union
+      select user_b_id id from user_relation where relation = 2 and user_a_id = #{id}
+    ) ur
+    natural join user u
+  </select>
+  <select id="findAllRefusedMe" resultType="ltd.scau.mybatis.po.User">
+      select u.*
+      from user_relation ur inner join user u on ur.user_b_id = u.id
+      where ur.relation = 0 and ur.user_a_id = #{id}
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update user_relation
     <set>

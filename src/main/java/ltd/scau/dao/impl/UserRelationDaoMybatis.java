@@ -39,9 +39,8 @@ public class UserRelationDaoMybatis implements UserRelationDao {
     }
 
     @Override
-    public List<User> findAllRefused(Long id) {
-        // TODO
-        return null;
+    public List<User> findAllRefusedMe(Long id) {
+        return userRelationMapper.findAllRefusedMe(id);
     }
 
     @Override
@@ -70,13 +69,11 @@ public class UserRelationDaoMybatis implements UserRelationDao {
 
     @Override
     public List<User> findAllFriends(Long id) {
-        // TODO
-        return null;
+        return userRelationMapper.findAllFriends(id);
     }
 
     @Override
     public List<User> findAllRequests(Long id) {
-        // TODO
-        return null;
+        return userRelationMapper.findAllWaitingForMe(id);
     }
 }

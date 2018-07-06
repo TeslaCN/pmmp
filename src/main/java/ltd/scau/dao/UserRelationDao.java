@@ -14,7 +14,7 @@ public interface UserRelationDao {
 
     List<User> findAllRequests(Long id);
 
-    List<User> findAllRefused(Long id);
+    List<User> findAllRefusedMe(Long id);
 
     UserRelation findByUsersId(Long aId, Long bId, boolean fixedPosition);
 

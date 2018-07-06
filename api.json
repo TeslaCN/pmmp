@@ -150,6 +150,10 @@
   "获取所有添加请求": {
     "url": "/requests",
     "method": "GET",
+    "data": {
+      "pageNo": 2,
+      "pageSize": 20
+    },
     "return": {
       "success": {
         "code": 0,
@@ -176,8 +180,12 @@
     }
   },
   "获取所有被拒请求": {
-    "url": "/refused",
+    "url": "/refusedme",
     "method": "GET",
+    "data": {
+      "pageNo": 1,
+      "pageSize": 10
+    },
     "return": {
       "success": {
         "code": 0,
@@ -227,7 +235,8 @@
   },
   "获取好友列表": {
     "url": "/friends",
-    "GET": {
+    "method": "GET",
+    "data": {
       "pageNo": 3,
       "pageSize": 20
     },
