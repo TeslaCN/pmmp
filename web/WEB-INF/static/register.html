@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>注册</title>
+    <title>全球最大线上交♂友♀平台</title>
 
     <!-- Bootstrap core CSS -->
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +25,56 @@
 </head>
 <body>
 <div id="nav"></div>
- <!-- /container -->
+<div class="container">
+
+    <form class="form-signin" onsubmit="return false" id="form">
+        <div class="panel panel-signin">
+            <div class="panel-heading">
+                <h3 class="panel-title">用户注册</h3>
+            </div>
+            <div class="panel-body">
+                <div id="userRegister">
+                    <label class="attr">注册账号</label>
+                    <input v-model="account" type="text" class="inputText" id="account" name="account">
+                    <br>
+                    <label class="attr">密码</label>
+                    <input v-model="password" type="password" class="inputText" id="password" name="password">
+                    <br>
+
+                    <label class="attr">确认密码</label>
+                    <input type="password" class="inputText" id="repassword">
+                    <br>
+                    <label class="attr">真实姓名</label>
+                    <input v-model="realname" type="text" class="inputText" id="realname" name="realname">
+                    <br>
+                    <label class="attr">昵称</label>
+                    <input v-model="nickname" type="text" class="inputText" id="nickname" name="nickname">
+                    <br>
+                    <label class="attr">性别</label>
+                    <input v-model="gender" id="male" class="ir" value="0"  type="radio" name="gender">
+                    <label class="sex male" for="male">男</label>
+                    <input v-model="gender" id="female" class="ir" value="1" type="radio" name="gender">
+                    <label class="sex female" for="female">女</label>
+                    <br><label class="attr">生日</label>
+                    <input v-model="birth" type="text" class="inputText" id="birth" name="birth" value="1970-01-01">
+                    <br>
+                    <label for="inputVerify" class="sr-only">验证码</label>
+                    <input v-model="verify" name="verify" type="text" id="inputVerify" class="form-control"
+                           placeholder="验证码">
+                    <img src="util/code">
+
+                    <button class="btn btn-lg btn-primary btn-block" id="register"  @click="postRegisterMessage()">免费注册</button>
+                    <br><br>
+                    <div> {{ account }} <br>  {{password}}  <br> {{realname}} <br> {{nickname}}<br>{{gender}} <br> {{birth}}<br> {{verify}} </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </form>
+
+</div> <!-- /container -->
 <!--<div class="site-wrapper">-->
 
 <!--<div class="site-wrapper-inner">-->
@@ -89,32 +138,6 @@
 <!--</div>-->
 </body>
 
-<script>
-
-    $(document).ready(function() {
-
-        $("#nav").load("navbar.html");
-
-        $("#birth").datepicker({
-            format: "yyyy-mm-dd",
-            startView: 2,
-            language: "zh-CN",
-            autoclose: true
-        });
-
-        $("#register").click(function(){
-            alert("ok");
-            var data = $('#form').serialize()
-            $.post(
-                APP_PREFIX + "/signup",data,function (data) {
-                    if(data.redirect) {
-                        location.href = data.redirect
-                    }else {
-                        location.href = APP_PREFIX + '/'
-                    }
-                },'json'
-            )
-        });
-    })
+<script src="resource/js/register.js">
 </script>
 </html>
