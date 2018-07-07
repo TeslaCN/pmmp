@@ -14,7 +14,6 @@
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="resource/bootstrap-datepicker-master/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-    <!--<link href="resource/css/base.css" rel="stylesheet">-->
     <link href="resource/css/signin.css" rel="stylesheet">
     <script src="resource/js/jquery_3.3.1_jquery.js"></script>
     <script src="resource/js/constant.js"></script>
@@ -46,9 +45,7 @@
                     <label for="inputVerify" class="sr-only">验证码</label><input v-model="verify" name="verify" type="text" id="inputVerify" class="form-control" placeholder="验证码">
                     <img src="util/code" id="verifyImg" onclick="re()" title="看不清可单击图片刷新">
                     <br>
-                    <button class="btn btn-lg btn-primary btn-block" id="register"  @click="postRegisterMessage()">免费注册</button>
-                    <br><br>
-                    <div> {{ account }} <br>  {{password}}  <br> {{realname}} <br> {{nickname}}<br>{{gender}} <br> {{birth}}<br> {{verify}} </div>
+                    <button class="btn btn-lg btn-info btn-block" id="register"  @click="postRegisterMessage()">免费注册</button>
                 </div>
             </div>
         </div>

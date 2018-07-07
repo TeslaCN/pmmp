@@ -1,7 +1,5 @@
 body {
-    color: #fff;
     text-align: center;
-    text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 .form-signin {
@@ -39,12 +37,12 @@ body {
   border-top-right-radius: 0;
 }
 .panel-signin {
-  border-color: #c18dff;
+  border-color: #5bc0de !important;
 }
 .panel-signin > .panel-heading {
-  color: #31708f;
-  background-color: #c18dff;
-  border-color: #bce8f1;
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #5bc0de !important;
 }
 .panel-signin > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #bce8f1;

@@ -13,6 +13,7 @@ var information = new Vue({
                 },
                 'json'
             )
+            alert("保存成功");
         }
     }
 });

@@ -14,7 +14,7 @@
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet">
     <link href="resource/bootstrap-datepicker-master/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-    <link href="resource/css/signin.css" rel="stylesheet">
+    <link href="resource/css/information.css" rel="stylesheet">
     <script src="resource/js/jquery_3.3.1_jquery.js"></script>
     <script src="resource/js/constant.js"></script>
     <script src="resource/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -24,37 +24,93 @@
 </head>
 <body>
 <div id="nav"></div>
-
 <div class="container">
-
     <div class="jumbotron" id="information">
-        <h3>information</h3>
-        <form class="form-signin" onsubmit="return false">
-            <div class="panel panel-signin">
+        <form class="form-info form-inline" onsubmit="return false">
+            <div class="panel panel-inform">
                 <div class="panel-heading">
                     <h3 class="panel-title">个人信息</h3>
                 </div>
                 <div class="panel-body">
-                    <label>昵称</label><input type="text" name="nickname" id="nickname" class="form-control" v-model="user.nickname" required><br>
-                    <!--<label>账号</label><label name="account" id="account">{{user.account}}</label><br>-->
-                    <label>账号</label><input type="text" name="account" id="account" class="form-control" v-model="user.account" disabled="disabled" required><br>
-                    <label>密码</label><input type="password" name="password" id="password" class="form-control" v-model="user.password" required><br>
-                    <label>真实姓名</label><input type="text" name="realname" id="realname" class="form-control" v-model="user.realname" required><br>
-                    <label>性别</label>
-                    <label for="male">男</label><input type="radio" name="gender" id="male" value="0" v-mocel="user.gender">
-                    <label for="female">女</label><input type="radio" name="gender" id="female" value="1" v-model="user.gender"><br>
-                    <label>生日</label><input type="text" name="birth" id="birth" class="form-control" v-model="user.birth" required><br>
-                    <label>邮箱</label><input type="text" name="email" id="email" class="form-control" v-model="user.email"><br>
-                    <label>工资（月薪）</label><input type="text" name="salary" id="salary" class="form-control" v-model="user.salary"><br>
-                    <label>教育程度</label><input type="text" name="education" id="education" class="form-control" v-model="user.education"><br>
-                    <label>居住地</label><input type="text" name="address" id="address" class="form-control" v-model="user.address"><br>
-                    <button class="btn btn-lg btn-primary" id="save" @click="save()">保存</button>
+                    <div class="form-group">
+                        <label class="sr-only" for="nickname">昵称</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">昵称</div>
+                            <input type="text" name="nickname" id="nickname" class="form-control" v-model="user.nickname" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="account">账号</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">账号</div>
+                            <input type="text" name="account" id="account" class="form-control" v-model="user.account" disabled="disabled" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="password">密码</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">密码</div>
+                            <input type="password" name="password" id="password" class="form-control" v-model="user.password" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="realname">真实姓名</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">真实姓名</div>
+                            <input type="text" name="realname" id="realname" class="form-control" v-model="user.realname" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">性别</div>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="male" value="0" v-model="user.gender">男
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="gender" id="female" value="1" v-model="user.gender">女
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="birth">生日</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">生日</div>
+                            <input type="text" name="birth" id="birth" class="form-control" v-model="user.birth" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="email">邮箱</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">邮箱</div>
+                            <input type="text" name="email" id="email" class="form-control" v-model="user.email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="salary">工资(月薪)</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">工资(月薪)</div>
+                            <input type="text" name="salary" id="salary" class="form-control" v-model="user.salary">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="education">学历</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">学历</div>
+                            <input type="text" name="education" id="education" class="form-control" v-model="user.education">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="address">居住地</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">居住地</div>
+                            <input type="text" name="address" id="address" class="form-control" v-model="user.address">
+                        </div>
+                    </div>
+                    <button class="btn btn-lg btn-info" id="save" @click="save()">保存</button>
                 </div>
             </div>
         </form>
-
     </div>
-
 </div>
 </body>
 <script src="resource/js/header.js"></script>
