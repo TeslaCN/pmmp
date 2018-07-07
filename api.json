@@ -315,8 +315,8 @@
     "return": {
     }
   },
-  "获取所有邮件": {
-    "url": "/emails",
+  "获取所有消息": {
+    "url": "/message/all",
     "method": "GET",
     "data": {
       "pageNo": 3,
@@ -325,60 +325,62 @@
     "return": {
       "success": {
         "code": 0,
-        "emails": [
+        "messages": [
           {
             "id": 231,
-            "fromAddress": "maven@gmail.com",
-            "toAddress": "wuweijie.io@qq.com",
-            "subject": "Hello, World!",
+            "fromUserId": "maven@gmail.com",
+            "toUserId": "wuweijie.io@qq.com",
             "content": "Talk is cheap. Show me the code!",
-            "sendTime": "具体格式有待协商",
-            "isRead": false
+            "sendTime": 1530586969051
           },
           {
             "id": 231,
-            "fromAddress": "maven@gmail.com",
-            "toAddress": "wuweijie.io@qq.com",
-            "subject": "Hello, World!",
+            "fromUserId": "maven@gmail.com",
+            "toUserId": "wuweijie.io@qq.com",
             "content": "Talk is cheap. Show me the code!",
-            "sendTime": "具体格式有待协商",
-            "isRead": false
+            "sendTime": 1530586969051
           }
         ]
       }
     }
   },
-  "查看指定邮件": {
-    "url": "/email/{id}",
+  "获取与指定用户的消息": {
+    "url": "/message/with/{id}",
     "method": "GET",
     "return": {
       "success": {
         "code": 0,
-        "email": {
-          "id": 231,
-          "fromAddress": "maven@gmail.com",
-          "toAddress": "wuweijie.io@qq.com",
-          "subject": "Hello, World!",
-          "content": "Talk is cheap. Show me the code!",
-          "sendTime": "具体格式有待协商",
-          "isRead": false
-        }
+        "messages": [
+          {
+            "id": 231,
+            "fromUserId": 23,
+            "toUserId": 11,
+            "content": "Talk is cheap. Show me the code!",
+            "sendTime": 1530586969051
+          },
+          {
+            "id": 232,
+            "fromUserId": 11,
+            "toUserId": 23,
+            "content": "Show me the code!",
+            "sendTime": 1530586969051
+          }
+        ]
       }
     }
   },
-  "发送邮件": {
-    "url": "/email",
+  "发送消息": {
+    "url": "/message/send/{id}",
     "method": "POST",
     "data": {
-      "fromAddress": "maven@gmail.com",
-      "toAddress": "wuweijie.io@qq.com",
-      "subject": "Hello, World!",
+      "fromUserId": "maven@gmail.com",
+      "toUserId": "wuweijie.io@qq.com",
       "content": "Talk is cheap. Show me the code!"
     },
     "return": {
       "success": {
         "code": 0,
-        "message": "已投递"
+        "message": "已发送"
       }
     }
   },
