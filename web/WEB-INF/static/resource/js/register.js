@@ -1,4 +1,3 @@
-
 var re
 $(document).ready(function () {
         re = function refresh() {
@@ -9,48 +8,53 @@ $(document).ready(function () {
 );
 
 var userRegister = new Vue({
-    el: "#userRegister",
+    el: "#register",
     data: {
-        account:"",
-        password:"",
-        realname:"",
-        nickname:"",
-        birth:"",
-        gender:"0",
-        verify:""
+        user: {
+            account:'',
+            password:'',
+            realname:'',
+            nickname:'',
+            birth:'',
+            gender:'0',
+            verify:'',
+            email:'',
+            salary:'',
+            education: '',
+            address:''
+        },
     },
     methods: {
         postRegisterMessage: function () {
-
-            if(this.password!=$('#repassword').val()){
+            if(this.user.password!=$('#repassword').val()){
                 alert("两个密码不一致")
             }else{
                 $.post(
                     APP_PREFIX + "/signup",
                     {
-                        'realname':this.realname,
-                        'account': this.account,
-                        'password': this.password,
-                        'nickname':this.nickname,
-                        'gender':this.gender,
-                        'birth':this.birth,
-                        'email': "",
-                        'salary': "",
-                        'education': "",
-                        'address': "",
-                        'verify': this.verify
+                        'realname':this.user.realname,
+                        'account':this.user.account,
+                        'password':this.user.password,
+                        'nickname':this.user.nickname,
+                        'gender':this.user.gender,
+                        'birth':this.user.birth,
+                        'email':this.user.email,
+                        'salary':this.user.salary,
+                        'education':this.user.education,
+                        'address':this.user.address,
+                        'verify':this.user.verify
                     },
                     function (data) {
                         if (data.code) {
-                            //re();
+                            re();
                             alert(data.message);
                             return;
-                        } else{
-                            alert("注册成功，跳转到登录界面")
-                            location.href = "signin.html"
+                        }else{
+                            alert("注册成功");
+                            location.href="signin.html";
                         }
                     }, 'json'
-                )
+                );
             }
         }
     }
@@ -63,5 +67,5 @@ $('#birth').datepicker({
     language: "zh-CN",
     autoclose: true
 }).on('changeDate',function(){
-    userRegister.birth = $('#birth').val()
+    userRegister.user.birth = $('#birth').val()
 });

@@ -9,11 +9,14 @@ var information = new Vue({
                 APP_PREFIX + "/me",
                 this.user,
                 function (d) {
-
                 },
                 'json'
-            )
+            );
             alert("保存成功");
+        },
+        signOut: function () {
+            console.log('Sign Out and clear Cookie');
+            $.cookie('user', '')
         }
     }
 });
@@ -31,8 +34,8 @@ $("#birth").datepicker({
 $.get(APP_PREFIX + '/me', {}, function (data) {
     if (data.user) {
         information.user=data.user;
-        delete information.user.signUpTime
-        var date = new Date(parseInt(information.user.birth))
+        delete information.user.signUpTime;
+        var date = new Date(parseInt(information.user.birth));
         information.user.birth = date.format('yyyy-MM-dd')
     }
 });

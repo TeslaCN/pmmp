@@ -1,118 +1,198 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>个人信息</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <title>这里是个人中心</title>
+    <link href="resource/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- jQuery -->
+    <script src="resource/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="resource/css/style.css" rel='stylesheet' type='text/css' />
     <link href="resource/bootstrap-datepicker-master/css/bootstrap-datepicker3.min.css" rel="stylesheet">
     <link href="resource/css/information.css" rel="stylesheet">
-    <script src="resource/js/jquery_3.3.1_jquery.js"></script>
+    <link rel="shortcut icon" href="resource/images/fav-icon.png" />
     <script src="resource/js/constant.js"></script>
+    <script src="resource/js/jquery.cookie.js"></script>
     <script src="resource/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="resource/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js"></script>
     <script src="resource/bootstrap-datepicker-master/locales/bootstrap-datepicker.zh-CN.min.js"></script>
     <script src="resource/js/vue.js"></script>
+    <!-- Custom Theme files -->
+    <!---- start-smoth-scrolling---->
+    <script type="text/javascript" src="resource/js/move-top.js"></script>
+    <script type="text/javascript" src="resource/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!---- start-smoth-scrolling---->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script>
+        $(function() {
+            var pull 		= $('#pull');
+            menu 		= $('nav ul');
+            menuHeight	= menu.height();
+            $(pull).on('click', function(e) {
+                e.preventDefault();
+                menu.slideToggle();
+            });
+            $(window).resize(function(){
+                var w = $(window).width();
+                if(w > 320 && menu.is(':hidden')) {
+                    menu.removeAttr('style');
+                }
+            });
+        });
+    </script>
+    <!----//End-top-nav-script---->
+</head>
 </head>
 <body>
-<div id="nav"></div>
-<div class="container">
-    <div class="jumbotron" id="information">
-        <form class="form-info form-inline" onsubmit="return false">
-            <div class="panel panel-inform">
-                <div class="panel-heading">
-                    <h3 class="panel-title">个人信息</h3>
+<div id="information">
+    <!----- start-header---->
+    <div id="home" class="header">
+        <div class="top-header">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img src="resource/images/logo.png" title="yellow" /></a>
                 </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="sr-only" for="nickname">昵称</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">昵称</div>
-                            <input type="text" name="nickname" id="nickname" class="form-control" v-model="user.nickname" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="account">账号</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">账号</div>
-                            <input type="text" name="account" id="account" class="form-control" v-model="user.account" disabled="disabled" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="password">密码</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">密码</div>
-                            <input type="password" name="password" id="password" class="form-control" v-model="user.password" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="realname">真实姓名</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">真实姓名</div>
-                            <input type="text" name="realname" id="realname" class="form-control" v-model="user.realname" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <div class="input-group-addon">性别</div>
-                            <label class="radio-inline">
-                                <input type="radio" name="gender" id="male" value="0" v-model="user.gender">男
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="gender" id="female" value="1" v-model="user.gender">女
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="birth">生日</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">生日</div>
-                            <input type="text" name="birth" id="birth" class="form-control" v-model="user.birth" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="email">邮箱</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">邮箱</div>
-                            <input type="text" name="email" id="email" class="form-control" v-model="user.email">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="salary">工资(月薪)</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">工资(月薪)</div>
-                            <input type="text" name="salary" id="salary" class="form-control" v-model="user.salary">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="education">学历</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">学历</div>
-                            <input type="text" name="education" id="education" class="form-control" v-model="user.education">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="address">居住地</label>
-                        <div class="input-group">
-                            <div class="input-group-addon">居住地</div>
-                            <input type="text" name="address" id="address" class="form-control" v-model="user.address">
-                        </div>
-                    </div>
-                    <button class="btn btn-lg btn-info" id="save" @click="save()">保存</button>
-                </div>
+                <!----start-top-nav---->
+                <nav class="top-nav">
+                    <ul class="top-nav">
+                        <li><a href="index.html">首页</a></li>
+                        <li class="active"><a href="information.html">个人中心</a></li>
+                        <li><a @click="signOut()" href="index.html">退出</a></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <a href="#" id="pull"><img src="resource/images/nav-icon.png" title="menu" /></a>
+                </nav>
+                <div class="clearfix"> </div>
             </div>
-        </form>
+        </div>
     </div>
+    <!----- //End-header---->
+
+    <!---information---->
+    <div class="information">
+        <div class="top-heade">
+            <div class="container">
+                <div class="top-header-left">
+                    <h1>个人中心</h1>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!---information-grids---->
+
+    <!---information-note--->
+    <div class="welcome-note text-center">
+        <div class="container">
+            <form class="form-info form-inline" onsubmit="return false">
+                <div class="panel panel-inform">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">个人信息</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="sr-only" for="nickname">昵称</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">昵称</div>
+                                <input type="text" name="nickname" id="nickname" class="form-control" v-model="user.nickname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="account">账号</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">账号</div>
+                                <input type="text" name="account" id="account" class="form-control" v-model="user.account" disabled="disabled" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="password">密码</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">密码</div>
+                                <input type="password" name="password" id="password" class="form-control" v-model="user.password" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="realname">真实姓名</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">真实姓名</div>
+                                <input type="text" name="realname" id="realname" class="form-control" v-model="user.realname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-addon">性别</div>
+                                <label class="radio-inline">
+                                    <input type="radio" name="gender" id="male" value="0" v-model="user.gender">男
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="gender" id="female" value="1" v-model="user.gender">女
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="birth">生日</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">生日</div>
+                                <input type="text" name="birth" id="birth" class="form-control" v-model="user.birth" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="email">邮箱</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">邮箱</div>
+                                <input type="text" name="email" id="email" class="form-control" v-model="user.email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="salary">工资(月薪)</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">工资(月薪)</div>
+                                <input type="text" name="salary" id="salary" class="form-control" v-model="user.salary">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="education">学历</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">学历</div>
+                                <input type="text" name="education" id="education" class="form-control" v-model="user.education">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="address">居住地</label>
+                            <div class="input-group">
+                                <div class="input-group-addon">居住地</div>
+                                <input type="text" name="address" id="address" class="form-control" v-model="user.address">
+                            </div>
+                        </div>
+                        <button class="btn btn-lg btn-info" id="save" @click="save()">保存</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--information-note-->
+
+    <!---copy-right--->
+    <div class="copy-right text-center">
+        <p>Copyright &copy; 2018.All rights reserved.<a href="#">@有请下一组</a></p>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $().UItoTop({ easingType: 'easeOutQuart' });
+            });
+        </script>
+        <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    </div>
+    <!---//copy-right--->
 </div>
 </body>
-<script src="resource/js/header.js"></script>
 <script src="resource/js/information.js"></script>
 </html>
+

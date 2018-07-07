@@ -1,45 +1,135 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
+<!DOCTYPE HTML>
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-
     <title>这里是首页</title>
-    <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.css" rel="stylesheet">
-    <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.css" rel="stylesheet">
-    <script src="resource/js/jquery_3.3.1_jquery.js"></script>
+    <link href="resource/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- jQuery -->
+    <script src="resource/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="resource/css/style.css" rel='stylesheet' type='text/css' />
+    <link rel="shortcut icon" href="resource/images/fav-icon.png" />
     <script src="resource/js/constant.js"></script>
     <script src="resource/js/vue.js"></script>
     <script src="resource/js/jquery.cookie.js"></script>
+    <!-- Custom Theme files -->
+    <!---- start-smoth-scrolling---->
+    <script type="text/javascript" src="resource/js/move-top.js"></script>
+    <script type="text/javascript" src="resource/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!---- start-smoth-scrolling---->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script>
+        $(function() {
+            var pull 		= $('#pull');
+            menu 		= $('nav ul');
+            menuHeight	= menu.height();
+            $(pull).on('click', function(e) {
+                e.preventDefault();
+                menu.slideToggle();
+            });
+            $(window).resize(function(){
+                var w = $(window).width();
+                if(w > 320 && menu.is(':hidden')) {
+                    menu.removeAttr('style');
+                }
+            });
+        });
+    </script>
+    <!----//End-top-nav-script---->
 </head>
-
 <body>
-<div id="nav"></div>
-<div class="container" id="index">
-    <div class="jumbotron" v-if="user.account">
-        <h1>欢迎回来，{{user.nickname}}</h1>
+<div id="index">
+    <!----- start-header---->
+    <div id="home" class="header">
+        <div class="top-header">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img src="resource/images/logo.png" title="yellow" /></a>
+                </div>
+                <!----start-top-nav---->
+                <nav class="top-nav">
+                    <ul class="top-nav">
+                        <div v-if="user.account">
+                            <li class="active"><a href="index.html">首页</a></li>
+                            <li><a href="information.html">个人中心</a></li>
+                            <li><a @click="signOut()" href="index.html">退出</a></li>
+                        </div>
+                        <div v-else>
+                            <li class="active"><a href="index.html">首页</a></li>
+                            <li><a href="signin.html">登录</a></li>
+                            <li><a href="register.html">注册</a></li>
+                        </div>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <a href="#" id="pull"><img src="resource/images/nav-icon.png" title="menu" /></a>
+                </nav>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
     </div>
-    <div class="jumbotron" v-else>
-        <h1>后现代交友平台</h1>
-        <p>假装有图片</p>
-        <p>其他功能啊，已经在做了</p>
-        <p>
-            <a class="btn btn-lg btn-primary" href="signin.html" role="button">马上登陆</a>
-        </p>
+    <!----- //End-header---->
+
+    <div v-if="user.account">
+        <!---banner---->
+        <div class="banner text-center">
+            <h1><span>欢迎回来，{{user.nickname}}</span></h1>
+        </div>
+        <!---//banner---->
+    </div>
+    <div v-else>
+        <!---banner---->
+        <div class="banner text-center">
+            <h1><span>后现代交友平台</span><br /><label>在此打开新世界的大门</label></h1>
+        </div>
+        <!---//banner---->
+        <div class="clearfix"> </div>
+        <!---welcome-note--->
+        <div class="welcome-note text-center">
+            <div class="container">
+                <h2>首页</h2>
+                <p>已经在做了</p>
+                <ul class="note-btns unstyled-list list-inline">
+                    <li><a href="signin.html">登录</a></li>
+                    <li><a href="register.html">注册</a></li>
+                    <div class="clearfix"> </div>
+                </ul>
+            </div>
+        </div>
+        <!--welcome-note-->
     </div>
 
-</div> <!-- /container -->
-
+    <!---copy-right--->
+    <div class="copy-right text-center">
+        <p>Copyright &copy; 2018.All rights reserved.<a href="#">@有请下一组</a></p>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $().UItoTop({ easingType: 'easeOutQuart' });
+            });
+        </script>
+        <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    </div>
+    <!---//copy-right--->
+</div>
 </body>
-<script src="resource/js/header.js"></script>
 <script>
-
     var index = new Vue({
         el: '#index',
         data: {
             user: {}
+        },
+        methods:{
+            signOut: function () {
+                console.log('Sign Out and clear Cookie')
+                $.cookie('user', '')
+            }
         }
     })
     if ($.cookie('user')) {
@@ -47,3 +137,4 @@
     }
 </script>
 </html>
+

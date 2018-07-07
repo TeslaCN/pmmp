@@ -9,6 +9,36 @@ body {
    text-shadow: 0 1px 3px rgba(0,0,0,.5);
  }
 
+/*--banner--*/
+.banner{
+    background:url(../images/slide.jpg) no-repeat 0px 0px;
+    background-size:cover;
+    min-height:580px;
+    position:relative;
+}
+.banner h1{
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #FFF;
+    position: absolute;
+    top: 43%;
+    left: 32%;
+    font-size: 2.2em;
+}
+.banner h1 span{
+    display:inline-block;
+    background:#AB6F80;
+    padding:0.3em 0.5em;
+    margin-bottom: 0.1em;
+}
+.banner h1 label{
+    display:inline-block;
+    background:#AB6F80;
+    padding:0.3em 0.5em;
+}
+
+
 /*
  * Cover
  */
