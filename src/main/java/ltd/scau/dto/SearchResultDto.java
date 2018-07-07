@@ -19,9 +19,9 @@ public class SearchResultDto extends UserListDto {
     public String toString() {
         return "SearchResultDto{" +
                 "key='" + key + '\'' +
+                ", users=" + users +
                 ", pageSize=" + pageSize +
                 ", pageNo=" + pageNo +
-                ", users=" + users +
                 ", code=" + code +
                 ", message='" + message + '\'' +
                 '}';

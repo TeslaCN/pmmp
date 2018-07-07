@@ -9,13 +9,7 @@ import java.util.List;
 /**
  * @author Weijie Wu
  */
-public class UserListDto extends ResultDto {
-
-    @Min(1)
-    protected int pageSize;
-
-    @Min(1)
-    protected int pageNo;
+public class UserListDto extends ListDto {
 
     protected List<User> users;
 
@@ -27,26 +21,14 @@ public class UserListDto extends ResultDto {
         this.users = users;
     }
 
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    public int getPageNo() {
-        return pageNo;
-    }
-
-    public void setPageNo(int pageNo) {
-        this.pageNo = pageNo;
-    }
-
     @Override
     public String toString() {
         return "UserListDto{" +
                 "users=" + users +
+                ", pageSize=" + pageSize +
+                ", pageNo=" + pageNo +
+                ", code=" + code +
+                ", message='" + message + '\'' +
                 '}';
     }
 }

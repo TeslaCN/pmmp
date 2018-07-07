@@ -60,11 +60,6 @@
       "success": {
         "code": 0,
         "message": "success"
-      },
-      "fail": {
-        "code": 1,
-        "message": "用户未登录",
-        "redirect": ""
       }
     }
   },
@@ -315,7 +310,7 @@
     "return": {
     }
   },
-  "获取所有消息": {
+  "获取所有聊天记录": {
     "url": "/message/all",
     "method": "GET",
     "data": {
@@ -328,14 +323,14 @@
         "messages": [
           {
             "id": 231,
-            "fromUserId": "maven@gmail.com",
+            "fromUserId": 33,
             "toUserId": "wuweijie.io@qq.com",
             "content": "Talk is cheap. Show me the code!",
             "sendTime": 1530586969051
           },
           {
             "id": 231,
-            "fromUserId": "maven@gmail.com",
+            "fromUserId": 12,
             "toUserId": "wuweijie.io@qq.com",
             "content": "Talk is cheap. Show me the code!",
             "sendTime": 1530586969051
@@ -344,9 +339,13 @@
       }
     }
   },
-  "获取与指定用户的消息": {
+  "获取与指定用户聊天记录": {
     "url": "/message/with/{id}",
     "method": "GET",
+    "data": {
+      "pageNo": 1,
+      "pageSize": 10
+    },
     "return": {
       "success": {
         "code": 0,
@@ -371,10 +370,9 @@
   },
   "发送消息": {
     "url": "/message/send/{id}",
+    "example":"id为目标用户id /message/send/5",
     "method": "POST",
     "data": {
-      "fromUserId": "maven@gmail.com",
-      "toUserId": "wuweijie.io@qq.com",
       "content": "Talk is cheap. Show me the code!"
     },
     "return": {

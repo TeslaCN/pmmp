@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class EmailExample {
+public class MessageExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public EmailExample() {
+    public MessageExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,213 +165,123 @@ public class EmailExample {
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressIsNull() {
-            addCriterion("from_address is null");
+        public Criteria andFromUserIdIsNull() {
+            addCriterion("from_user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressIsNotNull() {
-            addCriterion("from_address is not null");
+        public Criteria andFromUserIdIsNotNull() {
+            addCriterion("from_user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressEqualTo(String value) {
-            addCriterion("from_address =", value, "fromAddress");
+        public Criteria andFromUserIdEqualTo(Long value) {
+            addCriterion("from_user_id =", value, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressNotEqualTo(String value) {
-            addCriterion("from_address <>", value, "fromAddress");
+        public Criteria andFromUserIdNotEqualTo(Long value) {
+            addCriterion("from_user_id <>", value, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressGreaterThan(String value) {
-            addCriterion("from_address >", value, "fromAddress");
+        public Criteria andFromUserIdGreaterThan(Long value) {
+            addCriterion("from_user_id >", value, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("from_address >=", value, "fromAddress");
+        public Criteria andFromUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("from_user_id >=", value, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressLessThan(String value) {
-            addCriterion("from_address <", value, "fromAddress");
+        public Criteria andFromUserIdLessThan(Long value) {
+            addCriterion("from_user_id <", value, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressLessThanOrEqualTo(String value) {
-            addCriterion("from_address <=", value, "fromAddress");
+        public Criteria andFromUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("from_user_id <=", value, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressLike(String value) {
-            addCriterion("from_address like", value, "fromAddress");
+        public Criteria andFromUserIdIn(List<Long> values) {
+            addCriterion("from_user_id in", values, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressNotLike(String value) {
-            addCriterion("from_address not like", value, "fromAddress");
+        public Criteria andFromUserIdNotIn(List<Long> values) {
+            addCriterion("from_user_id not in", values, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressIn(List<String> values) {
-            addCriterion("from_address in", values, "fromAddress");
+        public Criteria andFromUserIdBetween(Long value1, Long value2) {
+            addCriterion("from_user_id between", value1, value2, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressNotIn(List<String> values) {
-            addCriterion("from_address not in", values, "fromAddress");
+        public Criteria andFromUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("from_user_id not between", value1, value2, "fromUserId");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressBetween(String value1, String value2) {
-            addCriterion("from_address between", value1, value2, "fromAddress");
+        public Criteria andToUserIdIsNull() {
+            addCriterion("to_user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andFromAddressNotBetween(String value1, String value2) {
-            addCriterion("from_address not between", value1, value2, "fromAddress");
+        public Criteria andToUserIdIsNotNull() {
+            addCriterion("to_user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressIsNull() {
-            addCriterion("to_address is null");
+        public Criteria andToUserIdEqualTo(Long value) {
+            addCriterion("to_user_id =", value, "toUserId");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressIsNotNull() {
-            addCriterion("to_address is not null");
+        public Criteria andToUserIdNotEqualTo(Long value) {
+            addCriterion("to_user_id <>", value, "toUserId");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressEqualTo(String value) {
-            addCriterion("to_address =", value, "toAddress");
+        public Criteria andToUserIdGreaterThan(Long value) {
+            addCriterion("to_user_id >", value, "toUserId");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressNotEqualTo(String value) {
-            addCriterion("to_address <>", value, "toAddress");
+        public Criteria andToUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("to_user_id >=", value, "toUserId");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressGreaterThan(String value) {
-            addCriterion("to_address >", value, "toAddress");
+        public Criteria andToUserIdLessThan(Long value) {
+            addCriterion("to_user_id <", value, "toUserId");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressGreaterThanOrEqualTo(String value) {
-            addCriterion("to_address >=", value, "toAddress");
+        public Criteria andToUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("to_user_id <=", value, "toUserId");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressLessThan(String value) {
-            addCriterion("to_address <", value, "toAddress");
+        public Criteria andToUserIdIn(List<Long> values) {
+            addCriterion("to_user_id in", values, "toUserId");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressLessThanOrEqualTo(String value) {
-            addCriterion("to_address <=", value, "toAddress");
+        public Criteria andToUserIdNotIn(List<Long> values) {
+            addCriterion("to_user_id not in", values, "toUserId");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressLike(String value) {
-            addCriterion("to_address like", value, "toAddress");
+        public Criteria andToUserIdBetween(Long value1, Long value2) {
+            addCriterion("to_user_id between", value1, value2, "toUserId");
             return (Criteria) this;
         }
 
-        public Criteria andToAddressNotLike(String value) {
-            addCriterion("to_address not like", value, "toAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andToAddressIn(List<String> values) {
-            addCriterion("to_address in", values, "toAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andToAddressNotIn(List<String> values) {
-            addCriterion("to_address not in", values, "toAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andToAddressBetween(String value1, String value2) {
-            addCriterion("to_address between", value1, value2, "toAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andToAddressNotBetween(String value1, String value2) {
-            addCriterion("to_address not between", value1, value2, "toAddress");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectIsNull() {
-            addCriterion("subject is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectIsNotNull() {
-            addCriterion("subject is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectEqualTo(String value) {
-            addCriterion("subject =", value, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectNotEqualTo(String value) {
-            addCriterion("subject <>", value, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectGreaterThan(String value) {
-            addCriterion("subject >", value, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectGreaterThanOrEqualTo(String value) {
-            addCriterion("subject >=", value, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectLessThan(String value) {
-            addCriterion("subject <", value, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectLessThanOrEqualTo(String value) {
-            addCriterion("subject <=", value, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectLike(String value) {
-            addCriterion("subject like", value, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectNotLike(String value) {
-            addCriterion("subject not like", value, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectIn(List<String> values) {
-            addCriterion("subject in", values, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectNotIn(List<String> values) {
-            addCriterion("subject not in", values, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectBetween(String value1, String value2) {
-            addCriterion("subject between", value1, value2, "subject");
-            return (Criteria) this;
-        }
-
-        public Criteria andSubjectNotBetween(String value1, String value2) {
-            addCriterion("subject not between", value1, value2, "subject");
+        public Criteria andToUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("to_user_id not between", value1, value2, "toUserId");
             return (Criteria) this;
         }
 
@@ -432,66 +342,6 @@ public class EmailExample {
 
         public Criteria andSendTimeNotBetween(Date value1, Date value2) {
             addCriterion("send_time not between", value1, value2, "sendTime");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadIsNull() {
-            addCriterion("is_read is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadIsNotNull() {
-            addCriterion("is_read is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadEqualTo(Byte value) {
-            addCriterion("is_read =", value, "isRead");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadNotEqualTo(Byte value) {
-            addCriterion("is_read <>", value, "isRead");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadGreaterThan(Byte value) {
-            addCriterion("is_read >", value, "isRead");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadGreaterThanOrEqualTo(Byte value) {
-            addCriterion("is_read >=", value, "isRead");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadLessThan(Byte value) {
-            addCriterion("is_read <", value, "isRead");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadLessThanOrEqualTo(Byte value) {
-            addCriterion("is_read <=", value, "isRead");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadIn(List<Byte> values) {
-            addCriterion("is_read in", values, "isRead");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadNotIn(List<Byte> values) {
-            addCriterion("is_read not in", values, "isRead");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadBetween(Byte value1, Byte value2) {
-            addCriterion("is_read between", value1, value2, "isRead");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsReadNotBetween(Byte value1, Byte value2) {
-            addCriterion("is_read not between", value1, value2, "isRead");
             return (Criteria) this;
         }
     }
