@@ -27,6 +27,7 @@ var userSignIn = new Vue({
                 },
                 function (data) {
                     if (data.code) {
+                        re();
                         alert(data.message);
                         return
                     }
