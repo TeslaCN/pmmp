@@ -33,7 +33,7 @@ public class MessageDaoMybatis implements MessageDao {
         MessageExample example = new MessageExample();
 
         example.createCriteria().andFromUserIdEqualTo(aId).andToUserIdEqualTo(bId);
-        example.or().andToUserIdEqualTo(bId).andFromUserIdEqualTo(aId);
+        example.or().andToUserIdEqualTo(aId).andFromUserIdEqualTo(bId);
 
         return messageMapper.selectByExampleWithBLOBs(example);
     }

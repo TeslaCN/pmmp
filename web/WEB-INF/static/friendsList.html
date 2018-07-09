@@ -87,11 +87,16 @@
     </div>
     <!---friends-grids---->
 
+    <!--test-->
+
+    <!--test-->
+
     <!---friends-note--->
     <div class="welcome-note text-center">
         <div class="container">
             <form class="form-info form-inline" onsubmit="return false">
                 <div>
+                    <h1>我的好友</h1>
                     <ul>
                         <li v-for="item in users">
                             <label>昵称:{{item.nickname}}</label>
@@ -99,7 +104,30 @@
                             <label>性别:{{item.gender}}</label>
                             <label>生日:{{item.birth}}</label>
                             <label>学历:{{item.education}}</label>
+                            <!--<button @click="sendMessages(item.id)">发送消息</button>-->
+                            <button @click="getMessages(item.id)">聊天记录</button>
                             <button @click="delect(item.id)">删除</button>
+                            <!--<br>-->
+                            <!--<input type="text">-->
+                        </li>
+                    </ul>
+                </div>
+                <div v-if="newFriends[0]">
+                    <h1>新的好友请求</h1>
+                    <ul>
+                        <li v-for="item in newFriends">
+                            <label>{{item.nickname}}想成为你的好友</label>
+                            <button @click="accept(item.id)">同意</button>
+                            <button @click="refuse(item.id)">拒绝</button>
+                        </li>
+                    </ul>
+                </div>
+                <div v-if="refuseme[0]">
+                    <h1>被拒绝</h1>
+                    <ul>
+                        <li v-for="item in refuseme">
+                            <label>{{item.nickname}}拒绝了你的好友请求</label>
+                            <!--<button @click="add(item.id)">再次申请</button>-->
                         </li>
                     </ul>
                 </div>
@@ -120,12 +148,38 @@
     var friends = new Vue({
         el:'#friends',
         data:{
-            users:null
+            users:null,
+            newFriends:null,
+            refuseme:null
         },
         methods:{
             signOut: function () {
                 console.log('Sign Out and clear Cookie')
                 $.cookie('user', '')
+            },
+            getMessages: function (id) {
+                $.get(
+                    APP_PREFIX + '/message/with/' + id,
+                    {
+                        "pageNo": 1,
+                        "pageSize": 10
+                    },
+                    function (data) {
+                        if(data){
+                            var messages =JSON.parse(JSON.stringify(data.messages));
+                            var showMessages="";
+                            for(var i=0;i<messages.length;i++){
+                                messages[i].sendTime=new Date(parseInt(messages[i].sendTime)).format('yyyy-MM-dd hh:mm:ss')
+                                if(id==messages[i].fromUserId){
+                                    messages[i].fromUserId='对方'
+                                }else{
+                                    messages[i].fromUserId='你'
+                                }
+                                showMessages+=messages[i].sendTime + ",   " + messages[i].fromUserId + "说:"+ messages[i].content + '\n'
+                            }
+                            alert(showMessages);
+                        }
+                    });
             },
             delect: function (id) {
                 $.ajax({
@@ -133,7 +187,28 @@
                     type: 'DELETE',
                     success: function(result) {
                         if(result.code==0){
-                            // alert(result.message);
+                            location.href=APP_PREFIX + "/friendsList.html"
+                        }
+                    }
+                });
+            },
+            accept: function (id) {
+                $.ajax({
+                    url: APP_PREFIX + "/accept/" + id,
+                    type: 'GET',
+                    success: function(result) {
+                        if(result.code==0){
+                            location.href=APP_PREFIX + "/friendsList.html"
+                        }
+                    }
+                });
+            },
+            refuse: function (id) {
+                $.ajax({
+                    url: APP_PREFIX + "/refuse/" + id,
+                    type: 'GET',
+                    success: function(result) {
+                        if(result.code==0){
                             location.href=APP_PREFIX + "/friendsList.html"
                         }
                     }
@@ -149,7 +224,6 @@
             "pageSize": 10
         },
         function (data) {
-            // alert(JSON.stringify(data.users));
             friends.users=JSON.parse(JSON.stringify(data.users));
             for(var i=0;i<friends.users.length;i++){
                 friends.users[i].birth = new Date(parseInt(friends.users[i].birth)).format('yyyy-MM-dd')
@@ -158,6 +232,30 @@
                 }else{
                     friends.users[i].gender='男';
                 }
+            }
+        });
+
+    $.get(
+        APP_PREFIX + '/requests',
+        {
+            "pageNo": 1,
+            "pageSize": 10
+        },
+        function (data) {
+            if(data.users){
+                friends.newFriends=JSON.parse(JSON.stringify(data.users));
+            }
+        });
+
+    $.get(
+        APP_PREFIX + '/refusedme',
+        {
+            "pageNo": 1,
+            "pageSize": 10
+        },
+        function (data) {
+            if(data.users){
+                friends.refuseme=JSON.parse(JSON.stringify(data.users));
             }
         });
 

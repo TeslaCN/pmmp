@@ -12,6 +12,7 @@ var information = new Vue({
                 },
                 'json'
             );
+            $.cookie('user', JSON.stringify(this.user));
             alert("保存成功");
         },
         signOut: function () {

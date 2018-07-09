@@ -95,7 +95,7 @@ public class UserController {
 
         } else if (redirect != null && !redirect.trim().equals("")) {
 
-            if (user == null) {
+            if (user == null || !securityContext.getAuthentication().getName().equals(user.getAccount())) {
                 user = userDao.findByAccount(securityContext.getAuthentication().getName());
                 map.put(Constant.SESSION_USER, user);
             }

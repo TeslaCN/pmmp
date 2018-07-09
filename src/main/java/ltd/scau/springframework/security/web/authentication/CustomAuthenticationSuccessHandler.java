@@ -1,5 +1,6 @@
 package ltd.scau.springframework.security.web.authentication;
 
+import ltd.scau.util.Constant;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
@@ -14,6 +15,7 @@ import java.io.IOException;
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        request.getSession().setAttribute(Constant.SESSION_USER, null);
         response.sendRedirect(request.getContextPath() + "/check");
     }
 }
