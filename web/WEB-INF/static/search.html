@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>搜素</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="resource/bootstrap-datepicker-master/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="resource/css/signin.css" rel="stylesheet">
+    <script src="resource/js/jquery_3.3.1_jquery.js"></script>
+    <script src="resource/js/constant.js"></script>
+    <script src="resource/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="resource/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js"></script>
+    <script src="resource/bootstrap-datepicker-master/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+    <script src="resource/js/vue.js"></script>
 </head>
 <body>
-
+<div id="userSearch" >
+        <nav class="navbar navbar-default" role="navigation" >
+            <div class="container-fluid">
+    <form onsubmit="return false">
+        <label class="nav navbar-nav"><label><input type="text" id="Seachkey" v-model="key" placeholder="关键字" class="form-control" required></label></label>
+       <label class="nav navbar-nav"> <label class="sr-only">起始日期</label><input v-model="startDate" type="text" class="form-control" id="startDate" name="startDate" placeholder="开始日期" required></label>
+        <label class="nav navbar-nav"> <label class="sr-only">结束日期</label><input v-model="endDate" type="text" class="form-control" id="endDate" name="endDate" placeholder="结束日期" required></label><br>
+    </form>
+    <button id="simpleSerach" type="submit" @click="simpleSearch()" class="nav navbar-nav"><label>简单搜索</label></button>
+    <button id="heighSearch" type="submit" @click="advanceSearch()" class="nav navbar-nav"><label>高级搜索</label></button>
+            </div>
+        </nav>
+    <div v-for="user in message">
+        <div >
+            <p style="background-color:yellow">{{user.id}} {{user.realname}} {{user.nickname}} {{user.gender}} {{dateFormed(user.birth)}}
+                {{user.education}}</p>
+        </div>
+    </div>
+</div>
 </body>
+<script src="resource/js/Search.js">
+</script>
 </html>
