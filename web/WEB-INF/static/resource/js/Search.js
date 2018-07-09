@@ -1,4 +1,4 @@
-var serach = new Vue({
+var search = new Vue({
     el: "#userSearch",
     data: {
         key: "",
@@ -23,10 +23,10 @@ var serach = new Vue({
             //         }
             //     }
             // })
-            debugger
+
             $.get(APP_PREFIX + '/basicsearch', {key: this.key, pageNo: 1, pageSize: 10}, function (data) {
-                debugger
-                serach.message = data.users;
+
+                search.message = data.users;
 
                 // var message = this.message
                 // for (var i = 0; i < message.length; i++) {
@@ -36,14 +36,14 @@ var serach = new Vue({
             }, 'json')
         },
         advanceSearch: function () {
-            debugger
+
             $.get(APP_PREFIX + '/advancedsearch', {
                 key: this.key,
                 startDate: this.startDate,
                 endDate: this.endDate
             }, function (data) {
                 console.log(data);
-                serach.message = data.users;
+                search.message = data.users;
             }, 'json')
         },
         dateFormed: function (date) {
@@ -58,8 +58,21 @@ var serach = new Vue({
                 d = '0' + d;
             }
             return year + '-' + m + '-' + d;
+        },
+        addFriend: function(id){
+            debugger
+            console.log(id);
+           $.ajax({
+              type:"put",
+               url:APP_PREFIX+'/friend/'+id,
+               success:function(data){
+                  console.log(data);
+                  if(data.code==0){
+                      alert("发送成功");
+                  }
+               }
+           });
         }
-
     }
 
 })

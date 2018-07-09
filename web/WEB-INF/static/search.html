@@ -38,7 +38,7 @@
     <div v-for="user in message">
         <div >
             <p style="background-color:yellow">{{user.id}} {{user.realname}} {{user.nickname}} {{user.gender}} {{dateFormed(user.birth)}}
-                {{user.education}}</p>
+                {{user.education}}<button id="addFriend" type="submit" @click="addFriend(user.id)">添加好友</button></p>
         </div>
     </div>
 </div>
