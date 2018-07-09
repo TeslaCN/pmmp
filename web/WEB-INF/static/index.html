@@ -60,6 +60,7 @@
                         <div v-if="user.account">
                             <li class="active"><a href="index.html">首页</a></li>
                             <li><a href="information.html">个人中心</a></li>
+                            <li><a href="friendsList.html">我的好友</a></li>
                             <li><a @click="signOut()" href="index.html">退出</a></li>
                         </div>
                         <div v-else>
@@ -109,17 +110,16 @@
     <!---copy-right--->
     <div class="copy-right text-center">
         <p>Copyright &copy; 2018.All rights reserved.<a href="#">@有请下一组</a></p>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $().UItoTop({ easingType: 'easeOutQuart' });
-            });
-        </script>
         <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
     </div>
     <!---//copy-right--->
 </div>
 </body>
 <script>
+    $(document).ready(function() {
+        $().UItoTop({ easingType: 'easeOutQuart' });
+    });
+
     var index = new Vue({
         el: '#index',
         data: {
