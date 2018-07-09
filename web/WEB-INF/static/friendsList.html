@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>这里是好友列表</title>
+    <link href="resource/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- jQuery -->
+    <script src="resource/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="resource/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="resource/css/friend.css" rel="stylesheet">
+    <link rel="shortcut icon" href="resource/images/fav-icon.png" />
+    <script src="resource/js/constant.js"></script>
+    <script src="resource/js/jquery.cookie.js"></script>
+    <script src="resource/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="resource/js/vue.js"></script>
+    <!-- Custom Theme files -->
+    <!---- start-smoth-scrolling---->
+    <script type="text/javascript" src="resource/js/move-top.js"></script>
+    <script type="text/javascript" src="resource/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
+    <!---- start-smoth-scrolling---->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script>
+        $(function() {
+            var pull 		= $('#pull');
+            menu 		= $('nav ul');
+            menuHeight	= menu.height();
+            $(pull).on('click', function(e) {
+                e.preventDefault();
+                menu.slideToggle();
+            });
+            $(window).resize(function(){
+                var w = $(window).width();
+                if(w > 320 && menu.is(':hidden')) {
+                    menu.removeAttr('style');
+                }
+            });
+        });
+    </script>
+    <!----//End-top-nav-script---->
+</head>
+</head>
+<body>
+<div id="friends">
+    <!----- start-header---->
+    <div id="home" class="header">
+        <div class="top-header">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html"><img src="resource/images/logo.png" title="yellow" /></a>
+                </div>
+                <!----start-top-nav---->
+                <nav class="top-nav">
+                    <ul class="top-nav">
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="information.html">个人中心</a></li>
+                        <li class="active"><a href="friendsList.html">我的好友</a></li>
+                        <li><a @click="signOut()" href="index.html">退出</a></li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                    <a href="#" id="pull"><img src="resource/images/nav-icon.png" title="menu" /></a>
+                </nav>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!----- //End-header---->
+
+    <!---friends---->
+    <div class="friends">
+        <div class="top-heade">
+            <div class="container">
+                <div class="top-header-left">
+                    <h1>我的好友</h1>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!---friends-grids---->
+
+    <!---friends-note--->
+    <div class="welcome-note text-center">
+        <div class="container">
+            <form class="form-info form-inline" onsubmit="return false">
+                <div>
+                    <ul>
+                        <li v-for="item in users">
+                            <label>昵称:{{item.nickname}}</label>
+                            <label>真实姓名:{{item.realname}}</label>
+                            <label>性别:{{item.gender}}</label>
+                            <label>生日:{{item.birth}}</label>
+                            <label>学历:{{item.education}}</label>
+                            <button @click="delect(item.id)">删除</button>
+                        </li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--friends-note-->
+
+    <!---copy-right--->
+    <div class="copy-right text-center">
+        <p>Copyright &copy; 2018.All rights reserved.<a href="#">@有请下一组</a></p>
+        <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    </div>
+    <!---//copy-right--->
+</div>
+</body>
+<script>
+    var friends = new Vue({
+        el:'#friends',
+        data:{
+            users:null
+        },
+        methods:{
+            signOut: function () {
+                console.log('Sign Out and clear Cookie')
+                $.cookie('user', '')
+            },
+            delect: function (id) {
+                $.ajax({
+                    url: APP_PREFIX + "/friend/" + id,
+                    type: 'DELETE',
+                    success: function(result) {
+                        if(result.code==0){
+                            // alert(result.message);
+                            location.href=APP_PREFIX + "/friendsList.html"
+                        }
+                    }
+                });
+            }
+        }
+    })
+
+    $.get(
+        APP_PREFIX + '/friends',
+        {
+            "pageNo": 1,
+            "pageSize": 10
+        },
+        function (data) {
+            // alert(JSON.stringify(data.users));
+            friends.users=JSON.parse(JSON.stringify(data.users));
+            for(var i=0;i<friends.users.length;i++){
+                friends.users[i].birth = new Date(parseInt(friends.users[i].birth)).format('yyyy-MM-dd')
+                if(friends.users[i].gender){
+                    friends.users[i].gender='女';
+                }else{
+                    friends.users[i].gender='男';
+                }
+            }
+        });
+
+    Date.prototype.format = function(format)
+    {
+        var o = {
+            "M+" : this.getMonth()+1, //month
+            "d+" : this.getDate(),    //day
+            "h+" : this.getHours(),   //hour
+            "m+" : this.getMinutes(), //minute
+            "s+" : this.getSeconds(), //second
+            "q+" : Math.floor((this.getMonth()+3)/3),  //quarter
+            "S" : this.getMilliseconds() //millisecond
+        };
+        if(/(y+)/.test(format)) format=format.replace(RegExp.$1,
+            (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        for(var k in o)if(new RegExp("("+ k +")").test(format))
+            format = format.replace(RegExp.$1,
+                RegExp.$1.length==1 ? o[k] :
+                    ("00"+ o[k]).substr((""+ o[k]).length));
+        return format;
+    }
+</script>
+<!--<script src="resource/js/information.js"></script>-->
+</html>
+

@@ -32,10 +32,10 @@ body {
     border-top-right-radius: 0;
 }
 .form-info input[type="text"] {
-    margin-bottom: -1px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
+     margin-bottom: -1px;
+     border-top-left-radius: 0;
+     border-top-right-radius: 0;
+ }
 .panel-inform {
     border-color: #5bc0de !important;
 }
