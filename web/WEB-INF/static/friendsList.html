@@ -107,6 +107,7 @@
                             <!--<button @click="sendMessages(item.id)">发送消息</button>-->
                             <button @click="getMessages(item.id)">聊天记录</button>
                             <button @click="delect(item.id)">删除</button>
+                            <button @click="sendMessage(item.id)">发送消息</button>
                             <!--<br>-->
                             <!--<input type="text">-->
                         </li>
@@ -213,6 +214,10 @@
                         }
                     }
                 });
+            },
+           sendMessage:function(id){
+                url=APP_PREFIX+"/email.html?id="+id;
+                window.location.href=url;
             }
         }
     })
