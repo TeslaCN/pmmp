@@ -2,20 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>这里是发送消息页</title>
     <link href="resource/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <!-- jQuery -->
     <script src="resource/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <link href="resource/css/style.css" rel='stylesheet' type='text/css' />
-    <link href="resource/bootstrap-datepicker-master/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-    <link href="resource/css/information.css" rel="stylesheet">
     <link rel="shortcut icon" href="resource/images/fav-icon.png" />
     <script src="resource/js/constant.js"></script>
     <script src="resource/js/jquery.cookie.js"></script>
-    <script src="resource/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="resource/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js"></script>
-    <script src="resource/bootstrap-datepicker-master/locales/bootstrap-datepicker.zh-CN.min.js"></script>
     <script src="resource/js/vue.js"></script>
     <!-- Custom Theme files -->
     <!---- start-smoth-scrolling---->
@@ -52,7 +47,6 @@
     <!----//End-top-nav-script---->
 </head>
 <body>
-
 <!----- start-header---->
 <div id="home" class="header">
     <div class="top-header">
@@ -64,8 +58,9 @@
             <nav class="top-nav">
                 <ul class="top-nav">
                     <li><a href="index.html">首页</a></li>
-                    <li class="active"><a href="information.html">个人中心</a></li>
-                    <li><a href="friendsList.html">我的好友</a></li>
+                    <li><a href="information.html">个人中心</a></li>
+                    <li  class="active"><a href="friendsList.html">我的好友</a></li>
+                    <li><a href="search.html">搜索</a></li>
                     <li><a @click="signOut()" href="index.html">退出</a></li>
                     <div class="clearfix"> </div>
                 </ul>
@@ -76,6 +71,16 @@
     </div>
 </div>
 <!----- //End-header---->
+<div class="friends">
+    <div class="top-heade">
+        <div class="container">
+            <div class="top-header-left">
+                <h1>发送消息</h1>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
 <!---SendMessage--->
 <div id="sendMessage">
 <div class="welcome-note text-center">
@@ -87,12 +92,14 @@
     </div>
 </div>
 </div>
+<!---SendMessage--->
 <!---copy-right--->
 <div class="copy-right text-center">
     <p>Copyright &copy; 2018.All rights reserved.<a href="#">@有请下一组</a></p>
     <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 </div>
 <!---//copy-right--->
+</body>
 <script>
     var email=new Vue({
         el:"#sendMessage",
@@ -100,22 +107,19 @@
             text:"",
         },
         methods:{
-           SendMessage:function(){
-               debugger
-               var id=1;
-               var x=window.location.search;
-               id=x.split('=')[1];
-               console.log(id);
-               $.post(APP_PREFIX+"/message/send/"+id,{content:this.text},function(data){
-                   if(data.code==0){
-                       alert(data.message);
-                   }
-               },'json');
-               debugger
-           }
+            SendMessage:function(){
+                debugger
+                var id=1;
+                var x=window.location.search;
+                id=x.split('=')[1];
+                console.log(id);
+                $.post(APP_PREFIX+"/message/send/"+id,{content:this.text},function(data){
+                    if(data.code==0){
+                        alert(data.message);
+                    }
+                },'json');
+            }
         }
     })
 </script>
-
-</body>
 </html>

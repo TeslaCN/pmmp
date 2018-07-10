@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>这里是好友列表</title>
+    <title>这里是测试页</title>
     <link href="resource/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <!-- jQuery -->
     <script src="resource/js/jquery.min.js"></script>
@@ -86,64 +86,65 @@
             </div>
         </div>
     </div>
+
     <!---friends-grids---->
-
-    <!--test-->
-
-    <!--test-->
-
-    <!---friends-note--->
-    <div class="welcome-note text-center">
+    <div class="services-grids">
         <div class="container">
-            <form class="form-info form-inline" onsubmit="return false">
-                <div>
-                    <h1>我的好友</h1>
-                    <ul>
-                        <li v-for="item in users">
-                            <label>昵称:{{item.nickname}}</label>
-                            <label>真实姓名:{{item.realname}}</label>
-                            <label>性别:{{item.gender}}</label>
-                            <label>生日:{{item.birth}}</label>
-                            <label>学历:{{item.education}}</label>
-                            <!--<button @click="sendMessages(item.id)">发送消息</button>-->
-                            <button @click="getMessages(item.id)">聊天记录</button>
-                            <button @click="delect(item.id)">删除</button>
-                            <button @click="sendMessage(item.id)">发送消息</button>
-                            <!--<br>-->
-                            <!--<input type="text">-->
-                        </li>
-                    </ul>
-                </div>
-                <div v-if="newFriends[0]">
-                    <h1>新的好友请求</h1>
+            <div class="services">
+                <div class="col-md-4 services-sidebar">
+                    <h3>新的好友</h3>
                     <ul>
                         <li v-for="item in newFriends">
-                            <label>{{item.nickname}}想成为你的好友</label>
+                            <p>{{item.nickname}}想成为你的好友</p>
                             <button @click="accept(item.id)">同意</button>
                             <button @click="refuse(item.id)">拒绝</button>
                         </li>
                     </ul>
-                </div>
-                <div v-if="refuseme[0]">
-                    <h1>被拒绝</h1>
+                    <h3>被拒绝的好友请求</h3>
                     <ul>
                         <li v-for="item in refuseme">
-                            <label>{{item.nickname}}拒绝了你的好友请求</label>
-                            <!--<button @click="add(item.id)">再次申请</button>-->
+                            <p>{{item.nickname}}拒绝了你的好友请求</p>
                         </li>
                     </ul>
                 </div>
-            </form>
+
+                <div class="col-md-6 service-content">
+                    <h3>我的好友列表</h3>
+                    <ul v-for="item in users">
+                        <li>
+                            <p>
+                                <a>{{item.nickname}}</a>
+                            </p>
+                            <p>
+                                <label class="col-md-4">真实姓名:{{item.realname}}</label>
+                                <label class="col-md-4">性别:{{item.gender}}</label>
+                                <label class="col-md-4">生日:{{item.birth}}</label>
+                            </p>
+                            <p>
+                                <label class="col-md-4">学历:{{item.education}}</label>
+                                <label class="col-md-6">居住地：{{item.address}}</label>
+                            </p>
+                            <button @click="sendMessage(item.id)" class="col-md-4">发送消息</button>
+                            <button @click="getMessages(item.id)" class="col-md-4">聊天记录</button>
+                            <button @click="delect(item.id)" class="col-md-4">删除</button>
+                        </li>
+                        <div class="clearfix"> </div>
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
         </div>
     </div>
-    <!--friends-note-->
+</div>
+<!---friends-grids---->
+<!---friends---->
 
-    <!---copy-right--->
-    <div class="copy-right text-center">
-        <p>Copyright &copy; 2018.All rights reserved.<a href="#">@有请下一组</a></p>
-        <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
-    </div>
-    <!---//copy-right--->
+<!---copy-right--->
+<div class="copy-right text-center">
+    <p>Copyright &copy; 2018.All rights reserved.<a href="#">@有请下一组</a></p>
+    <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+</div>
+<!---//copy-right--->
 </div>
 </body>
 <script>
@@ -216,13 +217,14 @@
                     }
                 });
             },
-           sendMessage:function(id){
+            sendMessage:function(id){
                 url=APP_PREFIX+"/email.html?id="+id;
                 window.location.href=url;
             }
         }
     })
 
+    //好友列表
     $.get(
         APP_PREFIX + '/friends',
         {
@@ -241,6 +243,7 @@
             }
         });
 
+    //好友请求
     $.get(
         APP_PREFIX + '/requests',
         {
@@ -253,6 +256,7 @@
             }
         });
 
+    //被拒绝的好友请求
     $.get(
         APP_PREFIX + '/refusedme',
         {
@@ -285,6 +289,5 @@
         return format;
     }
 </script>
-<!--<script src="resource/js/information.js"></script>-->
 </html>
 

@@ -549,6 +549,9 @@ a.r2-btn:hover{
 .services ul li{
 	list-style:none;
 }
+.services p{
+ 	white-space:nowrap;
+}
 /*---404-page---*/
 .page-not-found{
 	min-height: 600px;
