@@ -36,7 +36,7 @@ var search = new Vue({
             }, 'json')
         },
         advanceSearch: function () {
-
+                     debugger
             $.get(APP_PREFIX + '/advancedsearch', {
                 key: this.key,
                 startDate: this.startDate,
@@ -70,6 +70,9 @@ var search = new Vue({
                   if(data.code==0){
                       alert("发送成功");
                   }
+                  else{
+                      alert("已添加")
+                  }
                }
            });
         }
@@ -83,7 +86,7 @@ $('#startDate').datepicker({
     language: "zh-CN",
     autoclose: true
 }).on('changeDate', function () {
-    serach.startDate = $('#startDate').val()
+    search.startDate = $('#startDate').val()
 });
 $('#endDate').datepicker({
     format: "yyyy-mm-dd",
@@ -92,5 +95,5 @@ $('#endDate').datepicker({
     language: "zh-CN",
     autoclose: true
 }).on('changeDate', function () {
-    serach.endDate = $('#endDate').val()
+    search.endDate = $('#endDate').val()
 });
