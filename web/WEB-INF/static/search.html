@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>搜素</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="resource/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resource/bootstrap-3.3.7-dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <title>这里是搜索页</title>
+    <link href="resource/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- jQuery -->
+    <script src="resource/js/jquery.min.js"></script>
+    <!-- Custom Theme files -->
+    <link href="resource/css/style.css" rel='stylesheet' type='text/css' />
     <link href="resource/bootstrap-datepicker-master/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-    <link href="resource/css/signin.css" rel="stylesheet">
-    <script src="resource/js/jquery_3.3.1_jquery.js"></script>
+    <link rel="shortcut icon" href="resource/images/fav-icon.png" />
     <script src="resource/js/constant.js"></script>
+    <script src="resource/js/jquery.cookie.js"></script>
     <script src="resource/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="resource/bootstrap-datepicker-master/js/bootstrap-datepicker.min.js"></script>
     <script src="resource/bootstrap-datepicker-master/locales/bootstrap-datepicker.zh-CN.min.js"></script>
     <script src="resource/js/vue.js"></script>
+    <!-- Custom Theme files -->
+    <!---- start-smoth-scrolling---->
+    <script type="text/javascript" src="resource/js/move-top.js"></script>
+    <script type="text/javascript" src="resource/js/easing.js"></script>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             $(".scroll").click(function(event){
@@ -50,31 +48,32 @@
         });
     </script>
     <!----//End-top-nav-script---->
-    <!----- start-header---->
-    <div id="home" class="header">
-        <div class="top-header">
-            <div class="container">
-                <div class="logo">
-                    <a href="index.html"><img src="resource/images/logo.png" title="yellow" /></a>
-                </div>
-                <!----start-top-nav---->
-                <nav class="top-nav">
-                    <ul class="top-nav">
-                        <li><a href="index.html">首页</a></li>
-                        <li class="active"><a href="information.html">个人中心</a></li>
-                        <li><a href="friendsList.html">我的好友</a></li>
-                        <li><a @click="signOut()" href="index.html">退出</a></li>
-                        <div class="clearfix"> </div>
-                    </ul>
-                    <a href="#" id="pull"><img src="resource/images/nav-icon.png" title="menu" /></a>
-                </nav>
-                <div class="clearfix"> </div>
-            </div>
-        </div>
-    </div>
-    <!----- //End-header---->
 </head>
 <body>
+<!----- start-header---->
+<div id="home" class="header">
+    <div class="top-header">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html"><img src="resource/images/logo.png" title="yellow" /></a>
+            </div>
+            <!----start-top-nav---->
+            <nav class="top-nav">
+                <ul class="top-nav">
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="information.html">个人中心</a></li>
+                    <li><a href="friendsList.html">我的好友</a></li>
+                    <li class="active"><a href="search.html">搜索</a></li>
+                    <li><a @click="signOut()" href="index.html">退出</a></li>
+                    <div class="clearfix"> </div>
+                </ul>
+                <a href="#" id="pull"><img src="resource/images/nav-icon.png" title="menu" /></a>
+            </nav>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!----- //End-header---->
 <div class="top-heade">
     <div class="container">
         <div class="top-header-left">
@@ -85,27 +84,27 @@
 </div>
 <div class="welcome-note text-center">
     <div class="container">
-<div id="userSearch" >
-        <nav class="navbar navbar-default" role="navigation" >
-            <div class="container-fluid">
-    <form  class="form-info form-inline" onsubmit="return false">
-        <label class="nav navbar-nav"><label><input type="text" id="Seachkey" v-model="key" placeholder="关键字" class="form-control" required></label></label>
-       <label class="nav navbar-nav"> <label class="sr-only">起始日期</label><input v-model="startDate" type="text" class="form-control" id="startDate" name="startDate" placeholder="开始日期" required></label>
-        <label class="nav navbar-nav"> <label class="sr-only">结束日期</label><input v-model="endDate" type="text" class="form-control" id="endDate" name="endDate" placeholder="结束日期" required></label><br>
-    </form>
-    <button id="simpleSerach" type="submit" @click="simpleSearch()" class="nav navbar-nav"><label>简单搜索</label></button>
-    <button id="heighSearch" type="submit" @click="advanceSearch()" class="nav navbar-nav"><label>高级搜索</label></button>
+        <div id="userSearch" >
+            <!--<nav class="navbar navbar-default" role="navigation" >-->
+                <div class="container-fluid">
+                    <form  class="form-info form-inline" onsubmit="return false">
+                        <label class="nav navbar-nav"><label><input type="text" id="Seachkey" v-model="key" placeholder="关键字" class="form-control" required></label></label>
+                        <label class="nav navbar-nav"> <label class="sr-only">起始日期</label><input v-model="startDate" type="text" class="form-control" id="startDate" name="startDate" placeholder="开始日期" required></label>
+                        <label class="nav navbar-nav"> <label class="sr-only">结束日期</label><input v-model="endDate" type="text" class="form-control" id="endDate" name="endDate" placeholder="结束日期" required></label><br>
+                    </form>
+                    <button id="simpleSerach" type="submit" @click="simpleSearch()" class="nav navbar-nav"><label>简单搜索</label></button>
+                    <button id="heighSearch" type="submit" @click="advanceSearch()" class="nav navbar-nav"><label>高级搜索</label></button>
+                </div>
+            <!--</nav>-->
+            <div v-for="user in message">
+                <div >
+                    <ul class="list-group">
+                        <li class="list-group-item">{{user.id}} {{user.realname}} {{user.nickname}} {{user.gender}} {{dateFormed(user.birth)}}
+                            {{user.education}}<button id="addFriend" type="submit" @click="addFriend(user.id)">添加好友</button></li>
+                    </ul>
+                </div>
             </div>
-        </nav>
-    <div v-for="user in message">
-        <div >
-            <ul class="list-group">
-            <li class="list-group-item">{{user.id}} {{user.realname}} {{user.nickname}} {{user.gender}} {{dateFormed(user.birth)}}
-                {{user.education}}<button id="addFriend" type="submit" @click="addFriend(user.id)">添加好友</button></li>
-            </ul>
         </div>
-    </div>
-</div>
     </div>
 </div>
 <div class="copy-right text-center">
