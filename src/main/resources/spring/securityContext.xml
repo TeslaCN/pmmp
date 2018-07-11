@@ -7,6 +7,7 @@
     <!--<security:debug/>-->
 
     <security:http pattern="/resource/**" security="none"/>
+    <security:http pattern="/images/**" security="none"/>
     <security:http auto-config="true" entry-point-ref="customEntryPoint">
         <security:csrf disabled="true"/>
         <security:form-login login-page="/signin.html" login-processing-url="/signin"
@@ -16,6 +17,7 @@
         <security:intercept-url pattern="/" access="permitAll()"/>
         <security:intercept-url pattern="/index.html" access="permitAll()"/>
         <security:intercept-url pattern="/check" access="permitAll()"/>
+        <security:intercept-url pattern="/isexist" access="permitAll()"/>
         <security:intercept-url pattern="/error" access="permitAll()"/>
         <security:intercept-url pattern="/util/*" access="permitAll()"/>
         <security:intercept-url pattern="/signin.html" access="permitAll()"/>

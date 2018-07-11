@@ -159,6 +159,7 @@ public class UserController {
 
             Md5PasswordEncoder encoder = new Md5PasswordEncoder();
             if (newValue.getPassword() != null
+                    && !newValue.getPassword().trim().equals("")
                     && !newValue.getPassword().equals(oldValue.getPassword())
                     && !encoder.isPasswordValid(oldValue.getPassword(), newValue.getPassword(), null)) {
                 newValue.setPassword(encoder.encodePassword(newValue.getPassword(), null));
@@ -169,6 +170,20 @@ public class UserController {
             newValue.setId(oldValue.getId());
             newValue.setAccount(null);
             userDao.updateSelective(newValue);
+        }
+        return dto;
+    }
+
+    @RequestMapping("/isexist")
+    public ResultDto isAccountExist(String account) {
+        ResultDto dto = new ResultDto();
+        User user = userDao.findByAccount(account);
+        if (user != null) {
+            dto.setCode(1);
+            dto.setMessage("账户已被注册");
+        } else {
+            dto.setCode(0);
+            dto.setMessage(Constant.SUCCESS);
         }
         return dto;
     }

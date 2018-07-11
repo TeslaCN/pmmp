@@ -417,5 +417,22 @@
   "头像图片url": {
     "url": "/images/*",
     "example": "http://localhost:8080/pmmp/images/test.png 文件名在user的profileUrl属性中"
+  },
+  "检查账户是否被注册": {
+    "url": "/isexist",
+    "method": "GET",
+    "data": {
+      "account": "maven"
+    },
+    "return": {
+      "success": {
+        "code": 0,
+        "message": "success"
+      },
+      "fail": {
+        "code": 1,
+        "message": "账户已被注册"
+      }
+    }
   }
 }
