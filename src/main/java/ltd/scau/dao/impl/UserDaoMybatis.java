@@ -92,6 +92,13 @@ public class UserDaoMybatis implements UserDao {
     }
 
     @Override
+    public List<User> findAllUnrealUsers() {
+        UserExample example = new UserExample();
+        example.createCriteria().andIsRealEqualTo((byte) 0);
+        return userMapper.selectByExample(example);
+    }
+
+    @Override
     public List<User> findAllByKey(String key) {
         UserExample example = new UserExample();
 

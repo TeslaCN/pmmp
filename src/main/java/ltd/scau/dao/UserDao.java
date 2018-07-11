@@ -27,4 +27,6 @@ public interface UserDao {
     List<User> findAllByKey(String key);
 
     List<User> findAllByKey(String key, Date start, Date end);
+
+    List<User> findAllUnrealUsers();
 }

@@ -385,5 +385,37 @@
   "验证码图片": {
     "url": "/util/code",
     "method": "GET"
+  },
+  "上传头像": {
+    "url": "/head",
+    "method": "POST",
+    "enctype": "form-data",
+    "data": {
+      "file": "这里是文件数据"
+    },
+    "return": {
+      "success": {
+        "code": 0,
+        "message": "success"
+      }
+    }
+  },
+  "上传图片(核验身份)": {
+    "url": "/file/upload",
+    "method": "POST",
+    "enctype": "form-data",
+    "data": {
+      "file":"这里是文件数据"
+    },
+    "return": {
+      "success": {
+        "code": 0,
+        "message": "success"
+      }
+    }
+  },
+  "头像图片url": {
+    "url": "/images/*",
+    "example": "http://localhost:8080/pmmp/images/test.png 文件名在user的profileUrl属性中"
   }
 }

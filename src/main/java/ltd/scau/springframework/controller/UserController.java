@@ -4,6 +4,7 @@ import ltd.scau.dao.UserDao;
 import ltd.scau.dto.RedirectResultDto;
 import ltd.scau.dto.ResultDto;
 import ltd.scau.dto.UserInfoDto;
+import ltd.scau.mybatis.po.Image;
 import ltd.scau.mybatis.po.User;
 import ltd.scau.util.Constant;
 import org.apache.commons.logging.Log;
@@ -14,10 +15,15 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Weijie Wu
@@ -167,5 +173,34 @@ public class UserController {
         return dto;
     }
 
+    @RequestMapping(value = "/head", method = RequestMethod.POST)
+    public ResultDto upload(@SessionAttribute(Constant.SESSION_USER) User me, MultipartFile file) {
+        ResultDto dto = new ResultDto();
 
+        String suffix = "";
+        Pattern fileTypeMatcher = Pattern.compile(".*?(\\.\\w+$)");
+
+        String fileName = file.getOriginalFilename();
+        Matcher m = fileTypeMatcher.matcher(fileName);
+        if (m.find()) {
+            suffix = m.group(1);
+        }
+
+        String saveName = String.format("%s_%s%s", me.getId(), System.currentTimeMillis(), suffix);
+
+        try {
+            file.transferTo(new File(saveName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        logger.info(String.format("Upload: %s, size = %d, save as: %s", file.getOriginalFilename(), file.getSize(), saveName));
+
+        me.setProfileUrl(saveName);
+        userDao.updateSelective(me);
+
+        dto.setCode(0);
+        dto.setMessage(Constant.SUCCESS);
+
+        return dto;
+    }
 }
