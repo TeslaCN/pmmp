@@ -66,6 +66,7 @@
                         <li><a href="index.html">首页</a></li>
                         <li class="active"><a href="information.html">个人中心</a></li>
                         <li><a href="friendsList.html">我的好友</a></li>
+                        <li><a href="search.html">搜索</a></li>
                         <li><a @click="signOut()" href="index.html">退出</a></li>
                         <div class="clearfix"> </div>
                     </ul>
@@ -117,7 +118,7 @@
                             <label class="sr-only" for="password">密码</label>
                             <div class="input-group">
                                 <div class="input-group-addon">密码</div>
-                                <input type="password" name="password" id="password" class="form-control" v-model="user.password" required>
+                                <input type="password" name="password" id="password" class="form-control" v-model="user.password">
                             </div>
                         </div>
                         <div class="form-group">
@@ -160,10 +161,10 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="sr-only" for="education">学历</label>
+                            <!--<label class="sr-only" for="education">学历</label>-->
                             <div class="input-group">
                                 <div class="input-group-addon">学历</div>
-                                <select v-model="user.education" style="width:150px;height:21px" >
+                                <select v-model="user.education" class="form-control">
                                     <option>小学</option>
                                     <option>初中</option>
                                     <option>高中</option>
@@ -172,7 +173,7 @@
                                     <option>硕士</option>
                                     <option>博士</option>
                                 </select>
-                                <input type="text" name="education" id="education" class="form-control" v-model="user.education" >
+                                <!--<input type="text" name="education" id="education" class="form-control" v-model="user.education" >-->
                             </div>
 
                         </div>
@@ -180,25 +181,24 @@
                             <label class="sr-only" for="address">居住地</label>
                             <div class="input-group">
                                 <div class="input-group-addon">居住地</div>
-                                <input type="button" name="address" class="form-control" id="address" v-model="user.address"  >
+                                <input type="button" name="address" class="form-control" id="address" v-model="user.address">
                             </div>
                         </div>
-
-                        <!--省份选择-->
-                        <select id="prov"  onchange="showCity(this)">
-                            <option>=请选择省份=</option>
-                        </select>
-                        <!--城市选择-->
-                        <select id="city"  onchange="showCountry(this)">
-                            <option>=请选择城市=</option>
-                        </select>
-                        <!--县区选择-->
-                        <select id="country"  onchange="selecCountry(this)">
-                            <option>=请选择县区=</option>
-                        </select>
+                        <div>
+                            <!--省份选择-->
+                            <select id="prov"  onchange="showCity(this)" class="form-control">
+                                <option>=请选择省份=</option>
+                            </select>
+                            <!--城市选择-->
+                            <select id="city"  onchange="showCountry(this)" class="form-control">
+                                <option>=请选择城市=</option>
+                            </select>
+                            <!--县区选择-->
+                            <select id="country"  onchange="selecCountry(this)" class="form-control">
+                                <option>=请选择县区=</option>
+                            </select>
+                        </div>
                         <button class="btn btn-lg btn-info" id="save" @click="save()">保存</button>
-
-
                     </div>
                 </div>
             </form>
@@ -214,14 +214,7 @@
     <!---//copy-right--->
 </div>
 </body>
-<script src="resource/js/information.js"></script>
 <script src="resource/js/city.js"></script>
-<script>var education = new Vue({
-    el: '...',
-    data: {
-        education: ''
-    },
-    model:{}
-})</script>
+<script src="resource/js/information.js"></script>
 </html>
 

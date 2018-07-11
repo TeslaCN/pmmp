@@ -1,4 +1,3 @@
-
 var information = new Vue({
     el:'#information',
     data:{
@@ -128,7 +127,6 @@ function selecCountry(obj) {
     information.user.address=provice[current.prov].name +
         '-' + provice[current.prov]["city"][current.city].name +
         '-' + provice[current.prov]["city"][current.city].districtAndCounty[current.country];
-
 }
 
 
