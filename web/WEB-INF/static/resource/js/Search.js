@@ -7,7 +7,7 @@ var search = new Vue({
         message: [],
     },
     methods: {
-        simpleSearch: function () {
+        simpleSearch: function ( no) {
             // $.ajax({
             //     url: APP_PREFIX + '/basicsearch',
             //     type: 'GET',
@@ -23,10 +23,20 @@ var search = new Vue({
             //         }
             //     }
             // })
+            debugger
+            document.getElementById("page").style.visibility="visible";
             if(search.startDate==""&&search.endDate==""){
-            $.get(APP_PREFIX + '/basicsearch', {key: this.key, pageNo: 1, pageSize: 10}, function (data) {
+            $.get(APP_PREFIX + '/basicsearch', {key: this.key, pageNo: no, pageSize: 10}, function (data) {
 
                 search.message = data.users;
+                for(var i=0;i<search.message.length;i++){
+                    if(search.message[i].gender){
+                        search.message[i].gender="女";
+                    }
+                    else{
+                        search.message[i].gender="男";
+                    }
+                }
 
                 // var message = this.message
                 // for (var i = 0; i < message.length; i++) {

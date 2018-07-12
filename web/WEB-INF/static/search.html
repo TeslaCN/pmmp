@@ -82,30 +82,58 @@
         <div class="clearfix"> </div>
     </div>
 </div>
-<div class="welcome-note text-center">
-    <div class="container">
+
         <div id="userSearch" >
             <!--<nav class="navbar navbar-default" role="navigation" >-->
+            <div class="welcome-note text-center">
+                <div class="container">
                 <div class="container-fluid">
                     <form  class="form-info form-inline" onsubmit="return false">
                         <label class="nav navbar-nav"><label><input type="text" id="Seachkey" v-model="key" placeholder="关键字" class="form-control" required></label></label>
                         <label class="nav navbar-nav"> <label class="sr-only">起始日期</label><input v-model="startDate" type="text" class="form-control" id="startDate" name="startDate" placeholder="开始日期" required></label>
                         <label class="nav navbar-nav"> <label class="sr-only">结束日期</label><input v-model="endDate" type="text" class="form-control" id="endDate" name="endDate" placeholder="结束日期" required></label><br>
                     </form>
-                    <button id="simpleSerach" type="submit" @click="simpleSearch()" class="nav navbar-nav"><label>搜索</label></button>
+                    <button id="simpleSerach" type="submit" @click="simpleSearch(1)" class="nav navbar-nav"><label>搜索</label></button>
                 </div>
-            <!--</nav>-->
-            <div v-for="user in message">
-                <div >
-                    <ul class="list-group">
-                        <li class="list-group-item">{{user.id}} {{user.realname}} {{user.nickname}} {{user.gender}} {{dateFormed(user.birth)}}
-                            {{user.education}}<button id="addFriend" type="submit" @click="addFriend(user.id)">添加好友</button></li>
-                    </ul>
                 </div>
             </div>
+            <!--</nav>-->
+                <ul v-for="item in message">
+                    <div>
+                    <li >
+                        <div>
+                        <div class="col-md-2">
+                            <h1></h1><br>
+                            <img src="resource/images/default_female.jpg"  class="img-responsive center-block img-circle">
+                        </div>
+                        <p>
+                            <a>{{item.nickname}}</a>
+                        </p>
+                        <p>
+                            <label class="col-md-4">真实姓名:{{item.realname}}</label>
+                            <label class="col-md-5">性别:{{item.gender}}</label>
+                            <label class="col-md-4" >生日:{{dateFormed(item.birth)}}</label>
+                            <label class="col-md-5">学历:{{item.education}}</label>
+                            <label class="col-md-6">城市:{{item.address}}</label><br>
+                        </p><br><br>
+                         <p>
+                             <button @click="addFriend(item.id)" class=" btn btn-default">添加好友</button>
+                         </p>
+                        </div>
+                    </li>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div><label></label></div>
+                </ul>
+            <div class="clearfix"></div>
+            <ul class="pagination" style="visibility: hidden" id="page">
+                  <li ><button type="submit" @click="simpleSearch(1)" class="btn btn-default ">1</button></li>
+                  <li ><button type="submit" @click="simpleSearch(11)" class="btn btn-default ">2</button></li>
+                  <li ><button type="submit" @click="simpleSearch(21)" class="btn btn-default ">3</button></li>
+                  <li ><button type="submit" @click="simpleSearch(31)" class="btn btn-default ">4</button></li>
+                  <li ><button type="submit" @click="simpleSearch(41)" class="btn btn-default ">5</button></li>
+            </ul>
         </div>
-    </div>
-</div>
 <div class="copy-right text-center">
     <p>Copyright &copy; 2018.All rights reserved.<a href="#">@有请下一组</a></p>
     <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>

@@ -9,9 +9,8 @@
     <title>Title</title>
 </head>
 <body>
-     <form enctype="multipart/form-data" action="/pmmp/head" method="post" id="push" >
+     <form enctype="multipart/form-data"   id="push" method="post" action="/pmmp/head">
       <label>上传图片</label><input type="file" id="file" name="file">
-         <input type="submit" value="确定" >
      </form>
 </body>
 <script>
@@ -19,7 +18,8 @@
            debugger
              var formedate=new FormData();
             formedate.append("file",$("#file")[0].files[0]);
-            console.log(formedate);
+            //console.log(formedate);
+            //console.log($("#file")[0].files[0]);
             $.ajax({
                 url:APP_PREFIX+"/head",
                 type:"post",
