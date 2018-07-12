@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="resource/js/jquery.min.js"></script>
+    <script src="resource/js/constant.js"></script>
+    <title>Title</title>
+</head>
+<body>
+     <form enctype="multipart/form-data" action="/pmmp/head" method="post" id="push" >
+      <label>上传图片</label><input type="file" id="file" name="file">
+         <input type="submit" value="确定" >
+     </form>
+</body>
+<script>
+    /*$("#file").on("change",function(){
+           debugger
+             var formedate=new FormData();
+            formedate.append("file",$("#file")[0].files[0]);
+            console.log(formedate);
+            $.ajax({
+                url:APP_PREFIX+"/head",
+                type:"post",
+                data:{file:formedate},
+                processData:false,
+                contentType:false,
+                sucess:function(data){
+                    alert(data.message);
+                }
+            })
+       })*/
+    /*$("iframe[name=iframeContent]").on("load",function () {
+        var respondText=$("iframe")[0].contentDocument.body.getElementsByTagName("pre")[0].innerHTML;
+        alert(respondText);
+    })*/
+   </script>
+</html>

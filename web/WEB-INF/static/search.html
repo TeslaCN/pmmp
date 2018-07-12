@@ -92,8 +92,7 @@
                         <label class="nav navbar-nav"> <label class="sr-only">起始日期</label><input v-model="startDate" type="text" class="form-control" id="startDate" name="startDate" placeholder="开始日期" required></label>
                         <label class="nav navbar-nav"> <label class="sr-only">结束日期</label><input v-model="endDate" type="text" class="form-control" id="endDate" name="endDate" placeholder="结束日期" required></label><br>
                     </form>
-                    <button id="simpleSerach" type="submit" @click="simpleSearch()" class="nav navbar-nav"><label>简单搜索</label></button>
-                    <button id="heighSearch" type="submit" @click="advanceSearch()" class="nav navbar-nav"><label>高级搜索</label></button>
+                    <button id="simpleSerach" type="submit" @click="simpleSearch()" class="nav navbar-nav"><label>搜索</label></button>
                 </div>
             <!--</nav>-->
             <div v-for="user in message">

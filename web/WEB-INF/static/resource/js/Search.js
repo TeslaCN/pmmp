@@ -23,7 +23,7 @@ var search = new Vue({
             //         }
             //     }
             // })
-
+            if(search.startDate==""&&search.endDate==""){
             $.get(APP_PREFIX + '/basicsearch', {key: this.key, pageNo: 1, pageSize: 10}, function (data) {
 
                 search.message = data.users;
@@ -33,9 +33,19 @@ var search = new Vue({
                 //     message[i].startDate = this.dateFomed(message[i].startDate);
                 //     message[i].endDate = this.dateFomed(message[i].endDate);
                 // }
-            }, 'json')
+            }, 'json')}
+            else{
+                $.get(APP_PREFIX + '/advancedsearch', {
+                    key: this.key,
+                    startDate: this.startDate,
+                    endDate: this.endDate
+                }, function (data) {
+                    console.log(data);
+                    search.message = data.users;
+                }, 'json')
+            }
         },
-        advanceSearch: function () {
+        /*advanceSearch: function () {
                      debugger
             $.get(APP_PREFIX + '/advancedsearch', {
                 key: this.key,
@@ -45,7 +55,7 @@ var search = new Vue({
                 console.log(data);
                 search.message = data.users;
             }, 'json')
-        },
+        },*/
         dateFormed: function (date) {
             var time = new Date(date);
             var year = time.getFullYear();
