@@ -94,14 +94,20 @@
                     <h3>新的好友</h3>
                     <ul>
                         <li v-for="item in newFriends">
+                            <div class="col-md-3">
+                                <img src="resource/images/c4.jpg"  class="img-responsive center-block img-circle">
+                            </div>
                             <p>{{item.nickname}}想成为你的好友</p>
-                            <button @click="accept(item.id)">同意</button>
-                            <button @click="refuse(item.id)">拒绝</button>
+                            <button class="btn btn-default" @click="accept(item.id)">同意</button>
+                            <button class="btn btn-default" @click="refuse(item.id)">拒绝</button>
                         </li>
                     </ul>
                     <h3>被拒绝的好友请求</h3>
                     <ul>
                         <li v-for="item in refuseme">
+                            <div class="col-md-3">
+                                <img src="resource/images/c4.jpg"  class="img-responsive center-block img-circle">
+                            </div><br>
                             <p>{{item.nickname}}拒绝了你的好友请求</p>
                         </li>
                     </ul>
@@ -111,6 +117,10 @@
                     <h3>我的好友列表</h3>
                     <ul v-for="item in users">
                         <li>
+                            <div class="col-md-3">
+                                <h1></h1>
+                                <img src="resource/images/default_female.jpg"  class="img-responsive center-block img-circle">
+                            </div>
                             <p>
                                 <a>{{item.nickname}}</a>
                             </p>
@@ -118,15 +128,14 @@
                                 <label class="col-md-4">真实姓名:{{item.realname}}</label>
                                 <label class="col-md-4">性别:{{item.gender}}</label>
                                 <label class="col-md-4">生日:{{item.birth}}</label>
-                            </p>
-                            <p>
                                 <label class="col-md-4">学历:{{item.education}}</label>
                                 <label class="col-md-6">城市:{{item.address}}</label>
                             </p>
-                            <button @click="sendMessage(item.id)" class="col-md-4">发送消息</button>
-                            <button @click="delect(item.id)" class="col-md-4">删除</button>
+                            <button @click="sendMessage(item.id)" class="col-md-4 btn btn-default">发送消息</button>
+                            <button @click="delect(item.id)" class="col-md-4 btn btn-default">删除</button>
                         </li>
-                        <div class="clearfix"> </div>
+                        <div class="clearfix"></div>
+                        <div><label></label></div>
                     </ul>
                 </div>
                 <div class="clearfix"> </div>
@@ -203,7 +212,7 @@
         APP_PREFIX + '/friends',
         {
             "pageNo": 1,
-            "pageSize": 10
+            "pageSize": 50
         },
         function (data) {
             friends.users=JSON.parse(JSON.stringify(data.users));
@@ -222,7 +231,7 @@
         APP_PREFIX + '/requests',
         {
             "pageNo": 1,
-            "pageSize": 10
+            "pageSize": 50
         },
         function (data) {
             if(data.users){
@@ -235,7 +244,7 @@
         APP_PREFIX + '/refusedme',
         {
             "pageNo": 1,
-            "pageSize": 10
+            "pageSize": 50
         },
         function (data) {
             if(data.users){

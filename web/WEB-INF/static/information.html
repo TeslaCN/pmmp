@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>这里是个人中心</title>
+    <title>这里是测试页</title>
     <link href="resource/css/bootstrap.css" rel='stylesheet' type='text/css' />
     <!-- jQuery -->
     <script src="resource/js/jquery.min.js"></script>
@@ -92,110 +92,116 @@
     <!---information-grids---->
 
     <div class="container">
-        <form class="form-horizontal" onsubmit="return false">
-            <div class="form-group">
-                <label></label>
-            </div>
-            <div class="form-group">
-                <label for="nickname" class="col-sm-2 col-md-offset-3 control-label">昵称</label>
-                <div class="col-sm-3">
-                    <input type="text" v-model="user.nickname" class="form-control" id="nickname" placeholder="昵称" required>
+        <div class="col-md-4">
+            <h1></h1>
+            <img src="resource/images/c4.jpg"  class="img-responsive center-block img-circle">
+        </div>
+        <div class="col-md-8">
+            <form class="form-horizontal" onsubmit="return false">
+                <div class="form-group col-md-13">
+                    <label></label>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="account" class="col-sm-2 col-md-offset-3 control-label">账号</label>
-                <div class="col-sm-3">
-                    <input type="text" v-model="user.account" class="form-control" id="account" placeholder="账号" disabled="disabled">
+                <div class="form-group">
+                    <label for="nickname" class="col-md-2 control-label">昵称</label>
+                    <div class="col-md-4">
+                        <input type="text" v-model="user.nickname" class="form-control" id="nickname" placeholder="昵称" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="password" class="col-sm-2 col-md-offset-3 control-label">密码</label>
-                <div class="col-sm-3">
-                    <input type="password" v-model="user.password" class="form-control" id="password" placeholder="若不修改则无需填写">
+                <div class="form-group">
+                    <label for="account" class="col-md-2 control-label">账号</label>
+                    <div class="col-md-4">
+                        <input type="text" v-model="user.account" class="form-control" id="account" placeholder="账号" disabled="disabled">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="realname" class="col-sm-2 col-md-offset-3 control-label">真实姓名</label>
-                <div class="col-sm-3">
-                    <input type="text" v-model="user.realname" class="form-control" id="realname" placeholder="真实姓名" required>
+                <div class="form-group">
+                    <label for="password" class="col-md-2 control-label">密码</label>
+                    <div class="col-md-4">
+                        <input type="password" v-model="user.password" class="form-control" id="password" placeholder="若不修改则无需填写">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 col-md-offset-3 control-label">性别</label>
-                <div class="col-sm-3">
-                    <label class="radio-inline col-sm-2">
-                        <input type="radio" v-model="user.gender" id="male" value="0">男
-                    </label>
-                    <label class="radio-inline col-sm-2">
-                        <input type="radio" v-model="user.gender" id="female" value="1">女
-                    </label>
+                <div class="form-group">
+                    <label for="realname" class="col-md-2 control-label">真实姓名</label>
+                    <div class="col-md-4">
+                        <input type="text" v-model="user.realname" class="form-control" id="realname" placeholder="真实姓名" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="birth" class="col-sm-2 col-md-offset-3 control-label">生日</label>
-                <div class="col-sm-3">
-                    <input type="text" v-model="user.birth" class="form-control" id="birth" placeholder="生日" required>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">性别</label>
+                    <div class="col-md-4">
+                        <label class="radio-inline col-sm-2">
+                            <input type="radio" v-model="user.gender" id="male" value="0">男
+                        </label>
+                        <label class="radio-inline col-sm-2">
+                            <input type="radio" v-model="user.gender" id="female" value="1">女
+                        </label>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="email" class="col-sm-2 col-md-offset-3 control-label">邮箱</label>
-                <div class="col-sm-3">
-                    <input type="email" v-model="user.email" class="form-control" id="email" placeholder="邮箱">
+                <div class="form-group">
+                    <label for="birth" class="col-md-2 control-label">生日</label>
+                    <div class="col-md-4">
+                        <input type="text" v-model="user.birth" class="form-control" id="birth" placeholder="生日" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="salary" class="col-sm-2 col-md-offset-3 control-label">工资(月薪)</label>
-                <div class="col-sm-3">
-                    <input type="text" v-model="user.salary" class="form-control" id="salary" placeholder="工资(月薪)">
+                <div class="form-group">
+                    <label for="email" class="col-md-2 control-label">邮箱</label>
+                    <div class="col-md-4">
+                        <input type="email" v-model="user.email" class="form-control" id="email" placeholder="邮箱">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="education" class="col-sm-2 col-md-offset-3 control-label">学历</label>
-                <div class="col-sm-3">
-                    <select v-model="user.education" class="form-control" id="education">
-                        <option>小学</option>
-                        <option>初中</option>
-                        <option>高中</option>
-                        <option>大专</option>
-                        <option>本科</option>
-                        <option>硕士</option>
-                        <option>博士</option>
-                    </select>
+                <div class="form-group">
+                    <label for="salary" class="col-md-2 control-label">工资(月薪)</label>
+                    <div class="col-md-4">
+                        <input type="text" v-model="user.salary" class="form-control" id="salary" placeholder="工资(月薪)">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="address" class="col-sm-2 col-md-offset-3 control-label">城市</label>
-                <div class="col-sm-3">
-                    <input type="text" v-model="user.address" class="form-control" id="address" placeholder="城市" disabled="disabled">
+                <div class="form-group">
+                    <label for="education" class="col-md-2 control-label">学历</label>
+                    <div class="col-md-4">
+                        <select v-model="user.education" class="form-control" id="education">
+                            <option>小学</option>
+                            <option>初中</option>
+                            <option>高中</option>
+                            <option>大专</option>
+                            <option>本科</option>
+                            <option>硕士</option>
+                            <option>博士</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="address" class="col-sm-2 col-md-offset-3 control-label"></label>
-                <div class="col-sm-2">
-                    <!--省份选择-->
-                    <select id="prov"  onchange="showCity(this)" class="form-control">
-                        <option>=请选择省份=</option>
-                    </select>
+                <div class="form-group">
+                    <label for="address" class="col-md-2 control-label">城市</label>
+                    <div class="col-md-5">
+                        <input type="text" v-model="user.address" class="form-control" id="address" placeholder="城市" disabled="disabled">
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <!--城市选择-->
-                    <select id="city"  onchange="showCountry(this)" class="form-control">
-                        <option>=请选择城市=</option>
-                    </select>
+                <div class="form-group">
+                    <label for="address" class="col-md-2 control-label"></label>
+                    <div class="col-md-3">
+                        <!--省份选择-->
+                        <select id="prov"  onchange="showCity(this)" class="form-control">
+                            <option>=请选择省份=</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <!--城市选择-->
+                        <select id="city"  onchange="showCountry(this)" class="form-control">
+                            <option>=请选择城市=</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <!--县区选择-->
+                        <select id="country"  onchange="selecCountry(this)" class="form-control">
+                            <option>=请选择县区=</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    <!--县区选择-->
-                    <select id="country"  onchange="selecCountry(this)" class="form-control">
-                        <option>=请选择县区=</option>
-                    </select>
+                <div class="form-group">
+                    <div class="col-md-8">
+                        <button class="btn btn-lg btn-info" id="save" @click="save()">保存</button>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-10 col-sm-offset-1">
-                    <button class="btn btn-lg btn-info" id="save" @click="save()">保存</button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
     <!---copy-right--->
