@@ -17,6 +17,7 @@
         <security:intercept-url pattern="/" access="permitAll()"/>
         <security:intercept-url pattern="/index.html" access="permitAll()"/>
         <security:intercept-url pattern="/check" access="permitAll()"/>
+        <security:intercept-url pattern="/user/*" access="permitAll()"/>
         <security:intercept-url pattern="/isexist" access="permitAll()"/>
         <security:intercept-url pattern="/error" access="permitAll()"/>
         <security:intercept-url pattern="/util/*" access="permitAll()"/>

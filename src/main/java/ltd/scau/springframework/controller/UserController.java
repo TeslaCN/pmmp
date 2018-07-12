@@ -218,4 +218,22 @@ public class UserController {
 
         return dto;
     }
+
+    @RequestMapping("/user/{id}")
+    public UserInfoDto getUserById(@PathVariable Long id) {
+        UserInfoDto dto = new UserInfoDto();
+
+        User user = userDao.findById(id);
+        if (user != null) {
+            user.setPassword(null);
+            dto.setCode(0);
+            dto.setUser(user);
+            dto.setMessage(Constant.SUCCESS);
+        } else {
+            dto.setCode(1);
+            dto.setMessage("用户不存在");
+        }
+
+        return dto;
+    }
 }

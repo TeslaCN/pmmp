@@ -3,6 +3,7 @@ package ltd.scau.springframework.controller;
 import ltd.scau.util.Constant;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,9 @@ import java.util.Random;
 public class UtilController {
 
     private static final Log logger = LogFactory.getLog(UserController.class);
+
+    @Value("${captcha.lines}")
+    private Integer lines;
 
     @RequestMapping(value = "/code", produces = "image/jpeg")
     public void getCode(HttpSession session, HttpServletResponse response) {
@@ -52,7 +56,6 @@ public class UtilController {
 
         g.setColor(Color.BLACK);
 
-        int lines = 20;
         for (int i = 0; i < lines; i++) {
             int x1 = random.nextInt(width);
             int y1 = random.nextInt(height);

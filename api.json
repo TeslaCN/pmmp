@@ -434,5 +434,27 @@
         "message": "账户已被注册"
       }
     }
+  },
+  "获取用户信息": {
+    "url": "/user/{id}",
+    "return": {
+      "success": {
+        "user": {
+          "realname": "",
+          "account": "",
+          "nickname": "TESLA_CN",
+          "gender": 0,
+          "birth": "1997-01-08",
+          "email": "wuweijie@scau.edu.cn",
+          "salary": 100000,
+          "education": "本科",
+          "address": "483 SCAU"
+        }
+      },
+      "fail": {
+        "code": 1,
+        "message": "用户不存在"
+      }
+    }
   }
 }
