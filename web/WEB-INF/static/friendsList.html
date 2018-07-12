@@ -47,7 +47,6 @@
     </script>
     <!----//End-top-nav-script---->
 </head>
-</head>
 <body>
 <div id="friends">
     <!----- start-header---->
@@ -122,10 +121,9 @@
                             </p>
                             <p>
                                 <label class="col-md-4">学历:{{item.education}}</label>
-                                <label class="col-md-6">居住地：{{item.address}}</label>
+                                <label class="col-md-6">城市:{{item.address}}</label>
                             </p>
                             <button @click="sendMessage(item.id)" class="col-md-4">发送消息</button>
-                            <button @click="getMessages(item.id)" class="col-md-4">聊天记录</button>
                             <button @click="delect(item.id)" class="col-md-4">删除</button>
                         </li>
                         <div class="clearfix"> </div>
@@ -159,30 +157,6 @@
             signOut: function () {
                 console.log('Sign Out and clear Cookie')
                 $.cookie('user', '')
-            },
-            getMessages: function (id) {
-                $.get(
-                    APP_PREFIX + '/message/with/' + id,
-                    {
-                        "pageNo": 1,
-                        "pageSize": 10
-                    },
-                    function (data) {
-                        if(data){
-                            var messages =JSON.parse(JSON.stringify(data.messages));
-                            var showMessages="";
-                            for(var i=0;i<messages.length;i++){
-                                messages[i].sendTime=new Date(parseInt(messages[i].sendTime)).format('yyyy-MM-dd hh:mm:ss')
-                                if(id==messages[i].fromUserId){
-                                    messages[i].fromUserId='对方'
-                                }else{
-                                    messages[i].fromUserId='你'
-                                }
-                                showMessages+=messages[i].sendTime + ",   " + messages[i].fromUserId + "说:"+ messages[i].content + '\n'
-                            }
-                            alert(showMessages);
-                        }
-                    });
             },
             delect: function (id) {
                 $.ajax({
@@ -218,7 +192,7 @@
                 });
             },
             sendMessage:function(id){
-                url=APP_PREFIX+"/email.html?id="+id;
+                url=APP_PREFIX+"/message.html?id="+id;
                 window.location.href=url;
             }
         }
