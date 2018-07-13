@@ -17,6 +17,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
@@ -189,7 +190,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/head", method = RequestMethod.POST)
-    public ResultDto upload(@SessionAttribute(Constant.SESSION_USER) User me, MultipartFile file) {
+    public ResultDto upload(@SessionAttribute(Constant.SESSION_USER) User me, MultipartFile file, HttpServletResponse response) throws IOException {
         ResultDto dto = new ResultDto();
 
         String suffix = "";
@@ -215,6 +216,8 @@ public class UserController {
 
         dto.setCode(0);
         dto.setMessage(Constant.SUCCESS);
+
+        response.sendRedirect("information.html");
 
         return dto;
     }
