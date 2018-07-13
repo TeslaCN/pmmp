@@ -29,6 +29,7 @@ var search = new Vue({
             $.get(APP_PREFIX + '/basicsearch', {key: this.key, pageNo: no, pageSize: 10}, function (data) {
 
                 search.message = data.users;
+                console.log(data);
                 for(var i=0;i<search.message.length;i++){
                     if(search.message[i].gender){
                         search.message[i].gender="女";
@@ -36,6 +37,7 @@ var search = new Vue({
                     else{
                         search.message[i].gender="男";
                     }
+                    //document.getElementById("head").setAttribute("src",APP_PREFIX+"/img/"+search.message[i].profileUrl);
                 }
 
                 // var message = this.message
