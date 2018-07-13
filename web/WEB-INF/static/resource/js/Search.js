@@ -9,6 +9,10 @@ var search = new Vue({
         'APP_PREFIX': ''
     },
     methods: {
+        signOut: function () {
+            console.log('Sign Out and clear Cookie');
+            $.cookie('user', '')
+        },
         simpleSearch: function ( no) {
             // $.ajax({
             //     url: APP_PREFIX + '/basicsearch',
@@ -25,7 +29,6 @@ var search = new Vue({
             //         }
             //     }
             // })
-            debugger
             document.getElementById("page").style.visibility="visible";
             if(search.startDate==""&&search.endDate==""){
             $.get(APP_PREFIX + '/basicsearch', {key: this.key, pageNo: no, pageSize: 10}, function (data) {

@@ -56,6 +56,7 @@
     <!----//End-top-nav-script---->
 </head>
 <body>
+<div id="userSearch">
 <!----- start-header---->
 <div id="home" class="header">
     <div class="top-header">
@@ -89,7 +90,7 @@
     </div>
 </div>
 
-<div id="userSearch">
+<!--<div id="userSearch">-->
     <!--<nav class="navbar navbar-default" role="navigation" >-->
     <div class="welcome-note text-center">
         <div class="container">
@@ -111,8 +112,8 @@
                                                                                              placeholder="结束日期"
                                                                                              required></label><br>
                 </form>
-                <button id="simpleSerach" type="submit" @click="simpleSearch(1)" class="nav navbar-nav">
-                    <label>搜索</label></button>
+                <br>
+                <button id="simpleSerach" type="submit" @click="simpleSearch(1)" class="btn btn-default">搜索</button>
             </div>
         </div>
     </div>
