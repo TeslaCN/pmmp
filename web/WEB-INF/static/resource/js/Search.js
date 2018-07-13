@@ -61,6 +61,8 @@ var search = new Vue({
             else{
                 $.get(APP_PREFIX + '/advancedsearch', {
                     key: this.key,
+                    pageNo:no,
+                    pageSize:10,
                     startDate: this.startDate,
                     endDate: this.endDate
                 }, function (data) {
