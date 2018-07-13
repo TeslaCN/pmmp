@@ -74,29 +74,30 @@
     </div>
     <!----- //End-header---->
 
-    <div>
-        <div class="top-heade">
-            <div class="container">
-                <div class="top-header-left">
-                    <h1>与{{nickname}}聊天中</h1>
+    <div style="background: #ff9">
+        <div>
+            <div class="top-heade">
+                <div class="container">
+                    <div class="top-header-left">
+                        <h1>与{{nickname}}聊天中</h1>
+                    </div>
+                    <div class="clearfix"> </div>
                 </div>
-                <div class="clearfix"> </div>
             </div>
         </div>
-    </div>
-
-    <div class="talk_con">
-        <div class="talk_show" id="words">
-            <div v-for="item in messages">
-                <div v-if="item.fromUserId=='0'" class="atalk">{{item.sendTime}}<br><span>{{nickname}}说：{{item.content}}</span></div>
-                <div v-else class="btalk">{{item.sendTime}}<br><span>你说：{{item.content}}</span></div>
+        <div class="talk_con">
+            <div class="talk_show" id="words">
+                <div v-for="item in messages">
+                    <div v-if="item.fromUserId=='0'" class="atalk">{{item.sendTime}}<br><span>{{nickname}}说：{{item.content}}</span></div>
+                    <div v-else class="btalk">{{item.sendTime}}<br><span>你说：{{item.content}}</span></div>
+                </div>
             </div>
-        </div>
-        <div class="talk_input">
-            <form class="form-info form-inline" onsubmit="return false">
-                <input type="text" v-model="content" id="content" class="form-control col-md-offset-4">
-                <button type="submit" @click="SendMessage()" class="btn btn-default">发送</button>
-            </form>
+            <div class="talk_input">
+                <form class="form-info form-inline" onsubmit="return false">
+                    <input type="text" v-model="content" id="content" class="form-control col-md-offset-4">
+                    <button type="submit" @click="SendMessage()" class="btn btn-default">发送</button>
+                </form>
+            </div>
         </div>
     </div>
 

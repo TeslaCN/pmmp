@@ -87,7 +87,7 @@
     </div>
 
     <!---friends-grids---->
-    <div class="services-grids">
+    <div class="services-grids" style="background: #ff9">
         <div class="container">
             <div class="services">
                 <div class="col-md-4 services-sidebar">
@@ -95,7 +95,7 @@
                     <ul>
                         <li v-for="item in newFriends">
                             <div class="col-md-3">
-                                <img src="resource/images/c4.jpg"  class="img-responsive center-block img-circle">
+                                <img src="resource/images/default_male.jpg"  class="img-responsive center-block img-circle">
                             </div>
                             <p>{{item.nickname}}想成为你的好友</p>
                             <button class="btn btn-default" @click="accept(item.id)">同意</button>
@@ -106,33 +106,40 @@
                     <ul>
                         <li v-for="item in refuseme">
                             <div class="col-md-3">
-                                <img src="resource/images/c4.jpg"  class="img-responsive center-block img-circle">
+                                <img src="resource/images/default_male.jpg"  class="img-responsive center-block img-circle">
                             </div><br>
                             <p>{{item.nickname}}拒绝了你的好友请求</p>
                         </li>
                     </ul>
                 </div>
 
-                <div class="col-md-6 service-content">
+                <div class="col-md-8 service-content" style="background: #ffc">
                     <h3>我的好友列表</h3>
                     <ul v-for="item in users">
                         <li>
-                            <div class="col-md-3">
-                                <h1></h1>
+                            <div class="col-md-3" v-if="item.profileUrl!=null">
+                                <img :src="item.profileUrl"  class="img-responsive center-block img-circle">
+                            </div>
+                            <div class="col-md-3" v-else-if="item.gender=='男'">
+                                <img src="resource/images/default_male.jpg"  class="img-responsive center-block img-circle">
+                            </div>
+                            <div class="col-md-3 div" v-else>
                                 <img src="resource/images/default_female.jpg"  class="img-responsive center-block img-circle">
                             </div>
-                            <p>
-                                <a>{{item.nickname}}</a>
-                            </p>
-                            <p>
-                                <label class="col-md-4">真实姓名:{{item.realname}}</label>
-                                <label class="col-md-4">性别:{{item.gender}}</label>
-                                <label class="col-md-4">生日:{{item.birth}}</label>
-                                <label class="col-md-4">学历:{{item.education}}</label>
-                                <label class="col-md-6">城市:{{item.address}}</label>
-                            </p>
-                            <button @click="sendMessage(item.id)" class="col-md-4 btn btn-default">发送消息</button>
-                            <button @click="delect(item.id)" class="col-md-4 btn btn-default">删除</button>
+                            <div class="col-md-8">
+                                <p>
+                                    <a>{{item.nickname}}</a>
+                                </p>
+                                <p>
+                                    <label class="col-md-4">真实姓名:{{item.realname}}</label>
+                                    <label class="col-md-4">性别:{{item.gender}}</label>
+                                    <label class="col-md-4">生日:{{item.birth}}</label>
+                                    <label class="col-md-4">学历:{{item.education}}</label>
+                                    <label class="col-md-6">城市:{{item.address}}</label>
+                                </p>
+                                <button @click="sendMessage(item.id)" class="col-md-4 btn btn-default">发送消息</button>
+                                <button @click="delect(item.id)" class="col-md-4 btn btn-default">删除</button>
+                            </div>
                         </li>
                         <div class="clearfix"></div>
                         <div><label></label></div>
@@ -160,7 +167,7 @@
         data:{
             users:null,
             newFriends:null,
-            refuseme:null
+            refuseme:null,
         },
         methods:{
             signOut: function () {
@@ -222,6 +229,11 @@
                     friends.users[i].gender='女';
                 }else{
                     friends.users[i].gender='男';
+                }
+                if(friends.users[i].profileUrl!=null&&(friends.users[i].profileUrl.search("jpg") != -1 || friends.users[i].profileUrl.search("png") != -1)){
+                    friends.users[i].profileUrl=APP_PREFIX +"/images/"+friends.users[i].profileUrl;
+                }else{
+                    friends.users[i].profileUrl=null;
                 }
             }
         });

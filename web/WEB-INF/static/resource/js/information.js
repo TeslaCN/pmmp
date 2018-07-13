@@ -1,7 +1,7 @@
 var information = new Vue({
     el:'#information',
     data:{
-        user:{}
+        user:{},
     },
     methods: {
         save: function () {
@@ -15,10 +15,28 @@ var information = new Vue({
             $.cookie('user', JSON.stringify(this.user));
             alert("保存成功");
         },
+        // change:function(){
+        //     var formData = new FormData();
+        //     var img = document.getElementById("file");
+        //     var file = img.files[0];
+        //     formData.append("file",file);
+        //     $.ajax({
+        //         url:APP_PREFIX+"/head",
+        //         type:"post",
+        //         enctype: "form-data",
+        //         data:{file:formData},
+        //         processData : false,
+        //         contentType : false,
+        //         async:false,
+        //         success:function(data){
+        //             alert(data.message);
+        //         }
+        //     })
+        // },
         signOut: function () {
             console.log('Sign Out and clear Cookie');
             $.cookie('user', '')
-        }
+        },
     }
 });
 
@@ -37,7 +55,12 @@ $.get(APP_PREFIX + '/me', {}, function (data) {
         information.user=data.user;
         delete information.user.signUpTime;
         var date = new Date(parseInt(information.user.birth));
-        information.user.birth = date.format('yyyy-MM-dd')
+        information.user.birth = date.format('yyyy-MM-dd');
+        if(information.user.profileUrl!=null&&(information.user.profileUrl.search("jpg") != -1 || information.user.profileUrl.search("png") != -1)){
+            information.user.profileUrl=APP_PREFIX +"/images/"+information.user.profileUrl;
+        }else{
+            information.user.profileUrl=null;
+        }
     }
 });
 
