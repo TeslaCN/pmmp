@@ -5,6 +5,8 @@ var search = new Vue({
         startDate: "",
         endDate: "",
         message: [],
+        src:"",
+        'APP_PREFIX': ''
     },
     methods: {
         simpleSearch: function ( no) {
@@ -29,15 +31,22 @@ var search = new Vue({
             $.get(APP_PREFIX + '/basicsearch', {key: this.key, pageNo: no, pageSize: 10}, function (data) {
 
                 search.message = data.users;
-                console.log(data);
                 for(var i=0;i<search.message.length;i++){
+                    console.log(search.message[i].profileUrl);
                     if(search.message[i].gender){
                         search.message[i].gender="女";
+                        if(search.message[i].profileUrl==null){
+                            search.message[i].profileUrl="default_female.jpg";
+                        }
+
                     }
                     else{
                         search.message[i].gender="男";
+                        if(search.message[i].profileUrl==null){
+                            search.message[i].profileUrl="default_male.jpg"
+                        }
                     }
-                    //document.getElementById("head").setAttribute("src",APP_PREFIX+"/img/"+search.message[i].profileUrl);
+
                 }
 
                 // var message = this.message
@@ -54,6 +63,21 @@ var search = new Vue({
                 }, function (data) {
                     console.log(data);
                     search.message = data.users;
+                    for(var i=0;i<search.message.length;i++){
+                        if(search.message[i].gender){
+                            search.message[i].gender="女";
+                            if(search.message[i].profileUrl==null){
+                                search.message[i].profileUrl="default_female.jpg";
+                            }
+                        }
+                        else{
+                            search.message[i].gender="男";
+                            if(search.message[i].profileUrl==null){
+                                search.message[i].profileUrl="default_male.jpg"
+                            }
+                        }
+
+                    }
                 }, 'json')
             }
         },
@@ -97,10 +121,16 @@ var search = new Vue({
                   }
                }
            });
+        },
+        setSrc:function (url) {
+           var URL=APP_PREFIX+"/images/"+url;
+           return URL;
         }
     }
 
 })
+search.APP_PREFIX = APP_PREFIX
+
 $('#startDate').datepicker({
     format: "yyyy-mm-dd",
     startView: 2,

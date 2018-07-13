@@ -11,10 +11,11 @@
 <body>
      <form enctype="multipart/form-data"   id="push" method="post" action="/pmmp/head">
       <label>上传图片</label><input type="file" id="file" name="file">
+         <button type="submit"></button>
      </form>
 </body>
 <script>
-    $("#file").on("change",function(){
+   /* $("#file").on("change",function(){
            debugger
              var formedate=new FormData();
             formedate.append("file",$("#file")[0].files[0]);
@@ -30,7 +31,7 @@
                     alert(data.message);
                 }
             })
-       })
+       })*/
     /*$("iframe[name=iframeContent]").on("load",function () {
         var respondText=$("iframe")[0].contentDocument.body.getElementsByTagName("pre")[0].innerHTML;
         alert(respondText);

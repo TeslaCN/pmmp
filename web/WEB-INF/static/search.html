@@ -2,13 +2,13 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <title>这里是搜索页</title>
-    <link href="resource/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="resource/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- jQuery -->
     <script src="resource/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
-    <link href="resource/css/style.css" rel='stylesheet' type='text/css' />
+    <link href="resource/css/style.css" rel='stylesheet' type='text/css'/>
     <link href="resource/bootstrap-datepicker-master/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="resource/images/fav-icon.png" />
+    <link rel="shortcut icon" href="resource/images/fav-icon.png"/>
     <script src="resource/js/constant.js"></script>
     <script src="resource/js/jquery.cookie.js"></script>
     <script src="resource/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
@@ -20,28 +20,34 @@
     <script type="text/javascript" src="resource/js/move-top.js"></script>
     <script type="text/javascript" src="resource/js/easing.js"></script>
     <script type="text/javascript">
-        jQuery(document).ready(function($) {
-            $(".scroll").click(function(event){
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
                 event.preventDefault();
-                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 1000);
             });
         });
     </script>
     <!---- start-smoth-scrolling---->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
     <script>
-        $(function() {
-            var pull 		= $('#pull');
-            menu 		= $('nav ul');
-            menuHeight	= menu.height();
-            $(pull).on('click', function(e) {
+        $(function () {
+            var pull = $('#pull');
+            menu = $('nav ul');
+            menuHeight = menu.height();
+            $(pull).on('click', function (e) {
                 e.preventDefault();
                 menu.slideToggle();
             });
-            $(window).resize(function(){
+            $(window).resize(function () {
                 var w = $(window).width();
-                if(w > 320 && menu.is(':hidden')) {
+                if (w > 320 && menu.is(':hidden')) {
                     menu.removeAttr('style');
                 }
             });
@@ -55,9 +61,9 @@
     <div class="top-header">
         <div class="container">
             <div class="logo">
-                <a href="index.html"><img src="resource/images/logo.png" title="yellow" /></a>
+                <a href="index.html"><img src="resource/images/logo.png" title="yellow"/></a>
             </div>
-            <!----start-top-nav---->
+            <!--&#45;&#45;start-top-nav&#45;&#45;-->
             <nav class="top-nav">
                 <ul class="top-nav">
                     <li><a href="index.html">首页</a></li>
@@ -65,11 +71,11 @@
                     <li><a href="friendsList.html">我的好友</a></li>
                     <li class="active"><a href="search.html">搜索</a></li>
                     <li><a @click="signOut()" href="index.html">退出</a></li>
-                    <div class="clearfix"> </div>
+                    <div class="clearfix"></div>
                 </ul>
-                <a href="#" id="pull"><img src="resource/images/nav-icon.png" title="menu" /></a>
+                <a href="#" id="pull"><img src="resource/images/nav-icon.png" title="menu"/></a>
             </nav>
-            <div class="clearfix"> </div>
+            <div class="clearfix"></div>
         </div>
     </div>
 </div>
@@ -79,66 +85,91 @@
         <div class="top-header-left">
             <h1>查询</h1>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
     </div>
 </div>
 
-        <div id="userSearch" >
-            <!--<nav class="navbar navbar-default" role="navigation" >-->
-            <div class="welcome-note text-center">
-                <div class="container">
-                <div class="container-fluid">
-                    <form  class="form-info form-inline" onsubmit="return false">
-                        <label class="nav navbar-nav"><label><input type="text" id="Seachkey" v-model="key" placeholder="关键字" class="form-control" required></label></label>
-                        <label class="nav navbar-nav"> <label class="sr-only">起始日期</label><input v-model="startDate" type="text" class="form-control" id="startDate" name="startDate" placeholder="开始日期" required></label>
-                        <label class="nav navbar-nav"> <label class="sr-only">结束日期</label><input v-model="endDate" type="text" class="form-control" id="endDate" name="endDate" placeholder="结束日期" required></label><br>
-                    </form>
-                    <button id="simpleSerach" type="submit" @click="simpleSearch(1)" class="nav navbar-nav"><label>搜索</label></button>
-                </div>
-                </div>
+<div id="userSearch">
+    <!--<nav class="navbar navbar-default" role="navigation" >-->
+    <div class="welcome-note text-center">
+        <div class="container">
+            <div class="container-fluid">
+                <form class="form-info form-inline" onsubmit="return false">
+                    <label class="nav navbar-nav"><label><input type="text" id="Seachkey" v-model="key"
+                                                                placeholder="关键字" class="form-control" required></label></label>
+                    <label class="nav navbar-nav"> <label class="sr-only">起始日期</label><input v-model="startDate"
+                                                                                             type="text"
+                                                                                             class="form-control"
+                                                                                             id="startDate"
+                                                                                             name="startDate"
+                                                                                             placeholder="开始日期"
+                                                                                             required></label>
+                    <label class="nav navbar-nav"> <label class="sr-only">结束日期</label><input v-model="endDate"
+                                                                                             type="text"
+                                                                                             class="form-control"
+                                                                                             id="endDate" name="endDate"
+                                                                                             placeholder="结束日期"
+                                                                                             required></label><br>
+                </form>
+                <button id="simpleSerach" type="submit" @click="simpleSearch(1)" class="nav navbar-nav">
+                    <label>搜索</label></button>
             </div>
-            <!--</nav>-->
-                <ul v-for="item in message">
-                    <div>
-                    <li >
-                        <div>
-                        <div class="col-md-2">
-                            <h1></h1><br>
-                            <img src="resource/images/default_male.jpg"  class="img-responsive center-block img-circle" id="head">
-                        </div>
-                        <p>
-                            <a>{{item.nickname}}</a>
-                        </p>
-                        <p>
-                            <label class="col-md-4">真实姓名:{{item.realname}}</label>
-                            <label class="col-md-5">性别:{{item.gender}}</label>
-                            <label class="col-md-4" >生日:{{dateFormed(item.birth)}}</label>
-                            <label class="col-md-5">学历:{{item.education}}</label>
-                            <label class="col-md-6">城市:{{item.address}}</label><br>
-                        </p><br><br>
-                         <p>
-                             <button @click="addFriend(item.id)" class=" btn btn-default">添加好友</button>
-                         </p>
-                        </div>
-                    </li>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div><label></label></div>
-                </ul>
-            <div class="clearfix"></div>
-            <ul class="pagination" style="visibility: hidden" id="page">
-                  <li ><button type="submit" @click="simpleSearch(1)" class="btn btn-default ">1</button></li>
-                  <li ><button type="submit" @click="simpleSearch(2)" class="btn btn-default ">2</button></li>
-                  <li ><button type="submit" @click="simpleSearch(3)" class="btn btn-default ">3</button></li>
-                  <li ><button type="submit" @click="simpleSearch(4)" class="btn btn-default ">4</button></li>
-                  <li ><button type="submit" @click="simpleSearch(5)" class="btn btn-default ">5</button></li>
-            </ul>
         </div>
+    </div>
+    <!--</nav>-->
+    <ul v-for="item in message">
+        <div>
+            <li>
+                <div>
+                    <div class="col-md-2">
+                        <h1></h1><br>
+                        <img v-if="item.profileUrl" :src="'images/' + item.profileUrl" class="img-responsive center-block img-circle" id="head">
+                        <img v-else :src="'resource/images/default_female.jpg'" class="img-responsive center-block img-circle">
+                    </div>
+                    <p>
+                        <a>{{item.nickname}}</a>
+                    </p>
+                    <p>
+                        <label class="col-md-4">真实姓名:{{item.realname}}</label>
+                        <label class="col-md-5">性别:{{item.gender}}</label>
+                        <label class="col-md-4">生日:{{dateFormed(item.birth)}}</label>
+                        <label class="col-md-5">学历:{{item.education}}</label>
+                        <label class="col-md-6">城市:{{item.address}}</label><br>
+                    </p><br><br>
+                    <p>
+                        <button @click="addFriend(item.id)" class=" btn btn-default">添加好友</button>
+                    </p>
+                </div>
+            </li>
+        </div>
+        <div class="clearfix"></div>
+        <div><label></label></div>
+    </ul>
+    <div class="clearfix"></div>
+    <ul class="pagination" style="visibility: hidden" id="page">
+        <li>
+            <button type="submit" @click="simpleSearch(1)" class="btn btn-default ">1</button>
+        </li>
+        <li>
+            <button type="submit" @click="simpleSearch(2)" class="btn btn-default ">2</button>
+        </li>
+        <li>
+            <button type="submit" @click="simpleSearch(3)" class="btn btn-default ">3</button>
+        </li>
+        <li>
+            <button type="submit" @click="simpleSearch(4)" class="btn btn-default ">4</button>
+        </li>
+        <li>
+            <button type="submit" @click="simpleSearch(5)" class="btn btn-default ">5</button>
+        </li>
+    </ul>
+</div>
 <div class="copy-right text-center">
     <p>Copyright &copy; 2018.All rights reserved.<a href="#">@有请下一组</a></p>
     <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 </div>
 </body>
+
 <script src="resource/js/Search.js">
 </script>
 </html>
