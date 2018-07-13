@@ -7,7 +7,7 @@ var search = new Vue({
         message: [],
     },
     methods: {
-        simpleSearch: function () {
+        simpleSearch: function ( no) {
             // $.ajax({
             //     url: APP_PREFIX + '/basicsearch',
             //     type: 'GET',
@@ -23,19 +23,41 @@ var search = new Vue({
             //         }
             //     }
             // })
-
-            $.get(APP_PREFIX + '/basicsearch', {key: this.key, pageNo: 1, pageSize: 10}, function (data) {
+            debugger
+            document.getElementById("page").style.visibility="visible";
+            if(search.startDate==""&&search.endDate==""){
+            $.get(APP_PREFIX + '/basicsearch', {key: this.key, pageNo: no, pageSize: 10}, function (data) {
 
                 search.message = data.users;
+                console.log(data);
+                for(var i=0;i<search.message.length;i++){
+                    if(search.message[i].gender){
+                        search.message[i].gender="女";
+                    }
+                    else{
+                        search.message[i].gender="男";
+                    }
+                    //document.getElementById("head").setAttribute("src",APP_PREFIX+"/img/"+search.message[i].profileUrl);
+                }
 
                 // var message = this.message
                 // for (var i = 0; i < message.length; i++) {
                 //     message[i].startDate = this.dateFomed(message[i].startDate);
                 //     message[i].endDate = this.dateFomed(message[i].endDate);
                 // }
-            }, 'json')
+            }, 'json')}
+            else{
+                $.get(APP_PREFIX + '/advancedsearch', {
+                    key: this.key,
+                    startDate: this.startDate,
+                    endDate: this.endDate
+                }, function (data) {
+                    console.log(data);
+                    search.message = data.users;
+                }, 'json')
+            }
         },
-        advanceSearch: function () {
+        /*advanceSearch: function () {
                      debugger
             $.get(APP_PREFIX + '/advancedsearch', {
                 key: this.key,
@@ -45,7 +67,7 @@ var search = new Vue({
                 console.log(data);
                 search.message = data.users;
             }, 'json')
-        },
+        },*/
         dateFormed: function (date) {
             var time = new Date(date);
             var year = time.getFullYear();
